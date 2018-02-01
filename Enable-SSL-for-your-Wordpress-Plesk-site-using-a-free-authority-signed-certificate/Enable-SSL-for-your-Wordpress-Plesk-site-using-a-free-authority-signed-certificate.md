@@ -78,16 +78,8 @@ Go to your site's Wordpress admin panel. Navigate to:
 **Step 5: Redirect HTTP to HTTPS using .htaccess**
 Now you have to ensure that your site will be accessed only using HTTPS. To do so, edit file `httpdocs/.htaccess` and place the following Apache redirection instructions:
 
-<textarea name="code" id="code" rows="25" cols="80" style="width: 100%;"># BEGIN WordPress
-&lt;IfModule mod_rewrite.c&gt;
-RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
-&lt;/IfModule&gt;
-
+<pre>
+# BEGIN WordPress
 &lt;IfModule mod_rewrite.c&gt;
 RewriteEngine On
 RewriteCond %{SERVER_PORT} 80 
@@ -95,7 +87,7 @@ RewriteRule ^(.*)$ https://www.illumine.gr/$1 [R,L]
 &lt;/IfModule&gt;
 
 # END WordPress
-</textarea>
+</pre>
 
 Finally, edit file `httpdocs/wp-config.php` and add the following code above the “That’s all, stop editing!” line in your `httpdocs/wp-config.php` file:
 <pre>
