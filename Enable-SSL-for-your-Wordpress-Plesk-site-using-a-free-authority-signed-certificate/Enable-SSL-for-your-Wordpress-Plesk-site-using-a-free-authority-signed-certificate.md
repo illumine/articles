@@ -99,3 +99,7 @@ You should use Chrome, Firefox and Internet Explorer to verify that your site wo
  
 **Step 7: Re-backup Wordpress files**                    
 Create another compressed archive of the conetents of `httpdocss` directory. 
+
+
+
+![LinkedIN](../img/linkedin.png)[Follow us on LinkedIn](https://www.linkedin.com/company/illumine-it-consulting/)![Blogspot](../img/blogspot.png)[Read our Blog](https://illumineconsulting.blogspot.com/)![Google+](../img/gplus.png)[Find us on Google+](https://plus.google.com/+IllumineGr1/)    
