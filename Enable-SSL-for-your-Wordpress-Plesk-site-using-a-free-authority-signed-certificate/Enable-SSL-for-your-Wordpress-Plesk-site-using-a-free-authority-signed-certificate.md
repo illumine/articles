@@ -65,3 +65,6 @@ Next, you have to use this certificate for your site. Navigate to :
 *Websites & Domains -> Hosting Settings* and indicate the certificate you previously added.
 
 ![Plesk certificate panel ](img/plesk-use-certificate-for-domain.png)
+
+
+**Step 4: **
