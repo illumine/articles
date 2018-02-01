@@ -46,7 +46,7 @@ With a little help from [duckduckgo search engine](https://duckduckgo.com/) I fo
 
 In order to create one go to  [https://ssl.comodo.com/free-ssl-certificate.php](https://ssl.comodo.com/free-ssl-certificate.php) and paste your certificate sign request file. In our case is the file:  `illumine.gr.csr`  we created in step1.
 
-![Comodo free certificate panel ](comodo_certificate_for_illumine_gr.png)
+![Comodo free certificate panel ](img/comodo_certificate_for_illumine_gr.png)
 
 
 **Step 3:** Enable the Certificate in Plesk
