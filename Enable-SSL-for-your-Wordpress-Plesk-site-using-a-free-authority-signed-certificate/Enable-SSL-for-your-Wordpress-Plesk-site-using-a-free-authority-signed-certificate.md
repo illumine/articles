@@ -55,8 +55,10 @@ Make sure to select the Apache-ModSSL as the software to be used to generate the
  When you enter the verification code from Comodo email, a new email will be sent with attached the compressed authority signed certificate for your domain. Save the certificates in a really safe directory on your server.
 
 
-**Step 3:** Enable the Certificate in Plesk
+**Step 3: Enable the Certificate in Plesk**
 Login to your domain's Plex dashboard.   Then navigate to           
 *Websites & Domains -> illumine.gr -> SSL Certificates*   and then upload the authority signed certificate and the server key that you have used to create it.
 
 ![Plesk certificate panel ](img/plesk-uploading-the-certificates.png)
+
+
