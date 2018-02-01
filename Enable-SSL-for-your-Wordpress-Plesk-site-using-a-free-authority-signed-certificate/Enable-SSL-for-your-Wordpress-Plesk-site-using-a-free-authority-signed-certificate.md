@@ -93,3 +93,9 @@ Finally, edit file `httpdocs/wp-config.php` and add the following code above the
 <pre>
 define('FORCE_SSL_ADMIN', true);
 </pre>
+
+**Step 6: Test your site with various browsers**
+You should use Chrome, Firefox and Internet Explorer to verify that your site works as expected.
+
+**Step 7: Re-backup Wordpress files**
+Create another compressed archive of the conetents of `httpdocss` directory. 
