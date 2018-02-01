@@ -61,4 +61,7 @@ Login to your domain's Plex dashboard.   Then navigate to
 
 ![Plesk certificate panel ](img/plesk-uploading-the-certificates.png)
 
+Next, you have to use this certificate for your site. Navigate to :     
+*Websites & Domains -> Hosting Settings* and indicate the certificate you previously added.
 
+![Plesk certificate panel ](img/plesk-use-certificate-for-domain.png)
