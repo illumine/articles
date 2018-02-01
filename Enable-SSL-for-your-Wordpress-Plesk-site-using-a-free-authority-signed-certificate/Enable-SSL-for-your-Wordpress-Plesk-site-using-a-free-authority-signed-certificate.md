@@ -3,8 +3,7 @@
 Example site: illumine.gr runing on Wordpress/Plesk
 
 
-**Step 1:**    
-Create your server's private key and certificate sign request files.    
+**Step 1:  Create your server's private key and certificate sign request files.**       
 To do so, you have to install [Openssl tools](https://www.openssl.org/) in your Linux server.    
 Normally,  [Openssl tools](https://www.openssl.org/) will come with your Linux distribution, so you just have to install them using your system's package manager. For my SLES machine, I just have to do
 <pre>
@@ -34,7 +33,7 @@ The second one `illumine.gr.key` is the domain private key file that will be set
 
 
 
-**Step 2:** Create an authority signed server certificate    
+**Step 2: Create an authority signed server certificate**    
 
 Let's see what is the main difference between a *self-signed* and an *authority-signed* server certificate.    
 With a *self-signed* you just state that you are your domain - we don't actually know if you are or not.  Noone will support the contrary, but our web browser will issue a warning when we will try to access your site.
@@ -46,9 +45,18 @@ With a little help from [duckduckgo search engine](https://duckduckgo.com/) I fo
 
 In order to create one go to  [https://ssl.comodo.com/free-ssl-certificate.php](https://ssl.comodo.com/free-ssl-certificate.php) and paste your certificate sign request file. In our case is the file:  `illumine.gr.csr`  we created in step1.
 
+
+Make sure to select the Apache-ModSSL as the software to be used to generate the CSR. We select that one, since we are using Apache as our HTTP server.
+
 ![Comodo free certificate panel ](img/comodo_certificate_for_illumine_gr.png)
+
+ [Comodo Cyber Security](https://comodo.com) will then ask you to create a certificate manager account that will be used in order to re-issue the certificates or change some attributes.  Doing so, you will have to provide a valid email address so that Comodo will send you an email with the certificate verification code.
+ 
+ When you enter the verification code from Comodo email, a new email will be sent with attached the compressed authority signed certificate for your domain. Save the certificates in a really safe directory on your server.
 
 
 **Step 3:** Enable the Certificate in Plesk
-    
-Websites & Domains -> illumine.gr -> SSL Certificates
+Login to your domain's Plex dashboard.   Then navigate to           
+*Websites & Domains -> illumine.gr -> SSL Certificates*   and then upload the authority signed certificate and the server key that you have used to create it.
+
+![Plesk certificate panel ](img/plesk-uploading-the-certificates.png)
