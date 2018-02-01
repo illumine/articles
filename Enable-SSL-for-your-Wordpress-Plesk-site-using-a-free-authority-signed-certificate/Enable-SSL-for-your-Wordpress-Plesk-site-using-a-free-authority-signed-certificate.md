@@ -67,4 +67,28 @@ Next, you have to use this certificate for your site. Navigate to :
 ![Plesk certificate panel ](img/plesk-use-certificate-for-domain.png)
 
 
-**Step 4: **
+**Step 4: Configure Wordpress to load the page using HTTPS**
+Go to your site's Wordpress admin panel. Navigate to:    
+*Settings -> General Settings* and change the parameters *WordPress Address (URL)* and *Site Address (URL)* to utilize HTTPS instead of HTTP.
+
+
+![Wordpress General settings panel ](img/wordpress-admin-general-settings.png)
+
+
+**Step 5: Redirect HTTP to HTTPS using .htaccess**
+Now you have to ensure that your site will be accessed only using HTTPS. To do so, edit file `httpdocs/.htaccess` and place the following Apache redirection instructions:
+
+<pre>
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://www.illumine.gr/$1 [R,L]
+</IfModule>
+# END WordPress
+</pre>
+
+Finally, edit file `httpdocs/wp-config.php` and add the following code above the “That’s all, stop editing!” line in your `httpdocs/wp-config.php` file:
+<pre>
+define('FORCE_SSL_ADMIN', true);
+</pre>
