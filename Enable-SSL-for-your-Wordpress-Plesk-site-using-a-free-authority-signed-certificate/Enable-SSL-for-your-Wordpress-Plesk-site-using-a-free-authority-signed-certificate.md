@@ -114,6 +114,9 @@ In that case, most probable some images of your web page causing the problem if 
 **Step 7: Re-backup Wordpress files**                    
 Create another compressed archive of the conetents of `httpdocss` directory. 
 
+### Read Also
 
+https://support.mozilla.org/en-US/kb/how-do-i-tell-if-my-connection-is-secure      
+https://www.ssls.com/blog/easily-move-website-https/      
 
 ![LinkedIN](../img/linkedin.png)[Follow us on LinkedIn](https://www.linkedin.com/company/illumine-it-consulting/)![Blogspot](../img/blogspot.png)[Read our Blog](https://illumineconsulting.blogspot.com/)![Google+](../img/gplus.png)[Find us on Google+](https://plus.google.com/+IllumineGr1/)    
