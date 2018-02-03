@@ -95,8 +95,22 @@ define('FORCE_SSL_ADMIN', true);
 </pre>
 
 **Step 6: Test your site with various browsers**          
-You should use Chrome, Firefox and Internet Explorer to verify that your site works as expected.
- 
+You should use Chrome, Firefox and Internet Explorer to verify that your site works as expected.    
+
+If everything is ok, then the browser sould give you the green light:
+
+![browser OK ](img/illumine-it-consulting-right-https.png)
+
+If there is a problem, then your browser should give you a warning:
+
+![problem with browser ](img/illumine-it-consulting-wrong-https.png)
+
+it may also be a gray padlock with a yellow warning triangle or a broken padlock (a padlock with a red strikethrough). 
+
+In that case, most probable some images of your web page causing the problem if they are still referenced with HTTP in the absolute URL path, for example  `http://www.mysite.com/images/myimage.png`.  Make sure you replace the URL with HTTPS.
+
+
+
 **Step 7: Re-backup Wordpress files**                    
 Create another compressed archive of the conetents of `httpdocss` directory. 
 
