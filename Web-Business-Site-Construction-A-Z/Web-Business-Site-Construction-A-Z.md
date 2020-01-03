@@ -26,7 +26,7 @@ Make sure it is an easy to remember MSISDN! This is the only requirement.
 
 
 
-This will be referred myMSISDN
+This will be referred **myMSISDN**
 
 
 
@@ -80,7 +80,7 @@ If and only If you find all three .com .eu and .gr you should consider the name.
 
 
 
-This will be referred myDOMAIN
+**This will be referred myDOMAIN**
 
 
 
@@ -108,7 +108,7 @@ And create a new Google Account for your company.
 
 
 
-This will be referred as myDOMAIN@gmail.com. 
+**This will be referred as myDOMAIN@gmail.com.** 
 
 
 
@@ -134,7 +134,7 @@ And create a new Microsoft Account for your company.
 
 
 
-A Google email to manage your business. This will be referred as myDOMAIN@outlook.com. 
+A Google email to manage your business. **This will be referred as myDOMAIN@outlook.com.** 
 
 
 
@@ -166,7 +166,7 @@ What will be the technology stack for my page Windows or Linux based?
 
 90% of the cases the choice is the typical Linux/Plesk/MySQL/Wordpress + Mail scheme.
 
-Both providers given support this scheme.
+Both providers given are supporting this scheme.
 
 Go to one of the providers and create an account using the myDOMAIN@outlook.com 
 
@@ -178,15 +178,15 @@ Just place your domain and host order to the provider. Use your real company det
 
 
 
-When order will be paid, you will receive in the :  myDOMAIN@outlook.com a mail from your provider giving you the following things, that you must put in your safe:
+When order will be paid, you will receive in the :  myDOMAIN@outlook.com a mail from your provider giving you the following things, that **you must put in your safe:**
 
-The email of instructions received in myDOMAIN@outlook.com
+**The email of instructions received in myDOMAIN@outlook.com**
 
-URL to the Plesk panel
+**URL to the Plesk panel**
 
-Domain Plesk admin username
+**Domain Plesk admin username**
 
-Domain Plesk admin password
+**Domain Plesk admin password**
 
 Go to the Plesk panel and update the DNS for your domain. Wait 2-48 hours for IANA DNS updates.
 
@@ -194,29 +194,28 @@ Go to the Plesk panel and update the DNS for your domain. Wait 2-48 hours for IA
 
 ### Creating the Web Mail
 
-Go to the Plesk panel and create a mail account for Word Press administrator. This is NOT your employee account nor has to do anything with your company business. This is where the front-end Wordpress reports problems. Create the following:
+Go to the Plesk panel and create a mail account for Word Press administrator. This is NOT your employee account nor has to do anything with your company business. This is where the front-end Wordpress reports problems. Create and store in your safe the following:
 
-Wordpress Admin mail account:  wpadmin@myDOMAIN.com
+**Wordpress Admin mail account:  wpadmin@myDOMAIN.com**
 
-Wordpress Admin password:  passwd
-
+**Wordpress Admin password:  passwd**
 
 
 ### Creating the Web Server Certificates
 
-Go to the Plesk and create an SSL certificate for your domain. For that reason, you may need a third party signed certificate, for example your domain’s certificate might be signed from VeriSIGN. When this step is completed, you need to have the following things:
+Go to the Plesk and create an SSL certificate for your domain. For that reason, you may need a third party signed certificate, for example your domain’s certificate might be signed from VeriSIGN. When this step is completed, you need to store in your safe the following things:
 
-RSA ID: private key file
+**RSA ID: private key file**
 
-RSA Certificate Sign Request file (.CSR file)
+**RSA Certificate Sign Request file (.CSR file)**
 
-Account username for certificate signing authority: login
+**Account username for certificate signing authority: login**
 
-Account password for certificate signing authority: pass
+**Account password for certificate signing authority: pass**
 
-Signed Certificate file (.CRT file)
+**Signed Certificate file (.CRT file)**
 
-Certificate user/password if there is one.  This is your server’s validity!
+**Certificate user/password if there is one.  This is your server’s validity!**
 
 The certificate can be tested for password with openSSL tools.
 
@@ -228,19 +227,19 @@ https://github.com/illumine/articles/blob/master/Enable-SSL-for-your-Wordpress-P
 
 ### Build up the site
 
-Go to the Plesk panel, login with Domain admin username, Domain admin password
+Go to the Plesk panel, login with domain admin username, domain admin password
 
-That were included in the email from your provider, and setup WordPress. You need to setup WordPress using the Web Server Signed Certificates from the previous step.  Upon successful installation you will create the following account for WordPress administrator:
+That were included in the email from your provider, and setup WordPress. You need to setup WordPress using the Web Server Signed Certificates from the previous step.  Upon successful installation you will create the following account for WordPress administrator that you must store in your safe:
 
-WordPress admin username: wpadmin - Never use the classic admin
+**WordPress admin username: wpadmin - Never use the classic admin**
 
-WordPress admin password:  password
+**WordPress admin password:  password**
 
-MySQL username: myadmin
+**MySQL username: myadmin**
 
-MySQL password: password
+**MySQL password: password**
 
-Also, the properties.php file from WordPress
+**Also, the properties.php file from WordPress**
 
 Password: something very strong, minimum 16bytes mix lowercase uppercase, symbols and numbers. EXCLUDE “”,’’, # symbols from passwords.
 
@@ -248,7 +247,10 @@ Password: something very strong, minimum 16bytes mix lowercase uppercase, symbol
 
 ### Basic SEO
 
-Install Plugin WordPress YOAST SEO PLUGIN and bleed until all your pages are green. A MUST HAVE.
+Install Plugin WordPress YOAST SEO PLUGIN and bleed until all your pages are green. A MUST DO.
+
+Also, for each page create some META/KEYWORDS just like this article explains: 
+https://illumineconsulting.blogspot.com/2016/03/set-your-html-meta-tags-in-wordpress.html
 
 
 
@@ -258,13 +260,13 @@ Go to Outlook and setup a company account using your real company details for so
 
 Go to your Plesk board and configure the SMTP/POP3 with the details given from outlook.
 
-Always use external email than the one offered by the provider.
+Always use external email than the one offered by the provider. If your domain mail is gone you have to have email to communicate!!! So dont just use the hosting provider email.
 
 Also add the wpadmin@myDOMAIN.com to the Outlook.com mails.
 
-Must put in your safe box:
+**Must put in your safe box:**
 
-The login/password to Outolook.com for your business email. 
+**The login/password to Outolook.com for your business email.** 
 
 Beware those are different from the free email myDOMAIN@outlook.com  
 
@@ -286,7 +288,7 @@ Test all your pages with 3 different browsers from an Android, IPhone, WinPhone
 
 ### Take your first Backup
 
-Backup the first installation of WordPress and MySQL.  Put them in your safe.
+Backup the first installation of WordPress and MySQL.  **Put the .tgz archives in your safe.**
 
 
 
@@ -330,7 +332,7 @@ Register your myDOMAIN.com with  https://analytics.google.com/
 
 •	Add a Google AdSense account to your domain
 
-Store and keep somewhere safe the Google Site Verification token file. (.html file)
+**Store and keep somewhere safe the Google Site Verification token file. (.html file)**
 
 
 
@@ -340,7 +342,7 @@ Use your  myDOMAIN@outlook.com  and myMSISDN to manage your business with Bing:
 
 Register your myDOMAIN.com with Bing Search Services
 
-Store and keep somewhere safe the Bing Site Verification token file. (.XML file)
+**Store and keep somewhere safe the Bing Site Verification token file. (.XML file)**
 
 
 
@@ -354,7 +356,7 @@ Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with Yadex:
 
 Register your myDOMAIN.com with Yadex Search Services
 
-Store and keep somewhere safe the Yadex Site Verification token file. (.html file)
+**Store and keep somewhere safe the Yadex Site Verification token file. (.html file)**
 
 
 
@@ -366,7 +368,7 @@ Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with Baidu:
 
 Register your myDOMAIN.com with Baidu Search Services
 
-Store and keep somewhere safe the Baidu Site Verification token file. (.html file)
+**Store and keep somewhere safe the Baidu Site Verification token file. (.html file)**
 
 
 
@@ -382,7 +384,7 @@ Store and keep somewhere safe the Baidu Site Verification token file. (.html fil
 
 Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with Facebook:
 
-Store the FB user/password
+**Store the FB user/password**
 
 
 
@@ -390,7 +392,7 @@ Store the FB user/password
 
 Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with LinkedIN:
 
-Store the LN user/password
+**Store the LN user/password**
 
 
 
@@ -398,7 +400,7 @@ Store the LN user/password
 
 Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with Twitter:
 
-Store the Twitter user/password
+**Store the Twitter user/password**
 
 
 
