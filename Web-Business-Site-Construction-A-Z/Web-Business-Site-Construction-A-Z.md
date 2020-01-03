@@ -1,9 +1,8 @@
-#Creating a Full Web Based Business\\ 
-January 2020\\ 
-\\ 
-Author: Michael Mountrakis – mike.mountrakis@gmail.com\\ 
-\\ 
-##Abstract\\ 
+# Creating a Full Web Based Business 
+January 2020 \\ 
+Author: Michael Mountrakis – mike.mountrakis@gmail.com \\ 
+
+## Abstract
 This paper explains the minimal steps on creating a small web-based business. You will find a simple enumeration of the steps involved and an enumeration of all those artifacts that are created during this procedure and from now on will be your company’s assets. Steps are not drilled down to details for simplicity.\\ 
 \\ 
 The edge of the thread: company IMSI/MSISDN \\ 
