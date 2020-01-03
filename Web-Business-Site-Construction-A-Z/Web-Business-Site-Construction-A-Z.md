@@ -45,35 +45,20 @@ You need to choose a web domain name for your business.  For a services company 
 
 •	Name must be unique
 
-
-
 •	Name must be a single word.
-
-
 
 •	Forget .gr, .uk …. .clowm, .cloud, .net..
 
-
-
 •	Consider .com, .eu and if you are interested to the local market do also the .gr
-
-
 
 Example: google, amazon, apelait, bing…
 
-
-
 Go to web whois.com and check the names.  If one of them is taken goto step 1
-
-
 
 If and only If you find all three .com .eu and .gr you should consider the name.  
 
 
-
 **This will be referred myDOMAIN**
-
-
 
 Before buying the 3 domain names myDOMAIN + .com, .eu, .gr goto next section
 
@@ -89,48 +74,27 @@ In order to get the domain from a provider you need to provider an email for cor
 
 This is a must: A Google email to manage your business.  Go to this URL
 
-
-
 https://accounts.google.com/signup/v2/webcreateaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default&gmb=exp&biz=true&flowName=GlifWebSignIn&flowEntry=SignUp
-
-
 
 And create a new Google Account for your company.
 
-
-
 **This will be referred as myDOMAIN@gmail.com.** 
-
-
 
 To finish with the setup put the myMSISDN phone correspondence for Google.
 
  
 
-
-
-
-
 #### Outlook Mail + Company Account
 
 This is a must: A Microsoft account to manage your company. Go to this URL
 
-
-
 https://outlook.live.com/owa/
-
-
 
 And create a new Microsoft Account for your company.
 
-
-
 A Google email to manage your business. **This will be referred as myDOMAIN@outlook.com.** 
 
-
-
 To finish with the setup put the myMSISDN phone correspondence for Microsoft.
-
 
 
 ### Choosing the Provider - Buying the Domain
@@ -218,9 +182,29 @@ https://github.com/illumine/articles/blob/master/Enable-SSL-for-your-Wordpress-P
 
 ### Build up the site
 
+#### Graphics Part
+Ask your graphics designer to do a logo for your **myDOMAIN.com**. 
+
+Along with the logo he should create all the graphics portfolio to support the web site:
+From headers, banners, campaigns ... to MS word templates with the company logo.
+You must store in your safe:
+**Illustrator or Corel files, tiffs, pngs sent by the graphics designer** Make sure you get not only the image files (jpg, png, gif, tif...) but also the artwork files like Adobe Illustrator or Corel Draw or Image Magic or Photoshop or whatever. Do the same for all the else, for example Power Point Templates, Word templates... 
+
+
+
+#### Web Part
 Go to the Plesk panel, login with domain admin username, domain admin password
 
-That were included in the email from your provider, and setup WordPress. You need to setup WordPress using the Web Server Signed Certificates from the previous step.  Upon successful installation you will create the following account for WordPress administrator that you must store in your safe:
+That were included in the email from your provider, and setup WordPress. You need to setup WordPress using the Web Server Signed Certificates from the previous step.  
+
+Go and buy a tailor made template for your business accoding tou your company logo and logo colors. Dont be stingly! It is your business!
+
+Make sure that you have full support for the template you bought from the developer.
+
+Make sure that the images used in your articles are yours or sold to you from a proper vendor so that you wont face legal issues in the future from someone who saw his face as a model in a pic served by your site!
+
+
+Upon successful installation you will create the following account for WordPress administrator that you must store in your safe:
 
 **WordPress admin username: wpadmin - Never use the classic admin**
 
