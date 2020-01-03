@@ -14,21 +14,14 @@ This paper explains the minimal steps on creating a small web-based business. Yo
 
 
 
-The edge of the thread: company IMSI/MSISDN 
-
-
-
-
+## Basic Requirement: company IMSI/MSISDN 
+This is the #1 Requirement: A company cell phone.
 
 A cell phone number from the country your business is set up. This must not be your private cell phone. Instead it will be the technical number that every web third party entity refers to your company. This number is the equivalent id just as the VAT in finance.
 
 Make sure it is an easy to remember MSISDN! This is the only requirement. 
 
-
-
 This will be referred **myMSISDN**
-
-
 
 It is suggested that this number is a prepaid based number. Guard this number with your life – whoever possesses this governs the web part of the company. 
 
@@ -37,11 +30,9 @@ It is suggested that this number is a prepaid based number. Guard this number wi
 ## Site Construction
 
 
-
 ### Finding the Propriate Domain Name
 
 Step1
-
 
 
 You need to choose a web domain name for your business.  For a services company or retailer that does international business you need the following things:
