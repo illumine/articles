@@ -10,14 +10,14 @@ _Author: Michael Mountrakis – mike.mountrakis...AT...gmail.com_
 
 ## Abstract
 
-This paper explains the minimal steps on creating a small web-based business. You will find a simple enumeration of the steps involved and an enumeration of all those artifacts that are created during this procedure and from now on will be your company’s assets. Steps are not drilled down to details for simplicity.
+This paper explains the minimal steps on creating a small web-based business. You will find a simple sequence of the steps involved towards the construction of the site and an enumeration of all those artifacts that are created during this procedure and from now on will be your company’s assets. Steps are not drilled down to details for simplicity reason.
 
 
 
 ## Basic Requirement: company IMSI/MSISDN 
 This is the #1 Requirement: A company cell phone.
 
-A cell phone number from the country your business is set up. This must not be your private cell phone. Instead it will be the technical number that every web third party entity refers to your company. This number is the equivalent id just as the VAT in finance.
+A cell phone number from the country your business is set up. This must not be your private cell phone. Instead it will be the technical number that every web third party entity uses to contact or verify your company. This number is the equivalent id to the VAT in finance.
 
 Make sure it is an easy to remember MSISDN! This is the only requirement. 
 
@@ -37,11 +37,7 @@ Step1
 
 You need to choose a web domain name for your business.  For a services company or retailer that does international business you need the following things:
 
-
-
 •	Name must be simple catchy and not base country related. Remember the word google does not meant anything in any language but is simple catchy and short.
-
-
 
 •	Name must be unique
 
@@ -80,7 +76,7 @@ And create a new Google Account for your company.
 
 **This will be referred as myDOMAIN@gmail.com.** 
 
-To finish with the setup put the myMSISDN phone correspondence for Google.
+To finish with the setup, put the myMSISDN phone correspondence for Google.
 
  
 
@@ -111,9 +107,9 @@ Do I want to speak my language on support or English?
 
 50% of the cases you need to be supported in your native language. For that reason, here are some example options: 
 
-https://www.awardspace.com/   US/UK/Denmark
+https://www.awardspace.com/   US/UK/Denmark - speak english or die...
 
-https://easy.gr/el/  Greek provider with DCs around the globe.
+https://easy.gr/el/  Greek speaking provider with DCs around the globe.
 
 Third Decision:
 
@@ -132,7 +128,6 @@ Go to one of the providers and create an account using the myDOMAIN@outlook.com
 Just place your domain and host order to the provider. Use your real company details just as your company address, VAT,…. But for the email use:  myDOMAIN@outlook.com
 
 
-
 When order will be paid, you will receive in the :  myDOMAIN@outlook.com a mail from your provider giving you the following things, that **you must put in your safe:**
 
 **The email of instructions received in myDOMAIN@outlook.com**
@@ -143,7 +138,7 @@ When order will be paid, you will receive in the :  myDOMAIN@outlook.com a mail 
 
 **Domain Plesk admin password**
 
-Go to the Plesk panel and update the DNS for your domain. Wait 2-48 hours for IANA DNS updates.
+Go to the Plesk panel and update the DNS for your domain. Wait 2-48 hours for DNS updates.
 
 
 
@@ -172,9 +167,11 @@ Go to the Plesk and create an SSL certificate for your domain. For that reason, 
 
 **Certificate user/password if there is one.  This is your server’s validity!**
 
-The certificate can be tested for password with openSSL tools.
+The certificate can be tested for password with openSSL tools(https://sourceforge.net/projects/openssl/).
 
-You can do the same with self-signed certificates, but for a Web Selling Site this is not an option…. So you need to create certificates and get them signed from a 3rd party. If you want this to be done on your own, then follow: 
+You can do the same with self-signed certificates, but for a Selling Web Site this is not an option…. So you need to create certificates and get them signed from a 3rd party. 
+
+Nevertheless, If you want this to be done on your own, then follow: 
 
 https://github.com/illumine/articles/blob/master/Enable-SSL-for-your-Wordpress-Plesk-site-using-a-free-authority-signed-certificate/Enable-SSL-for-your-Wordpress-Plesk-site-using-a-free-authority-signed-certificate.md
 
@@ -257,7 +254,7 @@ Go to your Plesk board and redirect the domains myDOMAIN.eu myDOMAIN.gr to point
 
 Test all your pages with different browsers from a PC Chrome, Edge, Opera, Firefox
 
-Test all your pages with 3 different browsers from an Android, IPhone, WinPhone
+Test all your pages with 3 different browsers from an Android device, IPhone or IPad and a WinPhone
 
 
 
@@ -269,7 +266,8 @@ Backup the first installation of WordPress and MySQL.  **Put the .tgz archives i
 
 ### Construction Conclusions
 
-This can cost you only the cost of the domain name. it costed me 24Euros for 2 years. Normally this cost around 3000Euros. In terms of time…. Don’t ask…. Up to this point you have built up your site, but none knows about it….
+This can cost you only the cost of the domain name. it costed me 24Euros for 2 years. Normally this costs around 3000Euros. 
+In terms of time…. Don’t ask…. Up to this point you have built up your site, but none knows about it….
 
 
 
@@ -321,10 +319,6 @@ Register your myDOMAIN.com with Bing Search Services
 
 
 
-
-
-
-
 #### Registering with Yadex - Rusia
 
 Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with Yadex:
@@ -332,8 +326,6 @@ Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with Yadex:
 Register your myDOMAIN.com with Yadex Search Services
 
 **Store and keep somewhere safe the Yadex Site Verification token file. (.html file)**
-
-
 
 
 
@@ -347,20 +339,13 @@ Register your myDOMAIN.com with Baidu Search Services
 
 
 
-
-
-
-
 ### Social Media
-
-
 
 #### Facebook
 
 Use your  myDOMAIN@outlook.com and myMSISDN to manage your business with Facebook:
 
 **Store the FB user/password**
-
 
 
 #### LinkedIN
