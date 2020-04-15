@@ -123,6 +123,7 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 **Υ.Γ.2**
 Γιατι δε φτιάχνετε ένα ΕΛΛΗΝΙΚΟ ΛΟΓΙΣΜΙΚΟ που κάνει το ίδιο και σωστά? 
+Γιατί δε φτιαψνετε το ίδιο με UTF-8 ωστε να παίζει σωστά?
 
 
 
