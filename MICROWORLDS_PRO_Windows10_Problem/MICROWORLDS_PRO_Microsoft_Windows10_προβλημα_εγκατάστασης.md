@@ -2,7 +2,7 @@
 
 ## Πρόλογος
 Αυτές τις μέρες εμείς του εξωτερικού όπως και όλοι οι άλλοι συμπατριώτες μας λίγο πολύ καθόμαστε στο σπίτι μας στην Ελλάδα.  Είχα την ευκαιρία να ρωτήσω την κόρη μου που είναι μαθήτρια της Γ Γυμνασίου σε Δημόσιο Σχολείο για το μάθημα της πληροφορικής.
-Η Δανάη λοιπόν διδάσκεται πληροφορική μέσα από ένα περιβάλλον προγραμματισμού που στηρίζεται στη   
+Η Δανάη λοιπόν διδάσκεται πληροφορική μέσα από ένα περιβάλλον προγραμματισμού το MICROWORLDS PRO που στηρίζεται στη   
 [γλώσσα προγραμματισμού Logo](https://en.wikipedia.org/wiki/Logo_(programming_language)
 
 
@@ -17,7 +17,7 @@
 
 Τέλος, δε ξερω εαν το ξέρετε εκεί στο υπουργείο έχουν βγει και τα Microsoft Windows 10 !!!! You know....
 
-Πάμε τώρα στο φοβερο νέο - [το επίσημο εποπτικό μέσο](http://photodentro.edu.gr/edusoft/r/8531/157) που προτείνει το Υπ. Παιδέιας - δε παίζει πάντα στα Microsoft Windows 10. Γιατί? Γιατί απλά η εφαρμογή που προτείνει το Υπ. Παιδείας είναι αρχαία βασισμένη σε 32 bit βιβλιοθήκες, χρησιμοποιεί άλλο code page από τις περισσότερες σύγχρονες εγκαταστάσεις των Microsoft Windows 10 και φυσικά κατά την εγκατάσταση στην οθόνη βγαίνουν μπαρμπουτσαλα στην καθομιλουμένη και _"ακατάληπτα σύμβολα στην ελληνική γραμματοσειρά του microworlds pro" [όπως το έθεσε η γραφουσσα εδω](https://answers.microsoft.com/el-gr/windows/forum/all/%CE%B1%CE%BA%CE%B1%CF%84%CE%AC%CE%BB%CE%B7%CF%80/9529d990-486e-400b-b314-ed8f5e6b0a5f)_
+Πάμε τώρα στο φοβερο [MICROWORLDS PRO - το επίσημο εποπτικό μέσο](http://photodentro.edu.gr/edusoft/r/8531/157) που προτείνει το Υπ. Παιδέιας - δε παίζει πάντα στα Microsoft Windows 10. Γιατί? Γιατί απλά η εφαρμογή που προτείνει το Υπ. Παιδείας είναι αρχαία βασισμένη σε 32 bit βιβλιοθήκες, χρησιμοποιεί άλλο code page από τις περισσότερες σύγχρονες εγκαταστάσεις των Microsoft Windows 10 και φυσικά κατά την εγκατάσταση στην οθόνη βγαίνουν μπαρμπουτσαλα στην καθομιλουμένη και _"ακατάληπτα σύμβολα στην ελληνική γραμματοσειρά του microworlds pro" [όπως το έθεσε η γραφουσσα εδω](https://answers.microsoft.com/el-gr/windows/forum/all/%CE%B1%CE%BA%CE%B1%CF%84%CE%AC%CE%BB%CE%B7%CF%80/9529d990-486e-400b-b314-ed8f5e6b0a5f)_
 
 ![ακατάληπτα σύμβολα στην ελληνική γραμματοσειρά του microworlds pro](img/barboutsala.png "ακατάληπτα σύμβολα στην ελληνική γραμματοσειρά τυ microworlds pro")
  
@@ -38,35 +38,57 @@
 
 ## Πάμε να βρούμε μια λύση
 
-Η [Illumine IT Consulting](http://illumineit.com) όμως νοιάστηκε και δινει μία λύση. Ακολουθηστε τα παρακάτω βήματα
+*Η [Illumine IT Consulting](http://illumineit.com) όμως νοιάστηκε και δινει μία λύση*. 
+Ακολουθηστε τα παρακάτω βήματα
  
-1.      Κατεβάστε το εργαλείο Locale-Emulator για Windows 10 από τη διευθυνση
+1.  Κατεβάστε το εργαλείο Locale-Emulator για Windows 10 από τη διευθυνση
 https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emulator.2.4.1.0.zip
 
-2.      Καντε το unzip σε ένα directory
+
+
+2.  Καντε το εργαλείο Locale-Emulator  unzip σε ένα directory
+![Unzip](img/extract.png "Καντε το εργαλείο Locale-Emulator  unzip σε ένα directory")
+
+
 
 3. Μεταβείτε στον κατάλογο που κάνατε unzip και τρεξτε το πρόγραμμα LEIInstaller.exe
 Επιλέξτε Install for all Users όπως παρακάτω
 
+![Unzip](img/installer.png "Tρεξτε το πρόγραμμα LEIInstaller.exe ")
 
-Κατεβαστε το προγραμμα MicroWorlds Pro από τη διευθυνση http://photodentro.edu.gr/edusoft/r/8531/157  και κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD οπως δείχνει η εικόνα
+![Unzip](img/all_users.png "Επιλέξτε Install for all Users όπως παρακάτω")
 
-Τωρα προσοχή
+
+
+4.  Κατεβαστε το προγραμμα MicroWorlds Pro από τη διευθυνση http://photodentro.edu.gr/edusoft/r/8531/157  
+και κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD οπως δείχνει η εικόνα
+![Unzip](img/extract_logo.png "κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD")
+
+
+5. **Τωρα προσοχή:**
 Πηγαίνετε στο φάκελο που κάνατε  unzip το MicroWorlds Pro  και βρείτε το αρχείο SETUP.EXE
 καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
+![Unzip](img/logo_run_with_locale.png "καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile")
+
 
 Από το μενού που εμφανίζεται διαλέξτε τις εξής επιλογές και πατήστε Save
+![Unzip](img/logo_language_settings_installation.png "Διαλέξτε τις εξής επιλογές και πατήστε Save")
 
+Και περιμένετε να τελειώσει η εγκατάσταση του MicroWorlds Pro. Λ
+ογικά, μόλις τελειώσει θα σας δημιουργήσει ένα εικονίδιο.
 
-Και περιμένετε να τελειώσει η εγκατάσταση του MicroWorlds Pro. Λογικά, μόλις τελειώσει θα σας δημιουργήσει ένα εικονίδιο.
+6. **Πάμε να δουμε πώς το τρέχουμε το ρημάδι...**
 
-Πάμε να δουμε πώς το τρέχουμε το ρημάδι...
-
-Πατήστε πάνω στο εικονίδιο του MicroWorlds Pro καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
-
+Πατήστε πάνω στο εικονίδιο του MicroWorlds Pro καντε δεξί κλίκ πάνω του και από τις 
+επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
+![Unzip](img/run_logo_with_locale.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
 
 
 Και επιλέξτε τα εξής  στο  μενού που ανοίγει, και τέλος πατήστε Create Shortcut
+![Unzip](img/run_logo_with_locale_settings.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
+
+
+
 Θα δημιουργηθεί το ίδιο εικονίδιο, αλλά θα καλεί το  MicroWorlds Pro με το πρόγραμμα του Locale-Emulator.
 
 Αντε και καλό happy coding στους φουκαράδες τους μαθητές Γυμνασίου και Λυκείου και καλά μυαλά στους Φωστήρες του υπ. Παιδείας.
