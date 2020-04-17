@@ -43,13 +43,19 @@
 **Ακολουθηστε τα παρακάτω βήματα:**
  
 
-**BHMA 1.**  Κατεβάστε το εργαλείο Locale-Emulator για Windows 10 από τη διευθυνση
+**BHMA 1.**  
+
+
+Κατεβάστε το εργαλείο Locale-Emulator για Windows 10 από τη διευθυνση
 https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emulator.2.4.1.0.zip
 
 <p/>
 
 
-**BHMA 2.**   Καντε το εργαλείο Locale-Emulator Αποσυμπίεση/unzip σε ένα directory
+**BHMA 2.**   
+
+
+Καντε το εργαλείο Locale-Emulator Αποσυμπίεση/unzip σε ένα directory
 <p/>
 
 
@@ -61,7 +67,10 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 
 <p/>
-**BHMA 3.** Μεταβείτε στον κατάλογο που κάνατε unzip και τρεξτε το πρόγραμμα LEIInstaller.exe
+**BHMA 3.** 
+
+
+Μεταβείτε στον κατάλογο που κάνατε unzip και τρεξτε το πρόγραμμα LEIInstaller.exe
 Επιλέξτε Install for all Users όπως παρακάτω
 <p/>
 
@@ -77,7 +86,11 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 
 <p/>
-**BHMA 4.** Κατεβαστε το προγραμμα MicroWorlds Pro από τη διευθυνση http://photodentro.edu.gr/edusoft/r/8531/157  
+
+**BHMA 4.** 
+
+
+Κατεβαστε το προγραμμα MicroWorlds Pro από τη διευθυνση http://photodentro.edu.gr/edusoft/r/8531/157  
 και κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD οπως δείχνει η εικόνα
 <p/>
 
@@ -88,7 +101,14 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 
 
-**BHMA 5.** **Τωρα προσοχή:**
+**BHMA 5.** 
+
+
+
+**Τωρα προσοχή:**
+
+
+
 Πηγαίνετε στο φάκελο που κάνατε  unzip το MicroWorlds Pro  και βρείτε το αρχείο SETUP.EXE
 καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
 <p/>
@@ -104,7 +124,14 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 
 
-**BHMA 6.** **Πάμε να δουμε πώς το τρέχουμε το ρημάδι...**
+**BHMA 6.** 
+
+
+
+**Πάμε να δουμε πώς το τρέχουμε το ρημάδι...**
+
+
+
 <p/>
 Πατήστε πάνω στο εικονίδιο του MicroWorlds Pro καντε δεξί κλίκ πάνω του και από τις 
 επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
@@ -130,7 +157,7 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 Είχαν στο μυαλό τους Minecraft και τους δειξατε σκουπίδια... Τα καταφέρατε για άλλη μια φορά.
 
 
-Ερωτήσεις προς όλους τους Ενδιαφερόμενους / Υθύοντες
+**Ερωτήσεις προς όλους τους Ενδιαφερόμενους / Υθύοντες**
 
 
 
