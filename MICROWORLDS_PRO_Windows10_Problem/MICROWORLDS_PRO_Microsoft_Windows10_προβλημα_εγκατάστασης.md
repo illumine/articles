@@ -46,32 +46,41 @@
 **BHMA 1.**  Κατεβάστε το εργαλείο Locale-Emulator για Windows 10 από τη διευθυνση
 https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emulator.2.4.1.0.zip
 
-
+<p/>
 
 
 **BHMA 2.**   Καντε το εργαλείο Locale-Emulator Αποσυμπίεση/unzip σε ένα directory
+<p/>
+
+
+
+
 ![Unzip](img/extract.png "Καντε το εργαλείο Locale-Emulator  unzip σε ένα directory")
 
 
 
 
-
+<p/>
 **BHMA 3.** Μεταβείτε στον κατάλογο που κάνατε unzip και τρεξτε το πρόγραμμα LEIInstaller.exe
 Επιλέξτε Install for all Users όπως παρακάτω
-
+<p/>
 
 
 ![Unzip](img/installer.png "Tρεξτε το πρόγραμμα LEIInstaller.exe ")
+<p/>
 
 
 
+<p/>
 ![Unzip](img/all_users.png "Επιλέξτε Install for all Users όπως παρακάτω")
 
 
 
-
+<p/>
 **BHMA 4.** Κατεβαστε το προγραμμα MicroWorlds Pro από τη διευθυνση http://photodentro.edu.gr/edusoft/r/8531/157  
 και κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD οπως δείχνει η εικόνα
+<p/>
+
 
 
 ![Unzip](img/extract_logo.png "κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD")
@@ -82,10 +91,12 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 **BHMA 5.** **Τωρα προσοχή:**
 Πηγαίνετε στο φάκελο που κάνατε  unzip το MicroWorlds Pro  και βρείτε το αρχείο SETUP.EXE
 καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
+<p/>
 ![Unzip](img/logo_run_with_locale.png "καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile")
-
+<p/>
 
 Από το μενού που εμφανίζεται διαλέξτε τις εξής επιλογές και πατήστε Save
+<p/>
 ![Unzip](img/logo_language_settings_installation.png "Διαλέξτε τις εξής επιλογές και πατήστε Save")
 
 Και περιμένετε να τελειώσει η εγκατάσταση του MicroWorlds Pro. 
@@ -94,15 +105,17 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 
 **BHMA 6.** **Πάμε να δουμε πώς το τρέχουμε το ρημάδι...**
-
+<p/>
 Πατήστε πάνω στο εικονίδιο του MicroWorlds Pro καντε δεξί κλίκ πάνω του και από τις 
 επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
+<p/>
 ![Unzip](img/run_logo_with_locale.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
-
+<p/>
 
 Και επιλέξτε τα εξής  στο  μενού που ανοίγει, και τέλος πατήστε Create Shortcut
+<p/>
 ![Unzip](img/run_logo_with_locale_settings.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
-
+<p/>
 
 
 Θα δημιουργηθεί το ίδιο εικονίδιο, αλλά θα καλεί το  MicroWorlds Pro με το πρόγραμμα του Locale-Emulator.
