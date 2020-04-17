@@ -1,6 +1,15 @@
 # MICROWORLDS PRO Πρόβλημα εγκατάστασης στα Microsoft Windows 10
 
+Στο πρώτο μέρος έχουμε μια επικοδομητικότατη κριτική για το MICROWORLDS PRO. Αν βεριέστε να τη διαβάσετε μεταβείτε στο δευτερο μέρος.
+
+
+Στο δευτερο μέρος έχουμε τη λύση στο πρόβλημα εγκατάστασης του MICROWORLDS PRO κατά το οποίο εμφανιζονται λάθος 
+σύμβολα αντί για Ελληνικά γράμματα.
+
+
 ## Πρόλογος
+
+
 Αυτές τις μέρες εμείς του εξωτερικού όπως και όλοι οι άλλοι συμπατριώτες μας λίγο πολύ καθόμαστε στο σπίτι μας στην Ελλάδα.  Είχα την ευκαιρία να ρωτήσω την κόρη μου που είναι μαθήτρια της Γ Γυμνασίου σε Δημόσιο Σχολείο για το μάθημα της πληροφορικής.
 Η Δανάη λοιπόν διδάσκεται πληροφορική μέσα από ένα περιβάλλον προγραμματισμού το MICROWORLDS PRO που στηρίζεται στη [γλώσσα προγραμματισμού Logo](https://en.wikipedia.org/wiki/Logo_programming_language)
 
@@ -43,60 +52,71 @@
 **Ακολουθηστε τα παρακάτω βήματα:**
  
 
+**Σημαντική Σημείωση**
+Για να λύθεί το θέμα αυτό, υπάρχει και η άλλη λύση της έκδοσης του [Windows Registry](https://en.wikipedia.org/wiki/Windows_Registry)
+και αλλαγής του code page με την οποία τρέχει η συγκεκριμένη εφαρμογή την οποία φυσικά και ΔΕΝ ΠΡΟΤΕΙΝΟΥΜΕ για τον απλό λογο 
+οτι ακόμη και ένα ασήμαντα μικρό λάθος στη ρύθμιση του [Windows Registry](https://en.wikipedia.org/wiki/Windows_Registry)
+μπορεί να αποβεί μοιραίο και να μη λειτουργούν σωστά τα Windows. Προσοχή λοιπόν σε αυτό το θέμα.
+
+
+
 **BHMA 1.**  
 
 
 Κατεβάστε το εργαλείο Locale-Emulator για Windows 10 από τη διευθυνση
 https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emulator.2.4.1.0.zip
 
-<p/>
+
+Ειναι Open Source εργαλείο και διατίθεται με άδεια GNU Lesser General Public License v3.0
+
+
+Δηλαδή λογισμικό ελευθερο δικαιωμάτων και ανοικτού κώδικα όπως είναι η πάγια πολιτική της 
+**[Illumine IT Consulting](http://illumineit.com)**. 
+
 
 
 **BHMA 2.**   
 
 
 Καντε το εργαλείο Locale-Emulator Αποσυμπίεση/unzip σε ένα directory
-<p/>
 
 
 
 
-![Unzip](img/extract.png "Καντε το εργαλείο Locale-Emulator  unzip σε ένα directory")
+
+![Καντε το εργαλείο Locale-Emulator  unzip σε ένα directory](img/extract.png "Καντε το εργαλείο Locale-Emulator  unzip σε ένα directory")
 
 
 
 
-<p/>
+
 **BHMA 3.** 
 
 
 Μεταβείτε στον κατάλογο που κάνατε unzip και τρεξτε το πρόγραμμα LEIInstaller.exe
 Επιλέξτε Install for all Users όπως παρακάτω
-<p/>
-
-
-![Unzip](img/installer.png "Tρεξτε το πρόγραμμα LEIInstaller.exe ")
-<p/>
 
 
 
-<p/>
-![Unzip](img/all_users.png "Επιλέξτε Install for all Users όπως παρακάτω")
+![Tρεξτε το πρόγραμμα LEIInstaller.exe](img/installer.png "Tρεξτε το πρόγραμμα LEIInstaller.exe ")
 
 
 
-<p/>
+![Επιλέξτε Install for all Users όπως παρακάτω](img/all_users.png "Επιλέξτε Install for all Users όπως παρακάτω")
+
+
+
 
 **BHMA 4.** 
 
 
 Κατεβαστε το προγραμμα MicroWorlds Pro από τη διευθυνση http://photodentro.edu.gr/edusoft/r/8531/157  
 και κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD οπως δείχνει η εικόνα
-<p/>
 
 
 
-![Unzip](img/extract_logo.png "κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD")
+
+![κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD](img/extract_logo.png "κάντε την unzip σε ένα φάκελο, πχ στον C:\MicroWorlds Pro_GR_From_CD")
 
 
 
@@ -111,17 +131,19 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 Πηγαίνετε στο φάκελο που κάνατε  unzip το MicroWorlds Pro  και βρείτε το αρχείο SETUP.EXE
 καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
-<p/>
-![Unzip](img/logo_run_with_locale.png "καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile")
-<p/>
+
+
+![αντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile](img/logo_run_with_locale.png "καντε δεξί κλίκ πάνω του και από τις επιλογές διαλέξτε Locale Emulator →  Run with Application Profile")
+
 
 Από το μενού που εμφανίζεται διαλέξτε τις εξής επιλογές και πατήστε Save
-<p/>
-![Unzip](img/logo_language_settings_installation.png "Διαλέξτε τις εξής επιλογές και πατήστε Save")
+
+
+![Διαλέξτε τις εξής επιλογές και πατήστε Save](img/logo_language_settings_installation.png "Διαλέξτε τις εξής επιλογές και πατήστε Save")
 
 Και περιμένετε να τελειώσει η εγκατάσταση του MicroWorlds Pro. 
-Λογικά, μόλις τελειώσει θα σας δημιουργήσει ένα νέο εικονίδιο.
 
+Λογικά, μόλις τελειώσει θα σας δημιουργήσει ένα νέο εικονίδιο για το MicroWorlds Pro.
 
 
 **BHMA 6.** 
@@ -132,20 +154,25 @@ https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emu
 
 
 
-<p/>
+
 Πατήστε πάνω στο εικονίδιο του MicroWorlds Pro καντε δεξί κλίκ πάνω του και από τις 
 επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.
-<p/>
-![Unzip](img/run_logo_with_locale.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
-<p/>
+
+
+
+![από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.](img/run_logo_with_locale.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
 
 Και επιλέξτε τα εξής  στο  μενού που ανοίγει, και τέλος πατήστε Create Shortcut
-<p/>
-![Unzip](img/run_logo_with_locale_settings.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
-<p/>
 
 
-Θα δημιουργηθεί το ίδιο εικονίδιο, αλλά θα καλεί το  MicroWorlds Pro με το πρόγραμμα του Locale-Emulator.
+
+![από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.](img/run_logo_with_locale_settings.png " από τις  επιλογές διαλέξτε Locale Emulator →  Run with Application Profile.")
+
+
+
+Λογικά, μόλις τελειώσει θα σας δημιουργήσει ένα νέο εικονίδιο για το MicroWorlds Pro που θα έχει το ίδιο γραφικό αλλά θα ονομάζεται
+_MWPro_.  Αυτό το νέο εικονίδιο, ειναι συντόμευση στο MicroWorlds Pro αλλά την τρέχει με τη βοηθεια του ocale Emulator και δεν εμφανίζει
+προβλήματική γραμματοσειρά. Οπότε, αμα θέλετε διαγράψτε το παλιο εικονίδιο του _MicroWorlds Pro_.
 
 
 ## Τέλος καλό όλα καλά....
