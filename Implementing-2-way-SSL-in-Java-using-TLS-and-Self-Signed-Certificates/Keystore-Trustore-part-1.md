@@ -1,5 +1,5 @@
-# Implementing 2-way SSL in Java using TLS and Self Signed Certificates part1
-Consider that we want to implement in Java a secure communication (Transport Layer Security ) for a system called `MySystem`.
+# Implementing 2-way SSL in Java using TLS and Self Signed Certificates part1: Keystore-Trustsore
+Consider that we want to implement in Java a secure communication [Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security) for a system called `MySystem`.
 
 ## The problem
 
@@ -8,6 +8,7 @@ Authentication only between peers that both share the Keystore/Trustore file \
 Session establishment only between peers that have the Keystore/Trustore file \
 Doing so, the entire communication between client and server requires authentication and is encrypted:
 
+ ![SSL in action](img/ssl_in_action.png)
 
 To implement the scenario, there are three basic steps: \
 Create the Java Keystore/Trustore that will be used for Authentication and Encryption of Transport/Session. This will be used from both Client and Server parties. (Current Part) \
