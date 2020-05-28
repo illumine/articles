@@ -10,7 +10,7 @@ Various Articles from everyday problem solving with Illumine IT Consulting.
 [Web Business Site Construction from A-Z](Web-Business-Site-Construction-A-Z/Web-Business-Site-Construction-A-Z.md)
 
 
-[MICROWORLDS PRO Windows10 Problem - in Greek only](MICROWORLDS_PRO_Microsoft_Windows10_προβλημα_εγκατάστασης.md)
+[MICROWORLDS PRO Windows10 Problem - in Greek only](MICROWORLDS_PRO_Windows10_Problem/MICROWORLDS_PRO_Microsoft_Windows10_προβλημα_εγκατάστασης.md)
 
 
 [Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates: the keystore/certificates](part-1-keystore-trustore.md)
