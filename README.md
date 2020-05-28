@@ -14,16 +14,23 @@ Various Articles from everyday problem solving with Illumine IT Consulting.
 [MICROWORLDS PRO Windows10 Problem - in Greek only](MICROWORLDS_PRO_Windows10_Problem/MICROWORLDS_PRO_Microsoft_Windows10_προβλημα_εγκατάστασης.md)
 
 
-[Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates: the keystore/certificates](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-1-keystore-trustore.md)
+[Implementing 2 way SSL in Java using TLS and Self Signed Certificates: the keystore/certificates](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-1-keystore-trustore.md)
 
 
-[Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates: the Java Server](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-2-the-java-server.md)
+[Implementing 2 way SSL in Java using TLS and Self Signed Certificates: the Java Server](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-2-the-java-server.md)
 
 
-[Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates: the Java Client](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-3-the-java-client.md)
+[Implementing 2 way SSL in Java using TLS and Self Signed Certificates: the Java Client](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-3-the-java-client.md)
 
 
-[Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates: Debug Client/Server](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-4-test-java-tls-client-server.md)
+[Implementing 2 way SSL in Java using TLS and Self Signed Certificates: Debug Client/Server](Implementing-2-way-SSL-in-Java-using-TLS-and-Self-Signed-Certificates/part-4-test-java-tls-client-server.md)
+
+
+[ZKoss: Introduction to ZK Java Framework](ZK-training/pdf/J2EE6_01_ZKIntro.pdf)
+
+
+[ZKoss: Introduction to Application development with ZK Java Framework](ZK-training/pdf/J2EE6_02_ZKApplication.pdf)
+
 
 
 ## Follow us on Social Media
