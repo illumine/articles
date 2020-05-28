@@ -20,10 +20,16 @@ To implement the scenario, there are three basic steps:
 * Debug client/server: [Part-4](part-4-test-java-tls-client-server.md)
 
 
-**Step 1:** Create the Keystore/Trustore \
+**Step 1: Create the Keystore/Trustore **
+
+
 Following steps of this section, results in the creation of a  Keystore/Trustore .jks file that contains: \
+
+
 MySystem Private key \
 MySystem Selfsigned Certificate \
+
+
 To do so we are going to use the tools openssl  and keytool. We prefer using openssl because it can work silently - without prompt the user to put passwords, domains, server names....
 
 The steps are:

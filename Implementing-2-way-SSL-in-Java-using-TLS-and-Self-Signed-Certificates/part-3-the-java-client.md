@@ -24,11 +24,19 @@ System.setProperty("javax.net.ssl.keyStorePassword","welcome");
 System.setProperty("javax.net.ssl.trustStore","mysystem.jks");
 System.setProperty("javax.net.ssl.trustStorePassword","welcome");
 </code>
+
+
 Similarly with the server side described in Part-2, we have to create the client socket as an SSLSocket:
+
+
 <code>
 SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();    
 SSLSocket sslSock = (SSLSocket) factory.createSocket("localhost",8095);
 </code>
+
+
+
 [The entire code for client implementation can be downloaded here](src/com/illumineit/tls/TwoWaySslClient.java)
 
-Next article, Part-4, of this Blog series will assist you to debug the SSL/TLS client/server communication.
+
+Next article, [Part-4](part-4-test-java-tls-client-server.md), of this series will assist you to debug the SSL/TLS client/server communication.

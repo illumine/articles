@@ -3,7 +3,7 @@
 Requires the Trustore/Keystore created in [Step-1.](part-1-keystore-trustore.md)
 
 
-**Step 2:** The server.
+**Step 2: The server.** 
 [The entire code for server implementation can be downloaded here](src/com/illumineit/tls/TwoWaySslServer.java)
 
 
