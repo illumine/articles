@@ -1,3 +1,4 @@
+ ![illumineit.com Banner](img/illumineit.com_blogger_banner_680x200.png)
 # Articles
 Various Articles from everyday problem solving with Illumine IT Consulting.
 
