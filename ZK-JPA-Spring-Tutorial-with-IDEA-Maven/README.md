@@ -79,7 +79,7 @@ a local or a remote disk. The JPA implementation we are going to use is [Hiberna
 So a simple Log entry as a plain Java Class can be like:
 
 
-<code>
+```java
     public class Log{
        Integer id;
        String message;
@@ -87,7 +87,7 @@ So a simple Log entry as a plain Java Class can be like:
  
        public Log(){id=0; message=""; date= new java.util.Date(); }
      }
-</code> 
+```
 
 
 
@@ -95,7 +95,7 @@ In order to transform it to a JPA Entiry Bean, the following Java Annotations ar
 [Log.java](src/main/java/org/example/entity/Log.java)
 
 
-<code>
+```java
   @Entity
   public class Log implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
@@ -142,7 +142,7 @@ In order to transform it to a JPA Entiry Bean, the following Java Annotations ar
 	public void setDate(Date date) {
 		this.date = date;
 	}
-</code>
+```
 
 
 According to the DAO/Adapter pattern, the following components are used:
@@ -181,7 +181,7 @@ Follows a UML Class Diagram of our design:
 The JPA settings are defined in the file persistence.xml where the HSQL DB is used to store the JPA entities.
 
 
-<code>
+```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
@@ -203,7 +203,7 @@ The JPA settings are defined in the file persistence.xml where the HSQL DB is us
 		</properties>
 	</persistence-unit>
    </persistence>
-</code>
+```
 
 
 ## The ZK Visual Design
@@ -256,12 +256,12 @@ Java class implementing the **Visual Model Controller or the View Model** of the
 In the `index3.zul` file we can see the following sections:
 
 
-<code>
+```xml
     <zk>
            <window viewModel="@id('vm')@init('org.example.MyViewModel3')"
                  width="800px" border="normal" title="ZK JPA CRUD Operations on ListBox">
             ...
-</code>
+```
 
 
 As you can probably see, the full class name `org.example.MyViewModel3` of the **Visual Model** is specified.
@@ -276,7 +276,7 @@ Lets see the java viewModel class: `org.example.MyViewModel3`
 
 
 
-<code>
+```java
      @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
         public class MyViewModel3 {
 
@@ -290,7 +290,7 @@ Lets see the java viewModel class: `org.example.MyViewModel3`
 	 private ListModelList<Log> logListModel;
 	 private Log selectedLog;
      private String operationMessage;
-</code>
+```
 
 
 
@@ -309,7 +309,7 @@ Lets take a look to the section of the ZUL file dedicated to the Search Criteria
 
 
 
-<code>
+```xml
       <vbox hflex="1">
                 Search Criteria
                 <separator orient="horizontal" bar="true"/>
@@ -327,7 +327,7 @@ Lets take a look to the section of the ZUL file dedicated to the Search Criteria
                 </hbox>
             </vbox>
 
-</code>
+```
 
 
 
@@ -348,7 +348,7 @@ See the implementation of the method: `getLogByCriteria`:
 
 
 
-<code>
+```java
 		@Command
 		@NotifyChange({"operationMessage","logListModel", "selectedLog"})
 		public void  getLogByCriteria( @BindingParam("criteria") Criteria criteria){
@@ -367,7 +367,7 @@ See the implementation of the method: `getLogByCriteria`:
 			operationMessage = "getLogByCriteria():  found selectedLog " + selectedLog.toString();
 		}
 
-</code>
+```
 
 
 The method is annotated with `@Command` meaning that this method is handling some event that is wired from the ZUL view.
