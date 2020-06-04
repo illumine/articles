@@ -1,0 +1,44 @@
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('org.example.MyViewModel')"
+		validationMessages="@id('vmsgs')" width="600px" vflex="1">
+		<vlayout>
+			<hbox align="center" hflex="1">
+				Log message: <textbox value="@save(vm.message)"
+					onOK="@command('addLog')" hflex="1" placeholder="What happened?" />
+				<button label="add" onClick="@command('addLog')" />
+			</hbox>
+			<hbox align="center" hflex="1">
+				ID: <textbox value="@save(vm.id)"
+							 onOK="@command('getLog')" hflex="1" placeholder="ID to search" />
+				<button label="find" onClick="@command('getLog')" />
+			</hbox>
+			<listbox model="@bind(vm.logListModel)" rows="10">
+				<listhead>
+					<listheader hflex="min" />
+					<listheader hflex="min" />
+					<listheader />
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell>
+							<button label="delete" onClick="@command('deleteLog', log=each)" />
+						</listcell>
+						<listcell>
+							<button label="edit" onClick="@command('editLog', log=each)" />
+						</listcell>
+						<listcell>
+							<label value="@bind(each.id)" />
+						</listcell>
+						<listcell>
+							<label value="@bind(each.date) @converter('formattedDate', format='yyyy/MM/dd HH:mm:ss')" />
+						</listcell>
+						<listcell>
+							<label value="@bind(each.message)" />
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</vlayout>
+	</window>
+</zk>

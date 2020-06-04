@@ -89,7 +89,11 @@ So a simple Log entry as a plain Java Class can be like:
      }
 </code> 
 
+
+
 In order to transform it to a JPA Entiry Bean, the following Java Annotations are applied:
+
+
 
 <code>
   @Entity
@@ -140,6 +144,7 @@ In order to transform it to a JPA Entiry Bean, the following Java Annotations ar
 	}
 </code>
 
+
 According to the DAO/Adapter pattern, the following components are used:
 
 _Log_: the JPA Entiry Bean that is our actual data object. Consider each _Log_ object as a table row.
@@ -186,6 +191,7 @@ The JPA settings are defined in the file persistence.xml where the HSQL DB is us
 	</persistence-unit>
    </persistence>
 </code>
+
 
 ## The ZK Visual Design
 
@@ -236,12 +242,14 @@ Java class implementing the **Visual Model Controller or the View Model** of the
 
 In the `index3.zul` file we can see the following sections:
 
+
 <code>
     <zk>
            <window viewModel="@id('vm')@init('org.example.MyViewModel3')"
                  width="800px" border="normal" title="ZK JPA CRUD Operations on ListBox">
             ...
 </code>
+
 
 As you can probably see, the full class name `org.example.MyViewModel3` of the **Visual Model** is specified.
 Whith this declaration, whenever the `index3.zul` is initiated, the method `org.example.MyViewModel3.init()` is called.
@@ -252,6 +260,9 @@ In the ZUL file, we can refer to the Java class `org.example.MyViewModel3` membe
 
 
 Lets see the java viewModel class: `org.example.MyViewModel3` 
+
+
+
 <code>
      @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
         public class MyViewModel3 {
@@ -267,6 +278,10 @@ Lets see the java viewModel class: `org.example.MyViewModel3`
 	 private Log selectedLog;
      private String operationMessage;
 </code>
+
+
+
+
 The annotation `@WireVariable`  states that all those attribute members of the `org.example.MyViewModel3` view model class
 can be subsequently refered in the ZK .zul file with the use of the the variable `vm` specified in the
 `id` section of the `viewModel` XML attribute.\
@@ -278,6 +293,9 @@ getter/setter methods, will result in a runtime Exception when the artifact is d
 
      
 Lets take a look to the section of the ZUL file dedicated to the Search Criteria of a Log entity:
+
+
+
 <code>
       <vbox hflex="1">
                 Search Criteria
@@ -297,6 +315,11 @@ Lets take a look to the section of the ZUL file dedicated to the Search Criteria
             </vbox>
 
 </code>
+
+
+
+
+
 As we can see here, both  `textbox` and `intbox` load and save their content (their state) in the attribute members of view model class:
 `@load(vm.logCriteria.text),@save(vm.logCriteria.text)` loads and saves to `org.example.MyViewModel3.logCriteria.text` and
 `@load(vm.logCriteria.id),@save(vm.logCriteria.id)` loads and saves to `org.example.MyViewModel3.logCriteria.id`
@@ -308,6 +331,9 @@ Notice the declaration of the handling of the `onClick` event: this wires the ev
 the `criteria` variable will take the actual state of  `vm.logCriteria`.
 
 See the implementation of the method: `org.example.MyViewModel3.getLogByCriteria`
+
+
+
 
 <code>
 	  @Command
@@ -350,7 +376,9 @@ To do so the following descriptors are used:
 
 ![War contents](img/war-contents.png "War contents")
 
+## Tomcat Deployment on IDEA
 
+![Tomcat Deployment on IDEA](img/tomcat-setup.png "Tomcat Deployment on IDEA")
 
 
 

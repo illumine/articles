@@ -1,0 +1,88 @@
+<zk>
+    <window viewModel="@id('vm')@init('org.example.MyViewModel3')"
+            width="800px" border="normal" title="ZK JPA CRUD Operations on ListBox">
+        
+        <hbox vflex="1">
+
+            <!-- Define Search Criteria and Search/Clear buttons to search or reload a list of Items -->
+            <vbox hflex="1">
+                Search Criteria
+                <separator orient="horizontal" bar="true"/>
+                <hbox hflex="1">
+                    Substring:
+                    <textbox hflex="1" value="@load(vm.logCriteria.text),@save(vm.logCriteria.text)" placeholder="search for log string?"/>
+                </hbox>
+                <hbox hflex="1">
+                    ID:
+                    <intbox hflex="1" value="@load(vm.logCriteria.id),@save(vm.logCriteria.id)" constraint="no negative,no zero" />
+                </hbox>
+                <hbox hflex="1">
+                    <button label="Search" onClick="@command('getLogByCriteria', criteria = vm.logCriteria )"/>
+                    <button label="Reload/clear" onClick="@command('reloadAll')"/>
+                </hbox>
+            </vbox>
+
+            <separator orient="vertical" bar="true"/>
+
+            <!-- New Item/Upadte/Delete the current Item-->
+            <vbox hflex="1">
+                New or Update
+                <separator orient="horizontal" bar="true"/>
+                <hbox hflex="1">
+                    Message:
+                    <textbox hflex="1" value="@load(vm.selectedLog.message),@save(vm.selectedLog.message)"
+                             placeholder="Edit Message"/>
+                </hbox>
+                <hbox hflex="1">
+                    ID:
+                    <textbox hflex="1" readonly="true" value="@load(vm.selectedLog.id)"/>
+                </hbox>
+                <hbox>
+                    <button hflex="1" label="New"    onClick="@command('addLog')"/>
+                    <button hflex="1" label="Update" onClick="@command('editLog',   log=vm.selectedLog)"/>
+                    <button hflex="1" label="Delete" onClick="@command('deleteLog', log=vm.selectedLog)"/>
+                </hbox>
+            </vbox>
+        </hbox>
+
+
+
+
+        <!-- Show CRUD Operation Results-->
+        <vbox vflex="1">
+            <separator orient="horizontal" bar="true"/>
+            Operation Results:
+            <label  style="color:red" hflex="1" value="@load(vm.operationMessage)"/>
+            <separator orient="horizontal" bar="true"/>
+            Click on a Log from the list:
+        </vbox>
+
+        <!-- Show the Item List. Define the current Item as the listBox.each with onClick() method-->
+        <listbox hflex="1" name="lb" model="@load(vm.logListModel)" mold="paging" pageSize="6">
+            <listhead sizable="true">
+                <listheader label="ID"   sort="auto(id)"/>
+                <listheader label="Date" sort="auto(date)" />
+                <listheader label="Message"  sort="auto(message)" hflex="1"/>
+            </listhead>
+            <template name="model">
+                <listitem onClick="@command('getLog', id=each.id)">
+
+                    <listcell>
+                        <label value="@init(each.id)"/>
+                    </listcell>
+                    <listcell>
+                        <label value="@init(each.date) @converter('formattedDate', format='yyyy/MM/dd HH:mm:ss')"/>
+                    </listcell>
+                    <listcell>
+                        <label value="@init(each.message)"/>
+                    </listcell>
+                </listitem>
+            </template>
+        </listbox>
+
+
+        <separator orient="horizontal" bar="true"/>
+        <label hflex="1" value="illumineit.com" onClick='Executions.sendRedirect("http://illumineit.com");'/>
+
+    </window>
+</zk>

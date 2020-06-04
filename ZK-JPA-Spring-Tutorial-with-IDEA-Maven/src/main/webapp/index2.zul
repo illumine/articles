@@ -1,0 +1,47 @@
+<zk>
+	<window viewModel="@id('vm')@init('org.example.MyViewModel2')"  width="800px" vflex="1">
+		<vlayout>
+			<hbox align="center" hflex="1">
+				Log message: <textbox value="@load(vm.selectedLog.message),@save(vm.selectedLog.message)"
+					onOK="@command('addLog')" hflex="1" placeholder="What happened?" />
+				<button label="add new" onClick="@command('addLog')" />
+			</hbox>
+			<hbox align="center" hflex="1">
+				ID: <textbox value="@load(vm.selectedLog.id),@save(vm.selectedLog.id)"
+							 onOK="@command('getLog', id=vm.selectedLog.id)" hflex="1" placeholder="ID to search" />
+				<button label="find" onClick="@command('getLog', id=vm.selectedLog.id)" />
+			</hbox>
+			<hbox align="center" hflex="1">
+				Operation: <textbox value="@load(vm.operationMessage)"
+							  hflex="1" placeholder="no ops...." />
+			</hbox>
+
+			<listbox name="lb" model="@load(vm.logListModel)"  mold="paging" pageSize="6">
+				<listhead>
+					<listheader hflex="min" />
+					<listheader hflex="min" />
+					<listheader sort="auto" />
+				</listhead>
+				<template name="model">
+					<listitem onClick="@command('getLog', id=each.id)">
+						<listcell>
+							<button label="delete" onClick="@command('deleteLog', log=each)" />
+						</listcell>
+						<listcell>
+							<button label="edit" onClick="@command('editLog', log=each)" />
+						</listcell>
+						<listcell>
+							<label value="@init(each.id)" />
+						</listcell>
+						<listcell>
+							<label value="@init(each.date) @converter('formattedDate', format='yyyy/MM/dd HH:mm:ss')" />
+						</listcell>
+						<listcell>
+							<label value="@init(each.message)" />
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</vlayout>
+	</window>
+</zk>
