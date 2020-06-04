@@ -80,13 +80,13 @@ So a simple Log entry as a plain Java Class can be like:
 
 
 <code>
-  public class Log{
-    Integer id;
-    String message;
-    java.util.Date date;
-  
-    public Log(){id=0; message=""; date= new java.util.Date(); }
-  }
+    public class Log{
+       Integer id;
+       String message;
+       java.util.Date date;
+ 
+       public Log(){id=0; message=""; date= new java.util.Date(); }
+     }
 </code> 
 
 In order to transform it to a JPA Entiry Bean, the following Java Annotations are applied:
@@ -220,15 +220,15 @@ following aspects:
 
 1. Isolate the XML presentation design from the actual Controller. The presentation design - the view - is the `index.zul` file, 
 The visual controller class is the `MyViewModel3.java` file. The visual controller class controlls all the 
-visual controls of the our Web Form. \
+visual controls of the our Web Form. 
 
 
 2. Wire the Data Structures of the Visual Components of the Controller Class to the XML presentation design. The data structures 
-handled by the controler class in the MVVM Pattern terminology is often called the **State**\
+handled by the controler class in the MVVM Pattern terminology is often called the **State**
 
 
 3. Wire the Methods of the Controller Class to the XML presentation design. The methods offered 
- by the controler class in the MVVM Pattern terminology is often called the **Behavior**\
+ by the controler class in the MVVM Pattern terminology is often called the **Behavior**
  
  
 Lets examine how exactly the Wiring of MVVM State and Behavior from the **Visual Model index.zul** file to the 
@@ -237,34 +237,35 @@ Java class implementing the **Visual Model Controller or the View Model** of the
 In the `index3.zul` file we can see the following sections:
 
 <code>
-  <zk>
-    <window viewModel="@id('vm')@init('org.example.MyViewModel3')"
-            width="800px" border="normal" title="ZK JPA CRUD Operations on ListBox">
+    <zk>
+           <window viewModel="@id('vm')@init('org.example.MyViewModel3')"
+                 width="800px" border="normal" title="ZK JPA CRUD Operations on ListBox">
             ...
 </code>
 
 As you can probably see, the full class name `org.example.MyViewModel3` of the **Visual Model** is specified.
-Whith this declaration, whenever the `index3.zul` is initiated, the method `org.example.MyViewModel3.init()` is called.\
+Whith this declaration, whenever the `index3.zul` is initiated, the method `org.example.MyViewModel3.init()` is called.
 
-In the ZUL file, we can refer to the Java class org.example.MyViewModel3` members using the variable `vm` specified in the
-`id` section of the `viewModel` XML attribute.\
+
+In the ZUL file, we can refer to the Java class `org.example.MyViewModel3` members using the variable `vm` specified in the
+`id` section of the `viewModel` XML attribute.
 
 
 Lets see the java viewModel class: `org.example.MyViewModel3` 
 <code>
-  @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-  public class MyViewModel3 {
+     @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
+        public class MyViewModel3 {
 
-	  public class Criteria{
-	  	.....
-	  }
+	        public class Criteria{
+	    	.....
+	        }
 
-	@WireVariable
-	private MyService myService;
-	private Criteria logCriteria;
-	private ListModelList<Log> logListModel;
-	private Log selectedLog;
-    private String operationMessage;
+	 @WireVariable
+	 private MyService myService;
+	 private Criteria logCriteria;
+	 private ListModelList<Log> logListModel;
+	 private Log selectedLog;
+     private String operationMessage;
 </code>
 The annotation `@WireVariable`  states that all those attribute members of the `org.example.MyViewModel3` view model class
 can be subsequently refered in the ZK .zul file with the use of the the variable `vm` specified in the
@@ -327,6 +328,8 @@ See the implementation of the method: `org.example.MyViewModel3.getLogByCriteria
 		operationMessage = "getLogByCriteria():  found selectedLog " + selectedLog.toString();
 	}
 </code>
+
+
 The method is annotated with `@Command` meaning that this method is handling some event that is wired from the ZUL view.
 When this method is called and finished, the state variables `{"operationMessage","logListModel", "selectedLog"}`
 of the ZUL view are notified thus are reloaded from the ViewModel class!
