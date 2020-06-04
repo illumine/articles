@@ -310,23 +310,23 @@ the `criteria` variable will take the actual state of  `vm.logCriteria`.
 See the implementation of the method: `org.example.MyViewModel3.getLogByCriteria`
 
 <code>
-	@Command
-	@NotifyChange({"operationMessage","logListModel", "selectedLog"})
-	public void  getLogByCriteria( @BindingParam("criteria") Criteria criteria){
-		if( criteria.getId() == 0 && Strings.isBlank( criteria.getText())  ) {
-			operationMessage = "getLogByCriteria(): text is blank or id is 0!";
-			return;
-		}
+	  @Command
+	  @NotifyChange({"operationMessage","logListModel", "selectedLog"})
+	  public void  getLogByCriteria( @BindingParam("criteria") Criteria criteria){
+		  if( criteria.getId() == 0 && Strings.isBlank( criteria.getText())  ) {
+			  operationMessage = "getLogByCriteria(): text is blank or id is 0!";
+			  return;
+		  }
 
-		List<Log> logList = myService.getByCriteria( criteria.id, criteria.text);
-		if( logList.isEmpty() ){
-			operationMessage = "getLogByCriteria(): nothing found for " + criteria.toString();
-			return;
-		}
-		selectedLog = logList.get(0);
-		logListModel = new ListModelList<Log>(logList);
-		operationMessage = "getLogByCriteria():  found selectedLog " + selectedLog.toString();
-	}
+		  List<Log> logList = myService.getByCriteria( criteria.id, criteria.text);
+		  if( logList.isEmpty() ){
+			  operationMessage = "getLogByCriteria(): nothing found for " + criteria.toString();
+			  return;
+		  }
+		  selectedLog = logList.get(0);
+		  logListModel = new ListModelList<Log>(logList);
+		  operationMessage = "getLogByCriteria():  found selectedLog " + selectedLog.toString();
+	   }
 </code>
 
 
@@ -365,6 +365,8 @@ https://www.zkoss.org/wiki/ZK_Installation_Guide/Quick_Start/Create_and_Run_Your
 IntelliJ - Error:java: release version 5 not supported \
 Select the solution #3\
 https://dev.to/techgirl1908/intellij-error-java-release-version-5-not-supported-376
+
+
 
 ### MVVM Patern
 ZK implementation of the MVVM pattern:\
