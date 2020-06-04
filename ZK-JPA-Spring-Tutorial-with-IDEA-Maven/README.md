@@ -69,7 +69,7 @@ https://www.zkoss.org/wiki/ZK_Installation_Guide/Quick_Start/Create_and_Run_Your
 In my case, I came up to this error: _"Java: release version 5 not supported"_ but to resolve it 
 read the solution nr. 3 from [this article](https://dev.to/techgirl1908/intellij-error-java-release-version-5-not-supported-376)
 
-
+The project can be built with [this Maven POM file](pom.xml)
 
 ## The JPA Model of our Log Project
 JPA is a Java Framework that persists Java Objects (or Beans as they sometimes refered) on a database or in general, to 
@@ -91,8 +91,8 @@ So a simple Log entry as a plain Java Class can be like:
 
 
 
-In order to transform it to a JPA Entiry Bean, the following Java Annotations are applied:
-
+In order to transform it to a JPA Entiry Bean, the following Java Annotations are applied. See the file 
+[Log.java](src/main/java/org/example/entity/Log.java)
 
 
 <code>
@@ -148,16 +148,29 @@ In order to transform it to a JPA Entiry Bean, the following Java Annotations ar
 According to the DAO/Adapter pattern, the following components are used:
 
 _Log_: the JPA Entiry Bean that is our actual data object. Consider each _Log_ object as a table row.
+See [Log.java](src/main/java/org/example/entity/Log.java)
+
+
 
 _LogDao_: the Data Access Object, a class that implements methods for CRUD operations on the Log. Consider the _LogDao_ class as the _Log_ **table adapter**.
+See [LogDao.java](src/main/java/org/example/services/impl/LogDao.java)
+
+
 
 _MyService_: interface that denotes the DB Transaction methods.  Consider the _MyService_ interface as the  **DB adapter type library**.
+See [MyService.java](src/main/java/org/example/services/MyService.java)
+
+
 
 _MyServiceImpl_: the class implementing MyService interface. Consider the _MyServiceImpl_ class as the  **DB adapter**.
 _MyServiceImpl_ actually, 
 implements all the operations that are going/returning to the Database, it is the Database logic itself.
 
 _MyServiceImpl_ is a collection of references of DAOs and Entities that are required in order to implement the transaction logic.
+See [MyServiceImpl.java](src/main/java/org/example/services/impl/MyServiceImpl.java)
+
+
+
 
 Bottom line of the design pattern: whatever needs to deal with the Database, it requires a reference to  _MyServiceImpl_ object
 
@@ -330,29 +343,30 @@ Notice the declaration of the handling of the `onClick` event: this wires the ev
 `org.example.MyViewModel3.getLogByCriteria` and binds the method's argument `criteria = vm.logCriteria` in other words
 the `criteria` variable will take the actual state of  `vm.logCriteria`.
 
-See the implementation of the method: `org.example.MyViewModel3.getLogByCriteria`
+See the implementation of the method: `getLogByCriteria`:
 
 
 
 
 <code>
-	  @Command
-	  @NotifyChange({"operationMessage","logListModel", "selectedLog"})
-	  public void  getLogByCriteria( @BindingParam("criteria") Criteria criteria){
-		  if( criteria.getId() == 0 && Strings.isBlank( criteria.getText())  ) {
-			  operationMessage = "getLogByCriteria(): text is blank or id is 0!";
-			  return;
-		  }
+		@Command
+		@NotifyChange({"operationMessage","logListModel", "selectedLog"})
+		public void  getLogByCriteria( @BindingParam("criteria") Criteria criteria){
+			if( criteria.getId() == 0 && Strings.isBlank( criteria.getText())  ) {
+				operationMessage = "getLogByCriteria(): text is blank or id is 0!";
+				return;
+			}
 
-		  List<Log> logList = myService.getByCriteria( criteria.id, criteria.text);
-		  if( logList.isEmpty() ){
-			  operationMessage = "getLogByCriteria(): nothing found for " + criteria.toString();
-			  return;
-		  }
-		  selectedLog = logList.get(0);
-		  logListModel = new ListModelList<Log>(logList);
-		  operationMessage = "getLogByCriteria():  found selectedLog " + selectedLog.toString();
-	   }
+			List<Log> logList = myService.getByCriteria( criteria.id, criteria.text);
+			if( logList.isEmpty() ){
+				operationMessage = "getLogByCriteria(): nothing found for " + criteria.toString();
+				return;
+			}
+			selectedLog = logList.get(0);
+			logListModel = new ListModelList<Log>(logList);
+			operationMessage = "getLogByCriteria():  found selectedLog " + selectedLog.toString();
+		}
+
 </code>
 
 
