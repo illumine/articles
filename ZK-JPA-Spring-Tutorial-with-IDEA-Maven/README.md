@@ -77,21 +77,23 @@ a local or a remote disk. The JPA implementation we are going to use is [Hiberna
 
 
 So a simple Log entry as a plain Java Class can be like:
+
+
 <code>
-public class Log{
-  Integer id;
-  String message;
-  java.util.Date date;
+  public class Log{
+    Integer id;
+    String message;
+    java.util.Date date;
   
-  public Log(){id=0; message=""; date= new java.util.Date(); }
-}
+    public Log(){id=0; message=""; date= new java.util.Date(); }
+  }
 </code> 
 
 In order to transform it to a JPA Entiry Bean, the following Java Annotations are applied:
 
 <code>
-@Entity
-public class Log implements Serializable, Cloneable {
+  @Entity
+  public class Log implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -136,20 +138,19 @@ public class Log implements Serializable, Cloneable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
 </code>
 
-According to the DAO/Adapter pattern, the following components are used:\
+According to the DAO/Adapter pattern, the following components are used:
 
-_Log_: the JPA Entiry Bean that is our actual data object. Consider each _Log_ object as a table row.\
+_Log_: the JPA Entiry Bean that is our actual data object. Consider each _Log_ object as a table row.
 
-_LogDao_: the Data Access Object, a class that implements methods for CRUD operations on the Log. Consider the _LogDao_ class as the _Log_ **table adapter**.\
+_LogDao_: the Data Access Object, a class that implements methods for CRUD operations on the Log. Consider the _LogDao_ class as the _Log_ **table adapter**.
 
-_MyService_: interface that denotes the DB Transaction methods.  Consider the _MyService_ interface as the  **DB adapter type library**.\
+_MyService_: interface that denotes the DB Transaction methods.  Consider the _MyService_ interface as the  **DB adapter type library**.
 
 _MyServiceImpl_: the class implementing MyService interface. Consider the _MyServiceImpl_ class as the  **DB adapter**.
 _MyServiceImpl_ actually, 
-implements all the operations that are going/returning to the Database, it is the Database logic itself.\
+implements all the operations that are going/returning to the Database, it is the Database logic itself.
 
 _MyServiceImpl_ is a collection of references of DAOs and Entities that are required in order to implement the transaction logic.
 
@@ -160,9 +161,11 @@ Follows a UML Class Diagram of our design:
 ![UML Class Diagram of our design](img/uml_log_use_case.png "UML Class Diagram of our design")
 
 The JPA settings are defined in the file persistence.xml where the HSQL DB is used to store the JPA entities.
+
+
 <code>
-<?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+  <?xml version="1.0" encoding="UTF-8"?>
+  <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
 	<persistence-unit name="myapp" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
@@ -181,7 +184,7 @@ The JPA settings are defined in the file persistence.xml where the HSQL DB is us
 			<property name="hibernate.hbm2ddl.auto" value="create" /> -->
 		</properties>
 	</persistence-unit>
-</persistence>
+   </persistence>
 </code>
 
 ## The ZK Visual Design
@@ -234,9 +237,10 @@ Java class implementing the **Visual Model Controller or the View Model** of the
 In the `index3.zul` file we can see the following sections:
 
 <code>
-<zk>
+  <zk>
     <window viewModel="@id('vm')@init('org.example.MyViewModel3')"
             width="800px" border="normal" title="ZK JPA CRUD Operations on ListBox">
+            ...
 </code>
 
 As you can probably see, the full class name `org.example.MyViewModel3` of the **Visual Model** is specified.
@@ -248,12 +252,12 @@ In the ZUL file, we can refer to the Java class org.example.MyViewModel3` member
 
 Lets see the java viewModel class: `org.example.MyViewModel3` 
 <code>
-@VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-public class MyViewModel3 {
+  @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
+  public class MyViewModel3 {
 
-	public class Criteria{
-		.....
-	}
+	  public class Criteria{
+	  	.....
+	  }
 
 	@WireVariable
 	private MyService myService;
