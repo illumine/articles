@@ -1,4 +1,6 @@
 # ZK JPA Spring Tutorial with IDEA Maven
+_by Michael Mountrakis, June 2020_
+
 
 ## Abstract
 In this article we will implement a complete Web based example of 
@@ -24,7 +26,8 @@ build and dependency resolver tool we are using is [Apache Maven](https://maven.
 
 **The entire java source code, application descriptors, assembly files of this project are  available to download here: https://github.com/illumine/articles/tree/master/ZK-JPA-Spring-Tutorial-with-IDEA-Maven/src/main**
 
-
+#### Keywords
+Java, J2EE, Tomcat, ZK, ZK Framework, Web, Application, Spring, JPA, Maven, IDEA, Hibernate
 
 ## The Example Case
 We use something very primitive: a simple Log. What is a Log? A message with a date! So, our simple application will offer the users
