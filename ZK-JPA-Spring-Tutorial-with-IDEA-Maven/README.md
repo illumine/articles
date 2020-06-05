@@ -540,6 +540,15 @@ http://localhost:8080/zktest/index3.zul
 
 ## Resources and References
 
+### UML Resources
+[UML](https://en.wikipedia.org/wiki/Unified_Modeling_Language)  Use-Case and Class Diagrams of this project 
+were compiled with source code reverse engineering from [ArgoUML](https://sourceforge.net/projects/argouml/)
+
+The entire [ArgoUML](https://sourceforge.net/projects/argouml/) project can be also downloaded here:
+[ZkMvvmPattern.zargo](ZkMvvmPattern.zargo)
+
+
+
 ### ZK With Maven, JPA, Spring using IDEA
 Project setup in Intelij IDEA:\
 https://www.zkoss.org/wiki/ZK_Installation_Guide/Quick_Start/Create_and_Run_Your_First_ZK_Application_with_IntelliJ_and_ZKIdea
@@ -552,7 +561,7 @@ https://dev.to/techgirl1908/intellij-error-java-release-version-5-not-supported-
 
 
 
-### MVVM Patern
+### MVVM Patern in ZK
 ZK implementation of the MVVM pattern:\
 http://books.zkoss.org/zk-mvvm-book/8.0/viewmodel/index.html
 
