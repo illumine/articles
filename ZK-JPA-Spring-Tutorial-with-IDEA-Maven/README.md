@@ -1,4 +1,4 @@
-# ZK JPA Spring Tutorial with IDEA Maven
+# ZK, JPA and Spring Tutorial with IDEA and Maven
 _by Michael Mountrakis, June 2020_
 
 
