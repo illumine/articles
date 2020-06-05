@@ -292,7 +292,7 @@ provide the _view_ with the list of Logs, to set the current Log etc...
 3. The _viewModel_ takes a single reference to an object of [MyServiceImpl.java](src/main/java/org/example/services/impl/MyServiceImpl.java) 
 that holds all the business logic.
 
-4. Wire the **Data Structures** of the Visual Components of the _viewModel_ to the _view_ or the ZUL file_ .
+4. Wire the **Data Structures** of the Visual Components of the _viewModel_ to the _view_ - the _ZUL file_ .
  The data structures  handled by the _viewModel_ class in the MVVM Pattern terminology is often called the **State**
 
 
