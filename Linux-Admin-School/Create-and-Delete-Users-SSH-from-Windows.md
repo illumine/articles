@@ -1,5 +1,11 @@
-# Creating and Deleting Users
+# Linux Authentication and Access
 _Michael Mountrakis, June 2020_
+
+
+#### Abstract
+A small briefing that covers the basic points of creating a new user in a Linux host. We start with a simple username/password 
+scheeme and then we can add RSA certificate to  make the system more robust. 10 minutes reading.
+
 
 ## Create the new user that authenticates with Username/Password
 This can be done with linux root command `useradd`:
@@ -55,7 +61,7 @@ juser@build-oss:~>
 ```
 
 
-## Adding private and public keys for the user
+## Adding  RSA private and public keys for the user
 
 Yes but... this is old school... I remember myself doing this since 1990... Now it is the era of [MFA](https://en.wikipedia.org/wiki/MFA)
 we cannot afford still having the same authentication since 90s.
@@ -124,6 +130,10 @@ For security reasons, you may want to delete the private key from this host and 
 Copy `juser` private and public keys `/home/juser/.ssh/id_rsa`  and `/home/juser/.ssh/id_rsa.pub` 
  to your windows machine. To copy it you can use the
 [WinSCP free tool](https://winscp.net/eng/download.php) 
+
+
+Certificates is just encrypted ANSI text, so you can copy paste their contect 
+and save them to a local file in your windows machine as long as the EOL (End of Line) is preserved..
 
 
 
