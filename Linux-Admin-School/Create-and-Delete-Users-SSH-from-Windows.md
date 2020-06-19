@@ -1,7 +1,7 @@
 # Creating and Deleting Users
 _Michael Mountrakis, June 2020_
 
-## Create the new user
+## Create the new user that authenticates with Username/Password
 This can be done with linux root command `useradd`:
 
 
@@ -57,7 +57,18 @@ juser@build-oss:~>
 
 ## Adding private and public keys for the user
 
-Do this with the following commands:
+Yes but... this is old school... I remember myself doing this since 1990... Now it is the era of [MFA](https://en.wikipedia.org/wiki/MFA)
+we cannot afford still having the same authentication since 90s.
+
+To chang this, we can add a public and private key to our authentication scheeme, enabling in such a 
+way _assymetric cryptography_ to the authentication and session.
+
+First of all, create the `.ssh` directory for the `juser` in order 
+to store his key and certificate/public.key
+
+Secondly, we have to use the `ssh-keygen` tool in orderf to create a public and private RSA key.
+
+We can do this with the following commands. 
 
 ```bash
 build-oss:~ # su juser
