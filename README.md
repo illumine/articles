@@ -5,6 +5,9 @@ Various Articles from everyday problem solving with Illumine IT Consulting.
 
 ## Contents
 
+[Linux Admin School](Linux-Admin-School/README.md)
+
+
 [Enable SSL for your Wordpress Plesk site using a free authority signed certificate](Enable-SSL-for-your-Wordpress-Plesk-site-using-a-free-authority-signed-certificate/Enable-SSL-for-your-Wordpress-Plesk-site-using-a-free-authority-signed-certificate.md)
 
 
@@ -31,6 +34,8 @@ Various Articles from everyday problem solving with Illumine IT Consulting.
 
 [ZKoss: Introduction to Application development with ZK Java Framework](ZK-training/pdf/J2EE6_02_ZKApplication.pdf)
 
+
+[ZK JPA Spring Tutorial with IDEA and Maven](ZK-JPA-Spring-Tutorial-with-IDEA-Maven/README.md)
 
 
 ## Follow us on Social Media
