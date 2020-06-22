@@ -49,8 +49,10 @@ that does not lead to a correct, easy to use and handy Web form. For that reason
 
 ![Paperwork Diagram](img/paperwork.jpg "Old school paperwork for a simple prototype")
 
-Lets exmplain how we think of this paperwork design:
-Basic form sections:\
+Lets explain how we think of this paperwork design:
+Basic form sections:
+
+
 * Search: is the section where the Retrieve operations take place. The user searches a Log entry with some _Selection Criteria._
 * Udate/New: is the section where the user either Edits/Updates the current log, or Creates a new or Deletes the current. Actually 
 this space on the form deals with the _Current Log_.
@@ -59,7 +61,11 @@ When user defines some Criteria
 and press Search/Find button, then this section displays the results of the search operation. 
 When user clicks on a Log from the list, then this Log becomes
 the _current Log_ and its details populate the section Update/New.
-Help sections:\
+
+
+Help sections:
+
+
 * Operation Results: is the section where the user gets some _feedback or error messages_ are displayed.
 * Pagination details: is the section that controls the List of Logs allows the user to move forward or backwards to the list etc...
 
