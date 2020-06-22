@@ -67,7 +67,7 @@ Help sections:
 
 
 * Operation Results: is the section where the user gets some _feedback or error messages_ are displayed.
-* Pagination details: is the section that controls the List of Logs allows the user to move forward or backwards to the list etc...
+* Pagination details: is the section that controls the List of Logs. It allows the user to move forward or backwards to the list etc...
 
 
 In the next sections, we will implement the paperwork design to a Web form based on [ZK framework](https://www.zkoss.org/).
