@@ -71,7 +71,7 @@ juser@build-oss:~>
 Yes but... this is old school... I remember myself doing this since 1990... Now it is the era of [MFA](https://en.wikipedia.org/wiki/MFA)
 we cannot afford still having the same authentication since 90s.
 
-To chang this, we can add a public and private key to our authentication scheeme, enabling in such a 
+To change this, we can add a public and private key to our authentication scheeme, enabling in such a 
 way _[asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)_ to the authentication and session.
 
 First of all, create the `.ssh` directory for the `juser` in order 
@@ -127,7 +127,9 @@ Last failed login: Fri Jun 19 14:00:48 UTC 2020 from ::1 on ssh:notty
 juser@build-oss:~>
 ```
 
-For security reasons, you may want to delete the private key from this host and leave only the public key.
+For security reasons, **you may want to delete the private key from this host** and leave only the public key.
+In general as a rule of thump: your private key stays only in your machine, 
+while in the server you connect only the public key should exists.
 
 
 
