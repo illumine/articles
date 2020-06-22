@@ -4,8 +4,12 @@ _Michael Mountrakis, June 2020_
 
 #### Abstract
 A small briefing that covers the basic points of creating a new user in a Linux host. We start with a simple username/password 
-scheeme and then we can add RSA certificate to  make the system more robust. In this section we introduce a simple Jenkins
-pipeline that uses the sftp and ssh commands for the user we created. Just 10 minutes reading.
+old and insecure authentication method and then we add RSA certificate to  make the user authentication modern and more robust. 
+In the second section, we copy the private key to our windows machine and we configure windows PuTTY so that we connect to the 
+Linux server using rSA certificates. 
+In the last section we introduce we introduce  a simple Jenkins pipeline that demonstrates the use of  the 
+`sftp` and `ssh` commands for the linux user we previously created. 
+Just 10 minutes reading.
 
 
 ## Create the new user that authenticates with Username/Password
