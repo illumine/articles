@@ -4,7 +4,8 @@ _Michael Mountrakis, June 2020_
 
 #### Abstract
 A small briefing that covers the basic points of creating a new user in a Linux host. We start with a simple username/password 
-scheeme and then we can add RSA certificate to  make the system more robust. 10 minutes reading.
+scheeme and then we can add RSA certificate to  make the system more robust. In this section we introduce a simple Jenkins
+pipeline that uses the sftp and ssh commands for the user we created. Just 10 minutes reading.
 
 
 ## Create the new user that authenticates with Username/Password
@@ -198,7 +199,103 @@ Finally **Open** the session to the host.
 ![Configuring Putty Image](img/putty-05.png "Configuring Putty Image")
 
 
-## Deleting the user
+### Invoking `ssh, scp, sftp` commands with Jenkins
+
+Jenkins is a build tool. It can be used when CI/CD ir required for your projects in addition with 
+the build tools like Ant, Maven, C/C++ Make.
+
+
+Here is an example of a simple groovy pipeline that it utilizes the SSH commands `ssh, scp, sftp`.
+
+First of all copy and store the private key id_rsa to Jenkins Credentials
+![Configuring Jenkins Credentials](img/jenkins-1.png" Configuring Jenkins Credentials")
+
+Then a very simple pipeline that invokes `ssh, scp, sftp` commands can be the following one:
+
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('sshUserPrivateKey') {
+            steps {
+                script {
+                    withCredentials([
+                        sshUserPrivateKey(
+                            credentialsId: 'juser',
+                            keyFileVariable: 'keyFile',
+                            usernameVariable: 'username')
+                    ]) {
+                            print 'keyFile=' + keyFile
+                            print 'username=' + username
+            
+                            keyFileContent = readFile(keyFile)
+                            writeFile file: 'id.rsa',  text: keyFileContent
+         
+                            sh '''
+                            today=$(date +"%Y-%m-%d")
+                            sftp -v  -i id.rsa juser@illumineit.com    <<EOF
+								get $today/backup.tgz  $today_backup.tgz
+								quit
+							EOF
+                            ssh -v  -i id.rsa juser@illumineit.com << EOF
+								./run_cleanup.sh  $today
+							EOF                   
+                            '''
+                        }
+                }
+            }
+        }  
+    }  
+}
+```
+All seems ok, but the pipeline script fails with the error:
+```
+ebug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: Next authentication method: publickey
+debug1: Trying private key: id.rsa
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'id.rsa' are too open. <-----------------------------------BEWARE!!
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "id.rsa": bad permissions
+debug1: Next authentication method: keyboard-interactive
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: No more authentication methods to try.
+****@illumineit.com: Permission denied (publickey,keyboard-interactive). 
+```
+
+In case you dont specify the `-v` debug flag in `ssh or sftp` the error is even much more mysterious:
+**Host key verification failed.**
+
+"Why?" you might question yourself.... "I copied/paste the private key... it just can't be really wrong.... What is it wrong with it?"
+
+
+The mysterious error here is that the key file 'id.rsa'  has the default unix permissions 644 when it is created from the
+call `writeFile file: 'id.rsa',  text: keyFileContent` 
+
+
+To amend the situation, we modify the script by adding the `chmod 600 id.rsa` call so that the proper secret file 
+permissions must be applied.
+
+```groovy
+ writeFile file: 'id.rsa',  text: keyFileContent
+ sh '''
+     chmod 600 id.rsa 
+     sftp -v  -i id.rsa juser@illumineit.com      
+```
+
+and the pipeline excecutes normally!
+
+
+## Deleting the linux user
 
 ```bash
 build-oss:~ # userdel juser
@@ -208,6 +305,10 @@ total 8
 drwxr-xr-x 7   1000 users 4096 Jun 19 13:16 juser
 build-oss:~ # rm -rf /home/juser
 ```
+First command deletes the user but it leaves untuched his home directory.
+
+
+Second command deletes also the home contents..
 
 ## Resources
 
