@@ -214,7 +214,10 @@ the build tools like Ant, Maven, C/C++ Make.
 Here is an example of a simple groovy pipeline that it utilizes the SSH commands `ssh, scp, sftp`.
 
 First of all copy and store the private key id_rsa to Jenkins Credentials
-![Configuring Jenkins Credentials](img/jenkins-1.png" Configuring Jenkins Credentials")
+
+
+
+![Configuring Jenkins Credentials](img/jenkins-1.png "Configuring Jenkins Credentials")
 
 Then a very simple pipeline that invokes `ssh, scp, sftp` commands can be the following one:
 
