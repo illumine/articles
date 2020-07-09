@@ -1,19 +1,21 @@
-# Linux Authentication and Access
-_Michael Mountrakis, June 2020_
+# Linux Authentication and Access - A different approach
+_Michael Mountrakis, July 2020_
 
 
 #### Abstract
-A small briefing that covers the basic points of creating a new user in a Linux host. We start with a simple username/password 
-old and insecure authentication method and then we add RSA certificate to  make the user authentication modern and more robust. 
-In the second section, we copy the private key to our windows machine and we configure windows PuTTY so that we connect to the 
-Linux server using RSA certificates. 
+A small briefing that covers the basic points of creating a new user in a Linux host. We start with a simple username/password configuration - 
+an old and insecure authentication method used untile recently. We introduce RSA certificates to  make the user authentication modern and more 
+robust. In the same section we configure the access to Linux host from our Windows workstation using the new user's RSA cerfificates.
+
 
 In the second part of the article, we make a very short introduction to [Chef](https://www.chef.io/) Technology
-and how this can be used in order to automate user provisioning on a host. This example does exactly the same 
-user provisioning operations shown in the first part but this time with Chef.
+and how this can be used in order to automate user provisioning operations on a host or a set of hosts. 
 
-In the last section we introduce we introduce  a simple Jenkins pipeline that demonstrates the use of  the 
-`sftp` and `ssh` commands for the linux user we previously created. 
+
+In the last section we introduce  a Jenkins CI/CD server. We present a build pipeline that demonstrates the use of  the 
+`sftp` and `ssh` commands issued from the new Linux user we previously configured.
+
+
 Just 10 minutes reading.
 
 
