@@ -6,7 +6,12 @@ _Michael Mountrakis, June 2020_
 A small briefing that covers the basic points of creating a new user in a Linux host. We start with a simple username/password 
 old and insecure authentication method and then we add RSA certificate to  make the user authentication modern and more robust. 
 In the second section, we copy the private key to our windows machine and we configure windows PuTTY so that we connect to the 
-Linux server using rSA certificates. 
+Linux server using RSA certificates. 
+
+In the second part of the article, we make a very short introduction to [Chef](https://www.chef.io/) Technology
+and how this can be used in order to automate user provisioning on a host. This example does exactly the same 
+user provisioning operations shown in the first part but this time with Chef.
+
 In the last section we introduce we introduce  a simple Jenkins pipeline that demonstrates the use of  the 
 `sftp` and `ssh` commands for the linux user we previously created. 
 Just 10 minutes reading.
@@ -133,6 +138,7 @@ while in the server you connect only the public key should exists.
 
 
 
+
 ## Connecting to the Linux host from a Windows machine
 Copy `juser` private and public keys `/home/juser/.ssh/id_rsa`  and `/home/juser/.ssh/id_rsa.pub` 
  to your windows machine. To copy it you can use the
@@ -205,7 +211,228 @@ Finally **Open** the session to the host.
 ![Configuring Putty Image](img/putty-05.png "Configuring Putty Image")
 
 
-### Invoking `ssh, scp, sftp` commands with Jenkins
+
+
+## Creating the `juser` using Chef recipe
+OK, so far we have managed to define and give access to a single user on a single host. 
+We did that manually by issuing about 10 Linux commands. What if we had to do the same on
+100 different hosts? For sure, we could not make it manually. Supposing that this operation
+was a 10 minute work on one host, then this would actually take us 16 hours non stop working 
+without considering the mistakes that could happen. 
+
+
+Here are the good news: there are ways to provision suck bulk [OSS operations](https://en.wikipedia.org/wiki/Operations_support_system) 
+on different flavors of Linux
+servers with the use of _OSS automation_ tools. One such technology is offered by [Chef](https://www.chef.io/)
+and it uses [Ruby](https://en.wikipedia.org/wiki/Ruby_(programming_language)) like language semantics in order to
+program your OSS on a vast set of Cloud based VMs or classic physical servers.  [Chef](https://www.chef.io/) technology
+implements [Infrastructure as Code - IaC](https://en.wikipedia.org/wiki/Infrastructure_as_code) and also provisioning
+of configuration on a set of hosts with a simple tool: [the Chef cookbook](https://docs.chef.io/cookbooks/).
+
+
+What actually differs a Chef cookbook from a simple Linux shell script that provisions the new user with a couple of Linux commands?
+The answer is complicated:   The Chef cookbook can be parametrized with the use of Chef Templates, Attributes and
+code conditionals that can actually provide an easy way to deliver your scenario.
+
+
+Even more, the Chef cookbook provides a **standard neutral way** to deliver the same result on any Linux
+flavor/distribution!! Chef technology is analogus to a _JVM_: you write the code once and this has to
+be executed the same on any machine that has a _JRE Java Runtime Environment_. Similarly, in Chef technology
+you write your  Chef cookbook and this has to run the same in any host that has for example
+[chef-solo](https://docs.chef.io/chef_solo/) a command line tool that executes your cookbook's scenario
+the same way on any machine.
+
+
+
+### Installing Chef tools on Linux 
+
+**Step 1** Install `curl`
+First install `curl`. This is Linux distribution dependent.
+
+**Step 2**
+Once curl is installed on the machine, you  need to install Chef on the 
+workstation using Opscode’s omnibus Chef installer.
+
+```bash
+build-oss:~ # curl –L https://www.opscode.com/chef/install.sh | sudo bash 
+```
+
+**Step 3** − Install Ruby on the machine.
+This is Linux distribution dependent.
+
+
+
+**Step 4** − Add Ruby to path variable.
+
+```bash
+build-oss:~ # echo ‘export PATH = ”/opt/chef/embedded/bin:$PATH”’ ≫ ~/.bash_profile && 
+source ~/.bash_profile 
+```
+The Omnibus Chef will install Ruby and all the required Ruby gems into 
+`/opt/chef/embedded` by adding `/opt/chef/embedded/bin directory` to the `.bash_profile file`.
+
+If Ruby is already installed, then install the Chef Ruby gem on the machine by running the following command.
+```bash
+build-oss:~ # gem install chef 
+```
+
+A very good example how to install Chef tools in Debian like flavor using `aptitude installer` is described in the `install.sh` script in this 
+[excellent tutorial here.](http://www.opinionatedprogrammer.com/2011/06/chef-solo-tutorial-managing-a-single-server-with-chef/)
+
+
+From this point, in order to continue with the hands on tutorial,
+you have to install `chef-solo` tool to your system. Here is how you do it 
+
+
+
+### Implementing a Chef Cookbook Recipe
+Lets see an example of such a [Chef cookbook recipe](https://docs.chef.io/recipes/):  
+
+
+```ruby
+_user     = 'juser'
+_group    = 'users'
+_home     = '/home/juser'
+
+group _group  do
+  action :create
+  append true
+end
+
+user _user do
+  action :create
+  comment  "juser deploy on the host"
+  shell    '/bin/bash'
+  home     _home
+end
+
+user _user do
+  group _group
+end
+
+
+directory _home  do
+    user _user
+    group _group
+    mode 0755
+end
+
+ssh_dir = File.join(_home,'.ssh')
+directory ssh_dir do
+    user _user
+    group _group
+    mode 0700
+end
+
+cookbook_file File.join(ssh_dir, 'id_rsa') do
+    source 'deployuser-key'
+    user _user
+    group _group
+    mode 0400
+end
+
+cookbook_file File.join(ssh_dir, 'id_rsa.pub') do
+    source 'deployuser-key.pub'
+    user _user
+    group _group
+    mode 0600
+end
+
+cookbook_file File.join(ssh_dir, 'authorized_keys') do
+    source 'deployuser-key.pub'
+    user _user
+    group _group
+    mode 0600
+end
+
+```
+
+In order to run the cookbook on a host  we use  [chef-solo](https://docs.chef.io/chef_solo/).
+
+
+
+chef-solo supports two locations from which cookbooks can be run:
+
+* A local directory.
+* A URL at which a tar.gz archive is located.
+Using a tar.gz archive is the more common approach, but requires that cookbooks be added to an archive. 
+For example:
+
+```bash
+build-oss:~ # tar zcvf my-books.tar.gz ./cookbooks
+```
+
+If multiple cookbook directories are being used, chef-solo expects the tar.gz archive to have a 
+directory structure similar to the following:
+
+```bash
+cookbooks/
+  |---- create-users/
+    |--attributes/default.rb
+    |--recipes/create-juser.rb
+    |--files/default/id_rsa   
+    |--files/default/id_rsa.pub
+   
+  ...
+  |---- another-cookbook/
+    |--attributes/
+```
+
+
+
+
+
+
+### Running the Chef Cookbook Recipe
+
+
+Before running Chef-Solo on the local machine, we need to install the following two files on the local machine.
+
+
+_Solo.rb_ − This file tells Chef about where to find cookbooks, roles, and data bags.
+
+
+
+_Node.json_ − This file sets the run list and any node-specific attribute, if required.
+
+
+Here are the steps to configures `solo.rb`.
+
+
+
+
+**Step 1** − Create a solo.rb file.
+
+```ruby
+root = File.absolute_path(File.dirname(__FILE__))
+
+file_cache_path root
+cookbook_path root + '/cookbooks'
+```
+
+
+
+**Step 2** − Create a `node.json` file inside the chef repo with the following content.
+```json
+{ 
+   "run_list": [ "recipe[create-users::create-juser]" ] 
+} 
+```
+
+
+
+**Step 3**
+Finally ask the `chef-solo` to run your cookbook:
+ ```bash
+build-oss:~ # /var/lib/gems/1.9.1/bin/chef-solo -c solo.rb -j solo.json
+```
+
+
+
+
+
+
+## Invoking `ssh, scp, sftp` commands with Jenkins
 
 Jenkins is a build tool. It can be used when CI/CD ir required for your projects in addition with 
 the build tools like Ant, Maven, C/C++ Make.
@@ -319,10 +546,46 @@ First command deletes the user but it leaves untuched his home directory.
 
 Second command deletes also the home contents..
 
+
+Same operations from a Chef recipe
+```ruby
+user 'juser' do
+  action :remove
+end
+
+directory '/home/juser' do
+  action :delete
+end
+```
+
+
+
 ## Resources
+
+**Linux Commands**
+
 
 https://www.ssh.com/ssh/keygen/
 
+
 http://www.openssh.com/
 
+
 https://linux.die.net/man/8/useradd
+
+
+**Chef Reources**
+
+
+https://docs.chef.io
+
+
+http://www.opinionatedprogrammer.com/2011/06/chef-solo-tutorial-managing-a-single-server-with-chef/
+
+
+
+**Jenkins Reources**
+
+
+https://www.jenkins.io/doc/
+
