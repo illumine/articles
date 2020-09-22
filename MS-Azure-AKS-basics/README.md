@@ -21,10 +21,7 @@ the _connect_ icon, then click on it.
 4. Steps from this point assume that you have the [MS az](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest) commands installed.
 Open your MS-Dos shell and type the following command
 ```bash
-Microsoft Windows [Version 10.0.18363.1082]
-(c) 2019 Microsoft Corporation. All rights reserved.
-
-C:\Users\mountrakis>az login
+C:\>az login
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
 [
   {
@@ -37,14 +34,14 @@ Do as instructions suggest.
 5. From the Connect window in MS Azure portal copy the first connection command:
 In the same MS-DOS window type the following command
 ```bash
-C:\Users\mountrakis>az account set --subscription <your subscription id>
+C:\>az account set --subscription <your subscription id>
 
-C:\Users\mountrakis>az aks get-credentials --resource-group <the resource group your cluster begins> --name <the AKS cluster name>
+C:\>az aks get-credentials --resource-group <the resource group your cluster begins> --name <the AKS cluster name>
 ```
 
 6. Try out some commands
 ```bash
-C:\Users\c5179796>kubectl get nodes
+C:\>kubectl get nodes
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
 NAME                               STATUS   ROLES   AGE   VERSION
 aks-wpaasdev-19766648-vmss000000   Ready    agent   35d   v1.17.9
