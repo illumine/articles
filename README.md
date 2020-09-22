@@ -2,6 +2,14 @@
 # Articles
 Various Articles from everyday problem solving with Illumine IT Consulting.
 
+## Follow us on Social Media
+![LinkedIN](img/linkedin.png)[Follow us on LinkedIn](https://www.linkedin.com/company/illumine-it-consulting/)
+
+
+![Blogspot](img/blogspot.png)[Read our Blog](https://illumineconsulting.blogspot.com/)
+
+
+![Google+](img/gplus.png)[Find us on Google+](https://plus.google.com/+IllumineGr1/)    
 
 ## Contents
 
@@ -38,14 +46,8 @@ Various Articles from everyday problem solving with Illumine IT Consulting.
 [ZK JPA Spring Tutorial with IDEA and Maven](ZK-JPA-Spring-Tutorial-with-IDEA-Maven/README.md)
 
 
-## Follow us on Social Media
-![LinkedIN](img/linkedin.png)[Follow us on LinkedIn](https://www.linkedin.com/company/illumine-it-consulting/)
-
-
-![Blogspot](img/blogspot.png)[Read our Blog](https://illumineconsulting.blogspot.com/)
-
-
-![Google+](img/gplus.png)[Find us on Google+](https://plus.google.com/+IllumineGr1/)             
+[MS-Azure-AKS-basics](MS-Azure-AKS-basics/README.md)
+   
 
 
 
