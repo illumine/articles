@@ -2,15 +2,19 @@
 
 
 ### Connect to your AKS Cluster
-Exercise: Your AKS cluster requires MFA Authentication with MS Azure Active directory and you have to use
-a specific VPN to login to the cluster. How do you connect?
+**Exercise:** Your AKS cluster requires MFA Authentication with MS Azure Active 
+directory and you have to use a specific VPN to login to the cluster. 
+
+How do you connect?
 
 
 
-1. If you connect using VPN: Get connected with F5 BIG IP to create your VPN connection.
+1. If you connect using VPN: Get connected with F5 BIG IP or your preference VPN client 
+to create and maintain your VPN connection.
 
 
-2. Go to URL https://portal.azure.com/ and do the Microsoft phone verification - [MFA](https://en.wikipedia.org/wiki/Multi-factor_authentication) MS procedure
+2. Go to URL https://portal.azure.com/ and do the Microsoft phone verification - 
+[MFA](https://en.wikipedia.org/wiki/Multi-factor_authentication) MS procedure
 
 
 3. In MS portal home, go to _All resources_ and find the AKS cluster you need to connect and select 
