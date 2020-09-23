@@ -23,6 +23,19 @@ the _connect_ icon, then click on it.
 
 
 4. Steps from this point assume that you have the [MS az](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest) commands installed.
+You can check this by issuing the comman ```az```
+
+like this:
+```bash
+C:\>az --version
+azure-cli                         2.12.0
+
+core                              2.12.0
+telemetry                          1.0.6
+```
+
+
+
 Open your MS-Dos shell and type the following command
 ```bash
 C:\>az login
@@ -40,8 +53,16 @@ In the same MS-DOS window type the following command
 ```bash
 C:\>az account set --subscription <your subscription id>
 
-C:\>az aks get-credentials --resource-group <the resource group your cluster begins> --name <the AKS cluster name>
+C:\>az aks get-credentials --resource-group <the resource group your cluster begins> --name <the AKS cluster name>  --overwrite-existing
 ```
+
+
+putting the flag ` --overwrite-existing`  might help you to get rid of error
+```
+error: error loading config file "C:\Users\c5179796/.kube/config": error converting *[]NamedAuthInfo into *map[string]*api.AuthInfo: duplicate name "clusterUser_someclustername" in list: [{clusterUser_somecluster { [....
+```
+This error is discussed here: https://github.com/kubernetes/kubernetes/issues/66435
+
 
 6. Try out some commands
 ```bash
