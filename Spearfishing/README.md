@@ -537,7 +537,5 @@ _Αθήνα, Σεπτέμβρης 2020_
 3. [https://www.spearfishingforum.gr/](https://www.spearfishingforum.gr/) Διάφοροι - _Βήματα για την κατασκευή Ξύλινου Όπλου_[https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=31635&amp;start=1785&amp;sid=d4c3da2a448d638ae08cf7ea7605b8c7](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=31635&amp;start=1785&amp;sid=d4c3da2a448d638ae08cf7ea7605b8c7)
 4. [https://www.spearfishingforum.gr/](https://www.spearfishingforum.gr/) Γιάννης Γιαννέλος _Ιδιοκατασκευή 110 Ξύλινου όπλου_[https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=67690](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=67690)
 
-[1](#sdfootnote1anc)_Στο Γάμο Του Καραγκιόζη….._
 
-[i](#sdendnote1anc) NpI: notch per inch
 
