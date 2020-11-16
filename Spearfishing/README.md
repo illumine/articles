@@ -1,576 +1,543 @@
-# ZK, JPA and Spring Tutorial with IDEA and Maven
-_by Michael Mountrakis, June 2020_
+Μιχάλης Μουντράκης – Κατασκευή Ξύλινου Ψαροντούφεκου 22
 
+# Κατασκευή Ξύλινου Λαστιχοβόλου Ψαροντούφεκου 105cm
 
-## Abstract
-In this article we will implement a complete Web based example of 
-[CRUD (Create, Retrieve, Update, Delete](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 
-operations on a database table.
+_Μιχάλης Μουντράκης,_ [_mike __.__ mountrakis __@__ gmail __.__ com_](mailto:mike.mountrakis@gmail.com)
 
+_Αθήνα, Σεπτέμβρης 2020_
 
-To do so we will create a Web based form that allows the user to perform the CRUD operations. 
 
+![](img/frontpage.png "")
 
-The Web form will be based on [ZK framework](https://www.zkoss.org/).
 
+Ένα χοντρό Λαβράκι πιασμένο με ξύλινο όπλο κάπου στην Αττική
 
-The design pattern we will follow to implement our application is the  [MVVM Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 
+![](img/mike_m.png "")
 
-In the service layer, the CRUD operations will be handled by [Hibernate JPA implementation](https://www.javaworld.com/article/3379043/what-is-jpa-introduction-to-the-java-persistence-api.html). 
 
+## Περιεχόμενα
 
-The overall development will take place in [Intelij IDEA](https://www.jetbrains.com/idea/) and the 
-build and dependency resolver tool we are using is [Apache Maven](https://maven.apache.org/). 
 
+[Περιεχόμενα 2](#_Toc56427657)
 
-**The entire java source code, application descriptors, assembly files of this project are  available to download here: https://github.com/illumine/articles/tree/master/ZK-JPA-Spring-Tutorial-with-IDEA-Maven/src/main**
+[Εισαγωγή 3](#_Toc56427658)
 
-#### Keywords
-Java, J2EE, Tomcat, ZK, ZK Framework, Web, Application, Spring, JPA, Maven, IDEA, Hibernate
+[Προδιαγραφές 4](#_Toc56427659)
 
-## The Example Case
-We use something very primitive: a simple Log. What is a Log? A message with a date! So, our simple application will offer the users
-a simple Web form where the user can Create, Retrieve, Update and Delete a simple Log entry. 
-This is a simple [UML Use Case Diagram](https://en.wikipedia.org/wiki/Use_case_diagram)
-that describes the use-cases of our application:
+[Πίνακας Υλικών 4](#_Toc56427660)
 
-![UML Use Case Diagram](img/uml_log_use_case.png "UML Use Case Diagram")
+[Εργαλεία 4](#_Toc56427661)
 
+[Αναλώσιμα 5](#_Toc56427662)
 
-The UML Use Case Diagram, practically illustrates the _Functional Specifications_ of our project.
+[Μέτρα Ασφαλείας 5](#_Toc56427663)
 
+[Χρήσιμες Συμβουλές 6](#_Toc56427664)
 
-## Designing the Web Form
-Whenever you design a Web based application, regardless of its complexity, you always start with a pencil and a piece of paper!
-Doing a non functional prototyping directly on the IDE using the framework you are  about to use, may lead you to an unclear design 
-that does not lead to a correct, easy to use and handy Web form. For that reason back to the basics: pencil, rubber and paper:
+[Πώς Χρησιμοποιούμε την Εποξειδική 6](#_Toc56427665)
 
+[Σώμα 8](#_Toc56427666)
 
-![Paperwork Diagram](img/paperwork.jpg "Old school paperwork for a simple prototype")
+[Ο οδηγός του Όπλου μας 11](#_Toc56427667)
 
-Lets explain how we think of this paperwork design:
-Basic form sections:
+[Μορφοποίηση του Όπλου 12](#_Toc56427668)
 
+[Σύνδεση της Λαβής 14](#_Toc56427669)
 
-* Search: is the section where the Retrieve operations take place. The user searches a Log entry with some _Selection Criteria._
-* Udate/New: is the section where the user either Edits/Updates the current log, or Creates a new or Deletes the current. Actually 
-this space on the form deals with the _Current Log_.
-* List of Logs: is the form space where all the Logs are displayed. Initially some of them are displayed as a simple select from the Log table.
-When user defines some Criteria 
-and press Search/Find button, then this section displays the results of the search operation. 
-When user clicks on a Log from the list, then this Log becomes
-the _current Log_ and its details populate the section Update/New.
+[Κεφαλή του όπλου 22](#_Toc56427670)
 
+[Πτερύγια Σταθεροποίησης – Stabilizers 23](#_Toc56427671)
 
-Help sections:
+[Ανοξείδωτα 25](#_Toc56427672)
 
+[Βαρίδωμα - Ζύγισμα 25](#_Toc56427673)
 
-* Operation Results: is the section where the user gets some _feedback or error messages_ are displayed.
-* Pagination details: is the section that controls the List of Logs. It allows the user to move forward or backwards to the list etc...
+[Λείανση/Τρίψιμο. 26](#_Toc56427674)
 
+[Καθαριότητα Εργαστηρίου 27](#_Toc56427675)
 
-In the next sections, we will implement the paperwork design to a Web form based on [ZK framework](https://www.zkoss.org/).
+[Φινίρισμα με teak oil 28](#_Toc56427676)
 
+[Τελικό αποτέλεσμα 28](#_Toc56427677)
 
+[Βιβλιογραφία 29](#_Toc56427678)
 
-## Creating the Project in Intellij IDEA
-The overal development will take place in [Intelij IDEA](https://www.jetbrains.com/idea/). 
-You can download it from https://www.jetbrains.com/idea/download/
 
+## Εισαγωγή
 
-The reason that I implemented the article on IDEA is that this tool it is the leading platform at least in the time this article was written.
-In my [previous ZK training](https://github.com/illumine/articles/tree/master/ZK-training), 
-I use to work with Eclipse, but that was 5 years ago. I think IDEA needs some attention, nowdays it is the best of breed regarding Java development.
+Το καλοκαίρι που μας πέρασε (το Ιούλιο του 2020) στο νησί γνώρισα ένα παιδί 16 χρονών που πραγματικά κένταγε στο άθλημα. Από μικρός μεγαλωμένος δίπλα στη θάλασσα και οντάς σε μια ηλικία που οι επιδώσεις όλο και ανεβαίνουν και ανταγωνίζονται τον ενθουσιασμό του, δε μου έμεινε άλλο από το να χαίρομαι να τον βλέπω να βουτάει και να του πω μερικά πράγματα, τόσο για το ίδιο το ψάρεμα όσο και τα θέματα ασφάλειας που διέπουν το ψάρεμα. Είδα πως κοιτούσε το ξύλινο μου και λίγο πριν φύγω και αφού συνεννοήθηκα με τον πατέρα του εάν θα επέτρεπε κάτι τέτοιο, του το χάρισα με τον απλό όρο να μου υποσχεθεί ότι δε θα βουτάει κάτω από τα 10μ μέχρι να γίνει 18 και ποτέ μόνος του. Ο μικρός το χάρηκε πολύ. Έτσι η 95ρα διλάστιχη οπλάρα με την οποία ψάρευα τα τελευταία δέκα χρόνια πέρασε σε ένα παίχτη με μεγάλες προοπτικές που σίγουρα τη χαίρεται στα ψαρέματα του.
 
+Βεβαίως μπορεί να έχω 12 άλλα όπλα, αλλά ψάρευα σχεδόν αποκλειστικά με δύο, το 85ρι carbon 6.25/130 με λάστιχο φ19 και το ξύλινο 95ρι 2χ φ16, 6.5/130 που χάρισα και φυσικά..... δε μπορώ να μείνω χωρίς οπλάρα χειροποίητη.... Έτσι Ἀνεῤῥίφθω ο κύβος (ο κύβος ερρίφθη) και με την πρώτη ευκαιρία που γύρισα στην πατρίδα μπήκα στο εργαστήριο των 2.5 τμ που φιλοξενεί το οπλοστάσιο και τις κατασκευές.
 
-Read the official instructions from ZKoss in order to setup your in Intelij IDEA:
+Επειδή έχω κολλήσει από το 2000 με τη λαβή του θρυλικού DEMKA ΑΜΙ ΙΙ και πραγματικά δυσκολεύομαι να πιάσω άλλο όπλο έτσι εύκολα χωρίς να ρισκάρω βολές _ΣΓΤΚ_
+# 1
+ είπα ότι το όπλο που θα φτιάξω να έχει αυτή τη λαβή. Το πρώτο πρόβλημα – Που τη βρίσκουμε, βλέπεις ή ιστορική DEMKA έχει κλίσει εδώ και αρκετά χρόνια.... Έψαξα με προβολέα, φακό, κερί αλλά τη βρήκα ... με το λυχνάρι όταν περνώντας από τον DeepCarbon για κάτι αναλώσιμα, είδα μια λαβή ΑΜΙ ΙΙ και ο φίλος είπε ότι είναι για πούλημα. Αγοράστηκε αμέσως και έτσι λοιπόν άρχισα την κατασκευή του όπλου.
 
+Τέλος, είπα να ξαναγράψω όλη την εργασία. Τελευταία φορά το είχα κάνει το 2003 σε ένα μικρό PDF με τίτλο «_Κατασκευή Λαστιχοβόλου Όπλου»_ που είχε κυκλοφορήσει αρκετά χρόνια από το greekdivers.com και μετά από χρόνια μπορώ να πω ότι χρειάζεται συμπλήρωση και ανανέωση μια και από τότε έπαθα και έμαθα…..
 
-https://www.zkoss.org/wiki/ZK_Installation_Guide/Quick_Start/Create_and_Run_Your_First_ZK_Application_with_IntelliJ_and_ZKIdea
+Η δουλειά αυτή αφιερώνεται στον Ιατρό Κώστα Μουντράκη που όσο ζούσε ήταν ένθερμος υποστηριχτής μου στο θέμα του Ψαροντούφεκου και ο πρώτος μου δάσκαλος στη θάλασσα . Θείε μου, σ ευχαριστώ για όλα, και όπως είχες πει και εσύ ¨_κρίμα που δε ψαρέψαμε μαζί όσο θα ήθελα_¨….
 
+Ευχαριστώ πολύ…
 
-In my case, I came up to this error: _"Java: release version 5 not supported"_ but to resolve it I have
-read the solution nr. 3 from [this article](https://dev.to/techgirl1908/intellij-error-java-release-version-5-not-supported-376)
+- Τη διαχειριστική ομάδα του spearfishingforum.gr και ειδικά τον Πάνο Εξαρχίδη – PanEx για όλη την προσπάθεια από το 2007 με το [https://www.spearfishingforum.gr/](https://www.spearfishingforum.gr/) και γενικότερα, την τεράστια συμβολή του στο χώρο, αλλά και τις κατ&#39; ιδίαν συζητήσεις που κάναμε όλα αυτά τα χρόνια.
+- Τον Μανώλη Καραμολέγκο που άοκνα παρείχε βοήθεια και συμβουλές σε όλα τα στάδια της κατασκευής.
 
+## Προδιαγραφές
 
-According to this article, you have to perform  the following steps:
+Σώμα – ελαφρύ όπλο από ξύλο καλής ποιότητας με χαμηλό προφίλ το πολύ 3 εκ.
 
+Λαβή – ΑΜΙ ΙΙ με μηχανισμό της MaiandrosDL για λαβές DEMKA, [https://www.diveshop.gr/index.php/product2984-5790.html](https://www.diveshop.gr/index.php/product2984-5790.html)
 
+Κεφαλή – ανοιχτή που φορτώνει μέχρι και 2 χοντρά λάστιχα
 
-* Within IntelliJ, open pom.xml file
+Αρματωσιά
 
-* Add this section before `<dependencies>` (If your file already has a <properties> section, just add the `<maven.compiler...>` 
-lines below to that existing section):
-```xml
-   <properties> 
-      <maven.compiler.source>1.8</maven.compiler.source> 
-      <maven.compiler.target>1.8</maven.compiler.target> 
-   </properties>
-```
+2χ φ16 , 6.5/130 μονόφτερη, πετονιά και δικανάκια 1.4mm
 
-* Change the x in 1.8 to your Java version. For example, if you’re using Java 13, change 1.8 to 1.13
+1χ φ17.5, 6.25/130 μονόφτερη, πετονιά και δικανακια 1.6mm
 
-* Refresh maven
+Μουλινέ DYI οριζόντιο από Lexan ικανό για 50m 1.8mm σχοινί
 
+## Πίνακας Υλικών
 
-The project can be built with [this Maven POM file](pom.xml)
+| **Υλικό** | **Τμχ** | **Διαστάσεις**** όλα σε **** mm **|** Ενδεικτική τιμή ****Παρατηρήσεις** |
+| --- | --- | --- | --- |
+| Μονομπλοκ Τεακ Μπουρμα | 1 | 95 x 4 x 3.5 cm.Κομμένο απλανάριστο αλλά ξεφαρδιασμένο | Δώρο του Μαστρο-Νίκου Καραμολέγκου |
+| Λαβή | 1 | Λαβή ΑΜΙ ΙΙ | Μεταχειρισμένη 20Ε |
+| Οδηγός σχοινιού | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
+| Σωλήνας αλουμινίου 12cm | 1 | Από το παλιό ΑΜΙ ΙΙ 110 | Παλιό εξάρτημα |
+| Οδηγός πετονιάς πάνω από τη βέργα | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
 
-## The JPA Model of our Log Project
-JPA is a Java Framework that persists Java Objects (or [JPA Entity Beans](https://en.wikipedia.org/wiki/Entity_Bean) as they sometimes refered) on a database or in general, to 
-a local or a remote disk. The JPA implementation we are going to use is [Hibernate](https://hibernate.org/). 
+## Εργαλεία
 
+Κορδέλα, πλάνη από Εργαστήριο Καραμολέγκος Μανώλης στο Χαλάνδρι, Μεταμορφώσεως 40
 
-So a simple Log entry as a plain Java Class can be like:
+- Black n Decker Router 1200 Watt με κοπτικά 8χιλ, 11 χιλ
+- Dremel 3000
+- Δράπανο βάσης Black n Decker 600 Watt
+- Δράπανο χειρός Bosch 400 Watt
+- Τριβείοπαλμικό Black n Decker 600 Watt
+- Ράσπες, Λίμες, Τανάλιες, Σιδεροπρίονα, ... Σχεδόν ό,τι είχα το χρησιμοποίησα
 
+## Αναλώσιμα
 
-```java
-    public class Log{
-       Integer id;
-       String message;
-       java.util.Date date;
- 
-       public Log(){id=0; message=""; date= new java.util.Date(); }
-     }
-```
+- Γυαλόπανα ξύλου από 250 μέχρι 80
+- Γυαλόπανα σιδήρου από 200 μέχρι 1000
+- Εποξειδική και σκληρυντής
+- Κόλα πολυουρεθάνης PU MAX Bison
+- Κυανοακρυλική Sikaflex marine
+- Χαρτοταινίες, ξυράφια,
+- Teak Oil
+- Διάφορες ανοξείδωτες βίδες Μ2, Μ3, Μ6, σύρματα
+- Σχοινάκια, Λατέξ γάντια, Χαρτιά Κουζίνας.
 
+**Αξίζει?**
 
+Θα το δούμε, αλλά μέχρι στιγμής χάρηκα πολύ την κατασκευή.
 
-In order to transform it to a JPA Entiry Bean, the following Java Annotations are applied. See the file 
-[Log.java](src/main/java/org/example/entity/Log.java)
+Γενικά… Εάν έχετε τα περισσότερα εργαλεία και πιάνουν τα χέρια σας, τότε κάντε το. Αλλιώς προτιμήστε ένα ξύλινο από τους φοβερούς Έλληνες κατασκευαστές που πραγματικά φτιάχνουν ασύγκριτα όπλα τα οποία παράλληλα είναι έργα τέχνης.
 
+## Μέτρα Ασφαλείας
 
-```java
-  @Entity
-  public class Log implements Serializable, Cloneable {
-	private static final long serialVersionUID = 1L;
+**ΠΑΝΤΑ** ….
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+1. Άπλετο φως παντού στο εργαστήριο, προτιμότερο φωτιστικό μέσο το ιερό άσπρο – crestwhiteLED από σωλήνες φωτισμού. Ειδικά εάν έχετε περάσει τα 40 θεωρώ ότι δεν πρέπει να ξεκινήσετε καμία κατασκευή χωρίς τον άριστο φωτισμό.
+2. Ανοιχτές πόρτες και παράθυρα παντού. Είναι προτιμότερο να ενοχλείτε και να κρυώνετε παρά να πεθάνετε από τις αναθυμιάσεις της εποξειδικής, κυανοακρυλικής, πολυουρεθανικής, acetone, teakoil, drilloil, carbonparticles και ότι άλλο θα χρειαστούμε.
+3. Γυαλιά, μάσκα μύτης και γάντια πολυαμυδίου σε κάθε κοπή ή τρύπα. **Θυμηθείτε – χωρίς πόδι ή χέρι μπορούμε να ζήσουμε τις οικογένειες μας ενώ χωρίς μάτια ΟΧΙ...**
+4. Γάντια λατέξ σε κάθε κόλληση με εποξειδική, κυανοακρυλική, πολυουρεθανική.
+5. Όταν αλλάζουμε κεφαλή σε Dremel, Router, δράπανο, ηλεκτρικό κατσαβίδι, η συσκευή να βγαίνει από τη **πρίζα** παρακαλώ…
+6. Δε κάνουμε καμία κοπή, τρύπα εάν πρώτα δεν έχουμε εξασφαλίσει ότι το εργαλείο είναι σωστά τοποθετημένο, σε πλήρη ισορροπία και το κοπτικό είναι πολύ καλά ασφαλισμένο πάνω του.
+7. Δε κάνουμε καμία κοπή, τρύπα εάν πρώτα δεν έχουμε εξασφαλίσει ότι αυτό που θα κόψουμε ή θα τρυπήσουμε είναι σωστά τοποθετημένο, σε πλήρη ισορροπία και ασφαλισμένο να μη ξεφύγει από τη θέση του από τους κραδασμούς.
 
-	@Column(nullable = false)
-	String message;
+## Γενικές Χρήσιμες Συμβουλές
 
-	@Temporal(TemporalType.TIMESTAMP)
-	Date date;
+Αυτές καλό είναι να εφαρμόζονται καθ&#39; όλη τη διάρκεια της κατασκευής.
 
-	public Log() {
-		this.date = new Date();
-	}
+1. Όταν βγάζουμε διάφορα εργαλεία στον πάγκο, τα τοποθετούμε σε ένα σημείο κάθε φορά για να μη τα ψάχνουμε στο σωρό αντικειμένων που έχει ο πάγκος, κάτω από στρώματα από πριονίδι. Η πιο σωστή μέθοδος είναι να συνηθίσετε να έχετε τα εργαλεία σε στάνταρ θέσεις. Το ίδιο συμβαίνει όταν λύνουμε ένα μηχανισμό – τοποθετούμε ΟΛΑ τα εξαρτήματα του σε ένα ή περισσότερα δοχεία κοντά-κοντά για να μη χαθούν.
 
-	public Log(String message) {
-		this();
-		this.message = message;
-	}
+2. Για να μη πληγωθούν τα ξύλα στη μέγγενη όταν θέλουμε ισχυρή στήριξη αυτών, περνάμε στα σαγόνια της μέγγενης πολλές στρώσεις από μονωτική ταινία καλωδίων η οποία προστατεύει το ξύλο. Έτσι, η μέγγενή σφίγγει χωρίς να τραυματίζει και χωρίς να αφήνει έντονα σημάδια καταπόνησης του ξύλου.
 
-	public Integer getId() {
-		return id;
-	}
+3. Όποτε εφαρμόζουμε σφικτήρες ποτέ δεν αφήνουμε τα σαγόνια του σφικτήρα να έρχονται σε επαφή με το ξύλο. Απλά ποτέ! Πρώτα βάζουμε 5 στρώσεις χαρτοταινία και πάνω από αυτή τα νταβίδια – σφικτήρες.
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+## Πώς Χρησιμοποιούμε την Εποξειδική – Πως κάνουμε κολλήσεις
 
-	public String getMessage() {
-		return message;
-	}
+Το μίγμα Εποξειδική και Σκληρυντή είναι πολύ ευαίσθητο στις αναλογίες που προτείνει ο κατασκευαστής του. Στην περίπτωση που δεν εφαρμόζετε σωστά τις προδιαγραφόμενες αναλογίες ρητίνης / σκληρυντή, το μείγμα όταν σκληρύνει δεν θα έχει τις αναμενόμενες ιδιότητες και φυσικά δεν πρόκειται να σκληρύνει στο χρόνο που λέει ο κατασκευαστής. Αντιθέτως, εάν το μείγμα έχει λιγότερη ποσότητα από την ποσότητα σκληρυντή που προδιαγράφεται, το μείγμα θα σκληρύνει πολύ αργότερα και αντίστροφα. Τέλος το μίγμα έχει πάντα συγκεκριμένο χρόνο στον οποίο πρέπει να εφαρμοστεί στα αντικείμενα προς κόλληση. Για το λόγο αυτό, πρέπει να μάθουμε να δουλεύουμε με πολύ συγκεκριμένο τρόπο και όχι να αυτοσχεδιάζουμε κάθε φορά. Τα λάθη πληρώνονται…..
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+Πάμε να δούμε μια μέθοδό για την κατεργασία του μίγματος εποξειδικής / σκληρυντή.
 
-	public Date getDate() {
-		return date;
-	}
+- Πρώτα από όλα. Εφαρμόζουμε τα μέτρα ασφαλείας για την εποξειδική.
+- Ξεκαθαρίζουμε τις μονάδες στην οποία αναφέρεται η αναλογία μίγματος. Εάν είναι όγκος, δηλαδή ml χρησιμοποιούμε σύριγγες. Εάν είναι βάρος, δηλαδή gr τότε χρησιμοποιούμε αποκλειστικά ζυγαριά ακριβείας.
+- Χρησιμοποιούμε πάντα 2-3 κλάσεις ποσοτήτων που ξέρουμε ότι είναι σωστά μετρημένες και ας χρειαστεί να πετάξουμε την περίσσεια μίγματος ή αν χρειαστεί να φτιάξουμε μία δεύτερη ποσότητα για να συμπληρώσουμε. Έτσι έχουμε μεθόδους για να μετράμε 1ml, 5ml, 10ml ή 5gr, 10gr εάν η αναλογία δίνεται με τα βάρη των στοιχείων.
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-```
+**Αναλογία μίγματος με όγκο**
 
+- Χρησιμοποιούμε δύο βασικές σύριγγες βαθμολογημένες. Η μία θα χρησιμοποιείται αποκλειστικά για το σκληρυντή και η άλλη αποκλειστικά για την εποξειδική.
+- Έχουμε από πριν βαθμολογήσει με κόκκινο/πράσινο μαρκαδόρο σε κάθε σύριγγα τις ποσότητες που χρησιμοποιούμε σε σχέση με την αναλογία. Πχ για αναλογία μείγματος 100/40 σε σύριγγες των 10ml έχω βάλει τις αντίστοιχες γραμμές για να μη ψάχνω εκείνη την ώρα.
 
-According to the DAO/Adapter pattern, the following components are used:
+**Αναλογία μίγματος με βάρος**
 
-_Log_: the JPA Entiry Bean that is our actual data object. Consider each _Log_ object as a _Log_ table row.
-See complete Java source file [Log.java](src/main/java/org/example/entity/Log.java)
+- Χρησιμοποιούμε καπάκια από ποτά ή αλλά μικρά δοχεία από πριν βαθμολογημένα με μαρκαδόρο για το πόσο εποξειδική και σκληρυντή βάζουμε. Μετράμε μία φορά τα βάρη και τα σημειώνουμε στο δοχείο. Πρώτα βάζουμε τον ζυγισμένο σκληρυντή στο δοχείο και σημειώνουμε τη στάθμη του με κόκκινο μαρκαδόρο στο δοχείο. Μετά προσθέτουμε τη ζυγισμένη ρητίνη και σημειώνουμε τη νέα στάθμη του μίγματος με πράσινο μαρκαδόρο στο δοχείο. Με αυτόν τον τρόπο έχουμε ένα δοχείο που μπορεί να χρησιμοποιηθεί σαν μοντέλο για να βαθμολογήσουμε και τα άλλα δοχεία για να μη χρειάζεται να μετράμε κάθε φορά.
 
+**Γενικές Οδηγίες όταν Κολλάμε**
 
+Όταν κολλάμε με εποξειδική ή άλλη ισχυρή κόλλα (πολυουρεθανική/κυανοακρυλική ) προσέχουμε:
 
-_LogDao_: the Data Access Object, a class that implements methods for CRUD operations on the Log. Consider the _LogDao_ class as the _Log_ 
-**table adapter**.
-See complete Java source file [LogDao.java](src/main/java/org/example/services/impl/LogDao.java)
+- Να έχουμε αποφασίσει από πριν φτιάξουμε το μίγμα πως θα κολλήσουμε τα αντικείμενα.
+- Να έχουμε αποφασίσει από πριν φτιάξουμε το μίγμα ποιους σφικτήρες θα χρησιμοποιήσουμε που θα τους βάλουμε και πόσο θα τους σφίξουμε.
+- Να έχουμε καθαρίσει το πεδίο που θα γίνει η δουλειά από πριν φτιάξουμε το μίγμα. Σκόνες, πριονίδια και άλλα τέτοια στο χώρο του πεδίου θα αλλοιώσουν το αποτέλεσμα της κόλλησης.
+- Αν φτιάχνουμε κάτι δύσκολο, καλό είναι να κάνουμε 1-2 πρόβες από πριν για να δούμε εάν γίνεται η διαδικασία σωστά πριν φτιάξουμε το μίγμα.
+- Πάντα σκουπίζουμε την περίσσεια μίγματος όσο αυτή είναι νωπή για να μη τρίβουμε μετά.
+- Πάντα αφήνουμε το μίγμα να στεγνώσει ένα 10% περισσότερο χρόνο από ότι λέει ο κατασκευαστής.
 
+## Σώμα
 
+Από ξύλο όπως είπαμε και τι ξύλο…. Απίθανο… Το ξύλο είναι Τηκ Μπουρμα (TeakBurma). Ένα δοκάρι από στραβόξυλο από ένα βυθισμένο καΐκι του 1930 στη Σαντορίνη που έφτασε στα χέρια του Μάστρο Νίκου Καραμολέγκου στο Χαλάνδρι πριν από πολλά χρόνια. Όταν μου έδωσε, έβγαλα από το δοκάρι γύρω στα 5 πηχακια. Είχα δώσει 1-2 στο φιλαράκι μου τον PanEx και 4 κράτησα εγώ. Το ξύλο είναι φανταστικό – δεν έχω δει ποτέ ποιο ισόβενο μαδέρι. Το ίδιο ξύλο χρησιμοποίησα και για το πολύσπαστό μου εδώ:
 
-_MyService_: interface that denotes the DB Transaction methods.  Consider the _MyService_ interface as the  **DB adapter type library**.
-See complete Java source file [MyService.java](src/main/java/org/example/services/MyService.java)
+[https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=13567&amp;start=2805](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=13567&amp;start=2805)
 
+Έτσι λοιπόν πήγα στο εργαστήρι του Μανώλη Καραμολέγκου στο Χαλάνδρι που έχει πλέον αναλάβει το εργαστήριο - 2η γενιά επιπλοποιός.
 
+Το προτελευταίο μαδέρι που χρησιμοποίησα κόπηκε κατά μήκος στην κορδέλα, ξεφραδίστηκε και πλανίστηκε μέχρι να γίνει ένα μασίφ και απόλυτα ίσιο μαδέρι με αρχικές διαστάσεις 95 x 4 x 3.5 cm.
 
-_MyServiceImpl_: the class implementing MyService interface. Consider the _MyServiceImpl_ class as the  **DB adapter**.
-_MyServiceImpl_ actually, 
-implements all the operations that are going/returning to the Database, it is the Database logic itself.
+95 x4x 3.5 cm.
 
-_MyServiceImpl_ is a collection of references of DAOs and Entities that are required in order to implement the transaction logic.
-See complete Java source file [MyServiceImpl.java](src/main/java/org/example/services/impl/MyServiceImpl.java)
+![](img/1.png "")
 
 
+Στη συνέχεια κόπηκε κατά μήκος με την κορδέλα σε τρία ισόπαχα μέρη, δηλαδή η κάθε ξύλινη φέτα να έχει τελικές διαστάσεις 95χ1.2χ3.5 cm με περίπου 0.2 cm από το αρχικό πάχος της κάθε φέτας που αρχικά ήταν 1.4 cm, να χάνονται στην κάθε κοπή και πλάνισμα.
 
+![](img/2.png "")
 
-Bottom line of the _isolation_ design principle: 
-whatever needs to deal with the Database, it requires a reference to  _MyServiceImpl_ object and no further
-DB operations should take place out of this file.
+95 x1.2x 3.5 cm.
 
-Follows a UML Class Diagram of our design:
+Η παρακάτω εικόνα μιλάει μόνη της:
 
-![UML Class Diagram of our design](img/uml_log_use_case.png "UML Class Diagram of our design")
+![](img/3.png "")
 
-The JPA settings are defined in the file [persistence.xml](src/main/resources/META-INF/persistence.xml) where the HSQL DB is used to store the JPA entities.
+Η μεσαία φέτα ξύλου μπήκε σάντουιτς με τα νερά της ανάποδα από τις άλλες δύο και για να συγκρατηθούν άνοιξα τρύπες για δύο καβίλιες των 6mm στα 15 cm από το άκρο κάθε πλευράς πάντα από Οξυά.
 
+Αγόρασα ανθρακόνημα πλέξης ψαροκόκαλο (Roll) και εποξειδική ρητίνη δύο συστατικών. Έκοψα 12 λωρίδες από το ανθρακόνημα περίπου 95 x 3 cm για να ενισχύσω το σώμα, θα βάλω τις λωρίδες ανθρακονήματος ανάμεσα στις φέτες του ξύλου – από 6 λωρίδες στη σύνδεση της κάθε φέτας.
 
-```xml
-  <?xml version="1.0" encoding="UTF-8"?>
-  <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+![](img/4.png "")
 
-	<persistence-unit name="myapp" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
-			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
-			<property name="hibernate.connection.username" value="sa" />
-			<property name="hibernate.connection.password" value="" />
-			<property name="hibernate.show_sql" value="true" />
-			<!-- data store in data/db under project folder -->
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:file:data/db" />
-			<!-- db is not persistent to disk
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:mem:data/store" /> -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<!-- drop table every time
-			<property name="hibernate.hbm2ddl.auto" value="create" /> -->
-		</properties>
-	</persistence-unit>
-   </persistence>
-```
+**Κόλληση του ξύλου με εποξειδική**
 
+Για κάθε μία από τις τρείς φέτες ξύλου:
 
-## The ZK Visual Design
+1. Αγρίεψα την εσωτερική επιφάνεια της φέτας με τη φαλτσέτα σε όλο το μήκος και μετά την τίναξα και τη σκούπισα σχολαστικά. Την καθάρισα και από τις δύο πλευρές με λίγο acetone. Περίμενα να στεγνώσει τελείως το acetone.
+2. Πέρασα με το μικρό πινέλο μείγμα εποξειδικής ρητίνης και σκληρυντή και από επάνω έστρωσα το ανθρακόνημα. Σε κάθε κλειστή πλευρά της κάθε φέτας, πέρασα από τρείς λωρίδες ανθρακονήματος με το αντίστοιχο μίγμα εποξειδικής ρητίνης και σκληρυντή – τόσο όσο να μη στάζει το μίγμα. Πρώτα στρώνουμε την κάθε λωρίδα ανθρακονήματος και μετά με το πινελάκι από επάνω εφαρμόζουμε το αντίστοιχο μίγμα εποξειδικής ρητίνης και σκληρυντή.
+3. Τοποθέτησα σωστά τις φέτες ξύλου τη μία πάνω στην άλλη ώστε να έρχονται όσο το δυνατόν αλφαδιασμένα στο προφίλ και να μην εξέχει καμία από τις φέτες από κάθε πλευρά.
 
-Implementing the Graphical User Interface - the GUI - as most of us know it, includes the compilation of the 
-ZK ZUL file that provides the presentation layer or the _view_ of our application. 
-Recalling from the previous section _Designing the Web Form_
-the implementation has as follows:
+Τέλος, τοποθέτησα τις 2 καβίλιες των 6mm στα 15 cm από το άκρο κάθε πλευράς στις τρύπες που είχα κάνει, και φυσικά πριν τις τοποθετήσω τις βούτηξα στο μίγμα εποξειδικής ρητίνης και σκληρυντή.
 
+Ασφάλισα με απλές πιάστρες την κατασκευή.
 
+**Πρεσάρισμα**
 
-![Implementing the Graphical User Interface](img/zk-the-web-form.png "Implementing the Graphical User Interface")
+Σειρά είχε να ασφαλιστεί η κατασκευή του σώματος του όπλου με τα νταβίδια (σφιγκτήρες επιπλοποιίας). Επειδή πρέσα δεν διαθέτουμε ακόμη τουλάχιστον, θα πρέπει να ακολουθηθεί μια σωστή διαδικασία τοποθέτησης των σφιγκτήρων για να μην έχουμε προβλήματα ανισότροπης κατανομής της πίεσης στην επιφάνεια της κατασκευής με αποτέλεσμα το στράβωμα των ξύλων κατά την κόλληση, τη δημιουργία σπηλαίωσης και κενών αέρα στο σώμα του ξύλου καθώς και την εξαγωγή όσων περισσότερων φυσαλίδων αέρα που σίγουρα έχει το μίγμα εποξειδικής ρητίνης και σκληρυντή μετά την ανάδευσή του.
 
-This is the [index3.zul](src/main/webapp/index3.zul) file.
+Η μέθοδος πρεσαρίσματος του ξύλου που ακολουθούμε όταν δεν υπάρχει πρέσα που να μπορεί να χωρέσει όλο το εμβαδό της επιφάνειας που πρεσάρουμε είναι _ **η μέθοδος της τέμνουσας** _ και στην εφαρμογή της κατά μήκος της επιφάνειας του ξύλου για τοποθέτηση μίας σειράς σφικτήρων είναι η εξής:
 
-As you can probably see, all the sections from the paperwork are placed in the Web Form exactly the same as in the paper work.
+Παίρνουμε δύο ΑΚΑΜΠΤΑ σίδερα πλακέ που χωρούν όλη την επιφάνεια που θέλουμε να πρεσάρουμε. Αυτά θα είναι τα αλφάδια μας – θα κρατούν δηλαδή τα ξύλα που κολλάμε ίσια. Στη δική μου περίπτωση βρήκα δύο σίδερα τύπου γωνίας από αυτά που κάνουμε ράγα για συρόμενες γκαραζόπορτες. Τοποθέτησα αναμεσά στα δύο αυτά σίδερα το σώμα του όπλου με τις επιφάνειες που θέλω να πρεσάρω να εφάπτονται στην επίπεδη σιδερένια επιφάνεια. Τώρα τα σίδερα και το ξύλο ανάμεσά τους είναι ένα σώμα.
 
-Some details around it:
+1. Στο κέντρο του σώματος τοποθετούμε ένα σφικτήρα με τάση στο 50% της μέγιστης τάσης που πρόκειται να εξασκήσουμε. Ο σφικτήρας εφαρμόζει πάνω στα σίδερα που έχουν στη μέση τους το ξύλο.
+2. Σε κάθε μία από τις δύο πλευρές εκατέρωθέν του σφικτήρα βρίσκουμε τα δύο νέα κέντρα και σε αυτά τοποθετούμε από ένα σφικτήρα με τάση στο 50% της μέγιστης τάσης που πρόκειται να εξασκήσουμε.
+3. Επαναλαμβάνουμε τα βήματα 1,2 μέχρι να καλύψουμε με σφικτήρες όσο περισσότερο εμβαδόν μπορούμε
+4. Τοποθετούμε τους δύο τελευταίους και δυνατότερους σφικτήρες στο κάθε άκρο της κατασκευής. Εφαρμόζουμε πίεση στο 50% της μέγιστης τάσης που πρόκειται να εξασκήσουμε.
+5. Σφίγγουμε όλους τους σφιγκτήρες στο 75% της μέγιστης τάσης που πρόκειται να εξασκήσουμε με ακριβώς την ίδια σειρά που τους βάλαμε.
+6. Σφίγγουμε ξανά τους σφιγκτήρες στο 100% της μέγιστης τάσης που πρόκειται να εξασκήσουμε με ακριβώς την ίδια σειρά που τους βάλαμε.
 
-We use several nested `hbox` and `vbox` layout managers to arrange the web form laout. 
+Το τελικό αποτέλεσμα φαίνεται στην παρακάτω φωτογραφία:
 
-See here for [ZK hbox](https://www.zkoss.org/wiki/ZK_Component_Reference/Layouts/Hbox)
-and [ZK vbox](https://www.zkoss.org/wiki/ZK_Component_Reference/Layouts/Vbox)
- 
- 
-The ZK visual input methods are `textbox, intbox, and datebox`
+![](img/5.png "")
 
+Άφησα την κατασκευή να στεγνώσει 48 ώρες στη σκιά και σε θερμοκρασία δωματίου, δηλαδή περίπου 25 C.
 
-The Log entities are presented using a [ZK listBox](https://www.zkoss.org/wiki/ZK_Component_Reference/Data/Listbox).
+Όταν βγήκαν οι σφιγκτήρες, το σώμα έπρεπε να πάει στην πλάνη ξανά για τελευταία φορά. Για το λόγο αυτό κούρεψα με το Dremel όλα τα υπολείμματα ανθρακονήματος που έμειναν στο σώμα.
 
+**Πολύ μεγάλη προσοχή με τα σωματίδια του ανθρακονήματος κατά την κοπή και τριβή. Υποχρεωτική χρήση μάσκας σε μύτη και στόμα καθώς και κλειστά γυαλιά εργασίας, ώστε κανένα σωματίδιο από ανθρακόνημα να μην έρχεται σε επαφή με το μάτι. Η εργασία αυτή να γίνεται σε πολύ καλά αεριζόμενο περιβάλλον και όχι σε κλειστό υπόγειο.**
 
+**Τελικές διαστάσεις του σώματος του όπλου μετά το πλάνισμα είναι:**
 
-## The MVVM Pattern Implementation of our Project
-The [MVVM Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) in abstract, it  has the 
-following aspects:
+**Μήκος**  **x**  **Πλάτος**  **x**  **Ύψος = 95**  **x**  **3.6**  **x**  **3**  **cm**
 
-1. Isolate the ZUL/XML presentation design - the _view_ -  from the rest of the code. 
-The presentation design - the view - is the `index.zul` file.
+## Ο οδηγός του Όπλου μας
 
-2. The code that controls the  _view_  is called the _viewModel_ and in our case is the `MyViewModel3.java` file.
-See the entire [MyViewModel3.java](src/main/java/org/example/MyViewModel3.java). The _viewModel_ is responsible to
-provide the _view_ with the list of Logs, to set the current Log etc...
+Είναι το λούκι που θα τρέχει η βέργα. Αυτό γίνεται με ένα εργαλείο και μόνο. Το ρούτερ με το κοπτικό των 8mm όπως φαίνεται παρακάτω:
 
-3. The _viewModel_ takes a single reference to an object of [MyServiceImpl.java](src/main/java/org/example/services/impl/MyServiceImpl.java) 
-that holds all the business logic.
+![](img/6.png "")
 
-4. Wire the **Data Structures** of the Visual Components of the _viewModel_ to the _view_ - the _ZUL file_ .
- The data structures  handled by the _viewModel_ class in the MVVM Pattern terminology is often called the **State**
+Κάποιος μπορεί να πει ότι η ίδια δουλειά γίνεται και με το Dremel και την ειδική βάση κοπής επιφανειών – προσάρτημα βυθιζόμενης φρέζας όπως παραπάνω. Θεωρώ όμως ότι είναι δυσκολότερο γιατί το Dremel με αυτή τη βάση δεν είναι αρκετά ευσταθές καθώς είναι πολύ ελαφρύτερο από το ρούτερ και μπορεί πολύ εύκολα να γίνει το λάθος και το αυλάκι να κοπεί στραβό ή να ξεφύγει η κοπή και να τραυματίσει ανεπανόρθωτα το σώμα του όπλου.
 
+Τον οδηγό τον έκανα 3.5 mm βαθύ σε όλο το μήκος του όπλου, από άκρη ως άκρη. Πρόσεξα πολύ ώστε ο οδηγός να είναι ανάμεσα στις λωρίδες από το ανθρακόνημα, δηλαδή να φιλοξενείται στην ενδιάμεση φέτα του ξύλου χωρίς να κόβει πουθενά το ανθρακόνημα δεξιά και αριστερά όπως φαίνεται παρακάτω:
 
-5. Wire the **Methods** of the _viewModel_ to the _view or the ZUL file_ . The methods offered 
- by the  _viewModel_ class in the MVVM Pattern terminology is often called the **Behavior**
- 
-6. Wire the **Events** from the  _view / ZUL file_ to the _viewModel_. When an Event is trigered in the _view_ the corresponding
-Method/Command from the _viewModel_ is triggered.
+![](img/7.png "")
 
+Μετά το τέλος, δοκίμασα τη βέργα των 6.5 mm στον οδηγό. Όπως ήταν αναμενόμενο, όπλο/βέργα έχουν προφίλ 30 - 3.5 + 6.5 = 27 mm και νομίζω είναι τόσο χαμηλό όσο πρέπει .
 
-Lets examine how exactly the Wiring of MVVM State and Behavior from the **view / index.zul** file to the 
-Java class implementing the **View Model** of our design
 
-In the [index3.zul](src/main/webapp/index3.zul) file we can see the following sections:
 
 
-```xml
-    <zk>
-           <window viewModel="@id('vm')@init('org.example.MyViewModel3')"
-                 width="800px" border="normal" title="ZK JPA CRUD Operations on ListBox">
-            ...
-```
+## Μορφοποίηση του Όπλου
 
+Σειρά έχει η μορφοποίηση των πλαϊνών τμημάτων του όπλου. Μέχρι στιγμής το σώμα του όπλου είναι ένα ορθογώνιο παραλληλεπίπεδο αλλά αυτό δε βοηθάει στην υδροδυναμική καθόλου.
 
-As you can probably see, the full class name `org.example.MyViewModel3` of the **viewModel** is specified.
-Whith this declaration, whenever the `index3.zul` is initiated, the method `org.example.MyViewModel3.init()` is called.
 
+![](img/8.png "")
 
-In the ZUL file, we can refer to the Java class `org.example.MyViewModel3` using the variable `vm` that is specified in the
-`id` section of the `viewModel` XML attribute.
 
+Για το λόγο αυτό θα χρειαστούμε ράσπες ξύλου, τριβείο χειρός με γυαλόχαρτα τριβείου 80,100,120,180, το ρούτερ, και τα εξής κοπτικά:
 
-Lets see the java _viewModel_ class: `org.example.MyViewModel3` 
+![](img/9.png "")
 
 
+Με το κοπτικό **ν3** κάνουμε τα πλαϊνά του επάνω μέρους, ενώ με το κοπτικό ν2 κάνουμε τα πλαϊνά του κάτω μέρους αρχικά και μετά διαμορφώνουμε τις κάτω έδρες με το τριβείο χειρός και με τα γυαλόχαρτα του τριβείου με νούμερα 80,100,120,180 και αυστηρή σειρά εφαρμογής.
 
-```java
-     @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-        public class MyViewModel3 {
+Η προσέγγιση στο προφίλ και το βάθος λείανσης για τη σωστή χρήση του τριβείου γίνεται με το μάτι.
 
-	        public class Criteria{
-	    	.....
-	        }
+![](img/10.png "")
 
-	 @WireVariable
-	 private MyService myService;
-	 private Criteria logCriteria;
-	 private ListModelList<Log> logListModel;
-	 private Log selectedLog;
-     private String operationMessage;
-     
-     
-     //Ommit Getters and Setters that you ALWAYS have to implement!
-     
-    @Init
-	public void init() {
-		List<Log> logList = myService.getLogs();
-		logListModel = new ListModelList<Log>(logList);
-		selectedLog = new Log();
-		operationMessage = "";
-		logCriteria = new Criteria();
-	}
-```
+**Προσοχή, στην κεφαλή ΔΕΝ περνάμε κοπή με το ρούτερ** γιατί μας ενδιαφέρει να έχει όσο περισσότερο ξύλο γίνεται και χωρίς ραμποτέ πλαϊνή πατούρα μια και το λάστιχο δεν ακουμπάει εκεί επάνω. Για το λόγο αυτό σταματάμε την κοπή τόσο επάνω όσο και στο κάτω μέρος του σώματος στο εξής σημείο που φαίνεται να έχει σημανθεί με κόκκινο μαρκαδόρο:
 
+![](img/11.png "")
 
+Στο σημείο αυτό να πούμε ότι το κάτω μέρος του όπλου κατέβηκε άλλα 0.2 cm εκτός από το σημείο της λαβής και της κεφαλής και το σώμα έχει ύψος 2.8 cm εκτός από μπροστά και πίσω που παραμένει 3 cm.
 
+## Σύνδεση της Λαβής
 
-The annotation `@WireVariable`  states that all those attribute members of the `org.example.MyViewModel3` viewModel class
-can be subsequently refered in the ZK .zul file with the use of the the variable `vm` specified in the
-`id` section of the `viewModel` XML attribute.
+Στο σημείο αυτό θα πρέπει να πούμε ότι δε γίνεται τρύπα φ26mm σε τόρνο στο σώμα του όπλου για να περάσει η λαβή, όπως το περιγράφει ο Βασίλης Ζωνομέσης σε ένα παλιότερο άρθρο του (νομίζω το 2002) όταν το είχα διαβάσει στο περιοδικό Βυθός. Ο λόγος είναι ότι το σώμα του όπλου είναι πολύ λεπτό, μόλις 30 mm όταν το πάχος της λαβής είναι 26 μm. **Οπότε φτιάχνουμε μόρσο από σωλήνα αλουμινίου για τη λαβή! Η σύνδεση της λαβής με μόρσο τα έχει στάδια κατασκευής όπως παρακάτω:**
 
+**Κατασκευή Μόρσου**
 
+Πρόκειται για την παρακάτω σύνδεση:
 
-Creating a ViewModel is like creating a POJO, and it exposes its properties like a JavaBean through setter and getter methods.
-A ViewModel must always provides Getter and Setter methods to allow ZK engine access its State members! missing implementing the
-getter/setter methods, will result in a runtime Exception when the artifact is deployed on the Application Server!
+![](img/12.png "")
 
+Η κατασκευή γίνεται με τα εξής εργαλεία: με τις ράσπες ξύλου, το ξυράφι και με λωρίδες από γυαλόχαρτο μαύρο νούμερα 80, 100, 120.
 
-     
-Lets take a look to the section of the ZUL file [index3.zul](src/main/webapp/index3.zul) dedicated to the Search Criteria of a Log entity:
+Πριν γίνει η κατασκευή **μετράμε πολύ προσεκτικά με την παρακάτω μέθοδο** :
 
+1. Κάνουμε μια τελείως κάθετη τομή στο ένα άκρο του ξύλινου σώματος που θα μπει η λαβή. Καθαρίζουμε την τομή με _ **σφουγγαράκι και** _ _ **acetone** _
+2. Βάζουμε μια βέργα 8ρα ή 7ρα να κάτσει πάνω στον οδηγό και την πιάνουμε σε 2-3 σημεία με χαρτοταινία για να μη φύγει από τη θέση της.
+3. Ασφαλίζουμε τη βέργα στη λαβή του ΑΜΙ ΙΙ. Φέρνουμε τη λαβή του ΑΜΙ ΙΙ πρόσωπο με πρόσωπο με το σώμα του ξύλου. Με έναν ανεξίτηλο μαρκαδόρο ζωγραφίζουμε τον κύκλο που πατάει η λαβή στο ξύλο.
+4. Το μόρσο της λαβής μαζί με το ο-ρινγκ έχει 6 cm μήκος και υπολογίζουμε άλλα 4 cm μήκος ξύλινου μόρσου. Τραβάμε τις γραμμές με το μαρκαδόρο κατά μήκος του σώματος σχεδιάζοντας κατά μήκος του σώματος εκεί που θα γίνει το μόρσο.
+5. **Έχουμε σωστό το σχέδιο του μόρσου.**
 
+**Εάν το ξύλο δεν πιάνει όλο τον κύκλο, κολλάμε με πολυουρεθανική κόλλα και ένα μικρό πλακάκι από το ίδιο ξύλο στο κάτω μέρος του μόρσου. Ένα τέτοιο ξύλινο πλακάκι πρέπει να έχει πάχος όχι μεγαλύτερο από 2-3**  **mm****. Κόβεται δε με τη σέγα χειρός και με πολύ προσοχή…**
 
-```xml
-      <vbox hflex="1">
-                Search Criteria
-                <separator orient="horizontal" bar="true"/>
-                <hbox hflex="1">
-                    Substring:
-                    <textbox hflex="1" value="@load(vm.logCriteria.text),@save(vm.logCriteria.text)" placeholder="search for log string?"/>
-                </hbox>
-                <hbox hflex="1">
-                    ID:
-                    <intbox hflex="1" value="@load(vm.logCriteria.id),@save(vm.logCriteria.id)" constraint="no negative,no zero" />
-                </hbox>
-                <hbox hflex="1">
-                    <button label="Search" onClick="@command('getLogByCriteria', criteria = vm.logCriteria )"/>
-                    <button label="Reload/clear" onClick="@command('reloadAll')"/>
-                </hbox>
-            </vbox>
+Ακολουθεί η κατασκευή του μόρσου:
 
-```
+1. Κόβουμε ένα παλιό σωλήνα αλουμινίου σε 9 cm μήκος όσο περίπου το μήκος της λαβής που θα μπει στο σωλήνα και άλλα 4 εκ από το ξύλινο μόρσο.
+2. Τρώμε με τις ράσπες πάνω, κάτω, δεξιά και αριστερά κατά μήκος του ζωγραφισμένου στο σώμα μόρσου. Δοκιμάζουμε εάν μπαίνει ο σωλήνας – δεν πρέπει να μπαίνει αλλά να είναι στο όριο.
+3. Περνούμε κάθετα στο μόρσο και τρίβουμε ώστε να γίνει απόλυτα κυλινδρικό το μόρσο με τις λωρίδες από το γυαλόχαρτο κατά σειρά στα μεγέθη 80, 100, 120.
+4. Περνούμε κάθετα στο μόρσο και τρίβουμε ώστε να γίνει απόλυτα λείο το μόρσο με το ξυράφι.
 
+Το τελικό αποτέλεσμα της μέχρι τώρα κατασκευής πρέπει να είναι ως εξής:
 
+![](img/13.png "")
 
 
+**Τοποθέτηση του σωλήνα στο μόρσο.**
 
-As we can see here, both  `textbox` and `intbox` load and save their content (their state) in the attribute members of view model class:
-`@load(vm.logCriteria.text),@save(vm.logCriteria.text)` loads and saves to `org.example.MyViewModel3.logCriteria.text` and
-`@load(vm.logCriteria.id),@save(vm.logCriteria.id)` loads and saves to `org.example.MyViewModel3.logCriteria.id`
+1. Αλείφουμε **με μίγμα εποξειδικής με σκληρυντή** το ελεύθερο άκρο του μόρσου του σώματος ΜΟΝΟ στο σημείο τους επαφής με τη λαβή
+2. Καθαρίζουμε με _σφουγγαράκι και_ _acetone_την παράπλευρη επιφάνεια του ξύλινου μόρσου και Αλείφουμε την παράπλευρη επιφάνεια του ξύλινου μόρσου με μίγμα εποξειδικής ρητίνης και σκληρυντή.
+3. Περνάμε το σωλήνα στο μόρσο, με το δάχτυλο τους σε λατέξ γάντι προσαρμόζουμε την Sikaflex στον πάτο του σωλήνα να εφαρμόζει σωστά και να στεγανοποιεί το ξύλο και αφήνουμε να στεγνώσει η εποξειδική 24 ώρες.
 
+Τελικό αποτέλεσμα
 
-Now on the seecond part: How  the **behavior** is wired from the zul file to the Java class? 
-Notice the declaration of the handling of the `onClick` event: this wires the event to the method  
-`org.example.MyViewModel3.getLogByCriteria` and binds the method's argument `criteria = vm.logCriteria` in other words
-the `criteria` variable will take the actual state of  `vm.logCriteria`.
+![](img/14.png "")
 
-See the implementation of the method: `getLogByCriteria`:
+**Ξύλινη Μούφα**
 
+Πολύ μπανάλ το μέχρι στιγμής αποτέλεσμα και φυσικά όλοι θέλουμε να κυνηγάμε με στυλ έτσι;
 
+Οπότε θα φτιάξουμε μια ξύλινη μούφα η οποία θα καλύπτει το γυμνό σωλήνα και θα δίνει την αίσθηση του ενιαίου ξύλου στην οπλάρα μας για να μη λένε ότι γεννηθήκαμε και σε τσαντίρι…
 
+Για το λόγο αυτό χρειαζόμαστε ένα μικρό τμήμα από το ξύλινο μαδέρι από το οποίο ξεκινήσαμε την κατασκευή ή άλλο από το ίδιο ξύλο με όμοια νερά.
 
-```java
-		@Command
-		@NotifyChange({"operationMessage","logListModel", "selectedLog"})
-		public void  getLogByCriteria( @BindingParam("criteria") Criteria criteria){
-			if( criteria.getId() == 0 && Strings.isBlank( criteria.getText())  ) {
-				operationMessage = "getLogByCriteria(): text is blank or id is 0!";
-				return;
-			}
+![](img/15.png "")
 
-			List<Log> logList = myService.getByCriteria( criteria.id, criteria.text);
-			if( logList.isEmpty() ){
-				operationMessage = "getLogByCriteria(): nothing found for " + criteria.toString();
-				return;
-			}
-			selectedLog = logList.get(0);
-			logListModel = new ListModelList<Log>(logList);
-			operationMessage = "getLogByCriteria():  found selectedLog " + selectedLog.toString();
-		}
+Μετράμε και προσαρμόζουμε το ξύλο
 
-```
+1. Φέρνουμε το ξύλο πρόσωπο με το σωλήνα
+2. Με το στυλό βρίσκουμε τα πάνω και κάτω άκρα που ο σωλήνας βλέπει το ξύλινο τμήμα.
+3. Με το στυλό βρίσκουμε τα δεξιά και αριστερά άκρα που το ξύλινο σώμα του όπλου βλέπει το ξύλινο τμήμα τους μούφας.
+4. Σχεδιάζουμε το ορθογώνιο στο οποίο πρέπει να προσαρμοστεί το ξύλινο τμήμα και φέρνουμε τις διαγώνιες του. Εκεί θα είναι το κέντρο τους τρύπας φ28 mm στο ξύλο που επιλέξαμε. Βλέπε παρακάτω σχήμα.
 
 
-The method is annotated with `@Command` meaning that this method is handling some event that is wired from the ZUL view.
-When this method is called and finished, the state variables `{"operationMessage","logListModel", "selectedLog"}`
-of the ZUL view are notified thus are reloaded from the ViewModel class!
+![](img/16.png "")
 
-![DataBinding of the example](img/mvvm-design-example.png "DataBinding of the example")
+Στη συνέχεια, με το τρυπάνι ξύλου, το γνωστό φτεράκι των 28mm και το τρυπάνι βάσης κάνουμε μια εγκάρσια – κατά μήκος τρύπα φ28 mm στο ξύλο που επιλέξαμε.
 
-More on view model:\
-ZK implementation of the MVVM pattern:\
-http://books.zkoss.org/zk-mvvm-book/8.0/viewmodel/index.html
+![](img/17.png "")
 
-The MVVM pattern in ZK: a complete example\
-https://www.zkoss.org/wiki/ZK_Getting_Started/Get_ZK_Up_and_Running_with_MVVM
+**Προσοχή** , πρέπει να στερεώσουμε το ξύλο πολύ καλά γιατί το φτεράκι δημιουργεί έντονους κραδασμούς που αποσταθεροποιούν πολύ το τρυπάνι, με αποτέλεσμα να δημιουργηθεί τζόγος ανάμεσα στη μούφα και στο σωλήνα κάτι που προσπαθούμε να αποφύγουμε τους και να έχει.
 
+Αφού έγινε ή τρύπα σωστά, πάμε να κολλήσουμε τη μούφα στο σώμα του όπλου
 
-## The deployment descriptors
-The Java application server we want to deploy our example is [Apache Tomcat](http://tomcat.apache.org/)
-To do so the following descriptors are used:
+1. Αγριεύουμε το εξωτερικό του σωλήνα με το σιδεροβουρτσακι προσαρμοσμένο στο δράπανο και με τη σέγα σιδήρου (η σέγα έχει οδοντοειδές βήμα 12 npi)
+2. Καθαρίζουμε το εσωτερικό τους μούφας με _σφουγγαράκι και_ _acetone_
+3. **Εφαρμόζουμε**  **Sikaflex** μέσα στην τρύπα τους μούφας.
+4. Τοποθετούμε σωστά τη μούφα να αγκαλιάζει το σωλήνα και να είναι προφίλ με το σώμα του όπλου.
+5. Στερεώνουμε με χαρτοταινίες και τοποθετούμε λίγη Sikaflex εκεί που η μούφα εφαρμόζει με το όπλο.
+6. Αφήνουμε 24 ώρες να στεγνώσει.
 
-![War contents](img/war-contents.png "War contents")
+![](img/18.png "")
 
-Lets walk one by one of them:
+Μόλις στεγνώσει, προχωράμε με την τελική διαμόρφωση τους μούφας.
 
-[applicationContext.xml](src/main/webapp/WEB-INF/applicationContext.xml) defines 
-the JPA / Hibernate  configuration and defines out application base Java package where 
-Spring framework will be enabled. This is required descriptor!
+Πρώτα με τη ράσπα φτιάχνουμε τον οδηγό, και στη συνέχεια με τη σέγα χειρός κάνουμε μία κοπή κατά μήκος τους στο σχήμα παρακάτω για να αλφαδιάσουμε τη μούφα με το σώμα του όπλου:
 
+![](img/19.png "")
 
-[web.servlet-3.xml](src/main/webapp/WEB-INF/web.servlet-3.xml)  Optional descriptor in case your application defines 
-[Servlets](https://en.wikipedia.org/wiki/Java_servlet)
 
+**Καπάκι τους μούφας**
 
-[web.xml](src/main/webapp/WEB-INF/web.xml)  Required descriptor that  defines almost all components of your Web application, like :
+Στο σημείο αυτό μπορεί κανείς να πει ότι έχουμε τελειώσει, τους υπάρχει μια μικρή λεπτομέρεια. Η μούφα πιάνει στο σώμα του όπλου αφήνοντας λίγο έξω το σωλήνα που έχει αγκαλιάσει σε ένα σημείο που μπορεί να βάλει νερά και να χαλαρώσει ή να σαπίσει το σώμα στο σημείο εκείνο. Για το λόγο αυτό, θα βάλουμε ένα καπάκι στο κάτω μέρος τους μούφας έτσι ώστε να πιάνει σωστά τη μούφα δίνοντας τους λίγα εκατοστά ακόμη ποιο σταθερής κόλλησης στο σώμα του όπλου. **Ένα τέτοιο ξύλινο πλακάκι πρέπει να έχει πάχος όχι μεγαλύτερο από 2-3**  **mm****. Κόβεται δε με τη σέγα χειρός και με πολύ προσοχή…**
 
+**Για το σκοπό αυτό κόβουμε μια φέτα από το κάτω μέρος τους μούφας σύριζα με το κάτω μέρος του όπλου – όσο ποιο χαμηλά γίνεται τους παρακάτω**
 
-* Web Application Name
-* Spring configuration , spring context
-* ZK loader for ZUML pages, ZK listener for session cleanup
-* MIMEs and file extensions
-* Welcome Files and priorities
+![](img/20.png "")
 
-[zk.xml](src/main/webapp/WEB-INF/zk.xml)  Required ZK descriptor that  defines optional parameters. 
+**Στη συνέχεια** χρειαζόμαστε ένα μικρό πλακάκι από το ξύλινο μαδέρι από το οποίο ξεκινήσαμε την κατασκευή ή άλλο από το ίδιο ξύλο με όμοια νερά. Το πλακάκι έχει πάχος τόσο όσο να καλύπτει το σωλήνα εξ ολοκλήρου και να εφαρμόζει στο κάτω μέρος τους σώματος του όπλου πολύ σωστά χωρίς να προεξέχει εκατέρωθεν.
 
-## How to Build the project
+![](img/21.png "")
 
-1. Clone this repository using command
-```
-git clone https://github.com/illumine/articles
-```
+**Το επόμενο βήμα είναι να φάμε όσο ξύλο γίνεται με το** Dremel και το αντίστοιχα κοπτικά μπίλια και κύλινδρο λείανσης Dremel 192, Dremel 408 για να θαφτεί τελείως ο σωλήνας στο ξύλο τους φαίνεται στην παρακάτω φωτογραφία.
 
+![](img/22.png "")
 
-2. Read and reproduce the official instructions from ZKoss in order to setup your in Intelij IDEA:
+Τέλος, κολλάμε με αρκετό μείγμα εποξειδικής ρητίνης και σκληρυντή το διαμορφωμένο πλακάκι στην επιφάνεια του κάτω μέρους του όπλου τους φαίνεται παρακάτω.
 
+![](img/23.png "")
 
-https://www.zkoss.org/wiki/ZK_Installation_Guide/Quick_Start/Create_and_Run_Your_First_ZK_Application_with_IntelliJ_and_ZKIdea
+Εφαρμόζουμε σωστά τους σφιγκτήρες και τη μέγγενη και αφήνουμε να στεγνώσει 24 ώρες.
 
-Name your new ZK  project as `zktest`
+![](img/24.png "")
 
+Στο τέλος, κάλυψα με χαρτοταινία το πίσω μέρος του όπλου και έβαλα εκεί που πιάνει ο σωλήνας στη μούφα Sikaflexmarine παντού.
 
+## Κεφαλή του όπλου
 
-3. Copy the folder [src](https://github.com/illumine/articles/tree/master/ZK-JPA-Spring-Tutorial-with-IDEA-Maven/src/main) from the cloned project to your new ZK project
-`src` directory.
+Το όπλο θα φιλοξενεί μέχρι δύο λάστιχα. Για το λόγο αυτό θα κάνουμε στην κεφαλή δύο τρύπες με το τρυπάνι βάσης και την αρίδα ξύλου φ19. Στη συνέχεια εφαρμόσαμε σωστή διαμόρφωση στο ξύλο ώστε τα λάστιχα να φωλιάσουν σωστά χωρίς να ακουμπάει το ένα πάνω στο άλλο όσο το δυνατόν με το δράπανο χειρός και το κοπτικό υψηλής ταχύτητας Dremel 114 7.8M.
 
+![](img/25.png "")
 
-4. Copy the file [pom.xml](https://github.com/illumine/articles/blob/master/ZK-JPA-Spring-Tutorial-with-IDEA-Maven/pom.xml) to your project
+Επειδή θέλουμε να έχουμε το κεφάλι μας ήσυχο ότι η κεφαλή του όπλου θα αντέχει το φόρτο των ελαστικών, ενισχύσαμε την κατασκευή με δύο ξύλινα πλακάκια πάνω και κάτω από τις τρύπες των ελαστικών. Το πάνω πλακάκι έχει πάχος 5mm, μήκος 8cm και πλάτος 3.6cm όπως και το κάτω. Το κάθε πλακάκι φτιάχτηκε από τα ρετάλια που περίσσεψαν από δεξιά και αριστερά από το ξύλινο μαδέρι από το οποίο ξεκινήσαμε την κατασκευή ή άλλο από το ίδιο ξύλο με όμοια νερά. **Κόπηκαν με τη σέγα χειρός και με πολύ προσοχή. Κολλήθηκαν με μείγμα εποξειδικής και σκληρυντή στην κεφαλή του όπλου με τη χρήση της μέγγενης και 2-3 σφιγκτήρων.**
 
+![](img/26.png "")
 
-5. Run the Maven using the [pom.xml](https://github.com/illumine/articles/blob/master/ZK-JPA-Spring-Tutorial-with-IDEA-Maven/pom.xml) to your project
+Στη συνέχεια πάλι με τη ράσπα, διαμορφώνουμε το πάνω πλακάκι ώστε να κοπεί στη μέση εκεί που περνάει ό οδηγός έτσι ώστε να δέχεται τη βέργα σωστά.
 
+Δείτε το αποτέλεσμα κάτω, όταν πλέον το όπλο έχει τελειώσει:
 
+![](img/27.png "")
 
+Τέλος με λωρίδες από το γυαλόχαρτο κατά σειρά στα μεγέθη 80, 100, 120 λειάναμε τις τρύπες. Στην παρακάτω φωτογραφία, η κεφαλή κατά τη διάρκεια της λείανσης.
 
+![](img/28.png "")
 
-## Tomcat Deployment on IDEA, how to run the project
+## Πτερύγια Σταθεροποίησης – Stabilizers
 
-To deploy the application on [Apache Tomcat](http://tomcat.apache.org/), 
-you must first download and [install Tomcat](https://tomcat.apache.org/tomcat-8.5-doc/setup.html) in a directory on your system.
+Αυτά χρησιμοποιούνται για τους εξής λόγους
 
+- Δίνουν περισσότερο όγκο ξύλου στην περιοχή της λαβής και έτσι ισοφαρίζουν το βάρος της λαβής και του μηχανισμού προσεγγίζοντας την ουδέτερη πλευστότητα που είναι το επιθυμητό αποτέλεσμα ζυγίσματος του όπλου.
+- Χρησιμοποιούνται για να στερεώνουνε την πετονιά ώστε να περνάει μόνο από το κάτω μέρος του όπλου.
+- Παρέχουν μηχανική υποστήριξη στη μούφα.
+- Απορροφούν μέρος της ανάκρουσης κατά τη βολή.
 
-Then register Tomcat application server to the IDEA.
-You can do so, by accessing IDEA Settings:
+Για να φτιάξουμε τα πτερύγια χρειαζόμαστε ένα παχάκι μήκος x πλάτος x ύψος = 15 x 3 x 1.5 cm το οποίο θα κοπεί από τα ρετάλια που περίσσεψαν από το ξύλινο μαδέρι από το οποίο ξεκινήσαμε την κατασκευή ή άλλο από το ίδιο ξύλο με όμοια νερά. **Κόπηκε με τη σέγα χειρός και με πολύ προσοχή.**
 
+Το πηχάκι κόβεται κατά μήκος σε δύο ίσα μέρη. Τα δύο νέα ξύλινα μέρη που βγήκαν από το πηχάκι κολλήθηκαν με μείγμα εποξειδικής και σκληρυντή έτσι ώστε να πιάνουν το πλαϊνό του σώματος του όπλου και τη μούφα χρήση της μέγγενης και 2-3 σφιγκτήρων.
 
-![Tomcat Setup on IDEA](img/tomcat-setup-idea.png "Tomcat Setup on IDEA")
+![](img/29.png "")
 
+Εφαρμόζουμε σωστά τους σφιγκτήρες και τη μέγγενη και αφήνουμε να στεγνώσει 24 ώρες.
 
+Αφού στεγνώσει, με τη ράσπα ξύλου και το Dremel 192, Dremel 408 διαμορφώνουμε τα πτερύγια ώστε να πάρουν το τελικό υδροδυναμικό τους σχήμα όπως φαίνεται παρακάτω.
 
-Then create a runtime for the server and deploy the project on it:
-![Tomcat Deployment on IDEA](img/tomcat-setup.png "Tomcat Deployment on IDEA")
+![](img/30.png "")
 
+![](img/31.png "")
 
 
-Run the project: IDEA Main Menu - Run - Run Tomcat x.x
 
 
+## Ανοξείδωτα
 
+Κατασκεύασα τον κρίκο που περνάει το σχοινί του Μουλινέ καθώς και το άγκιστρο της πετονιάς στην κεφαλή του όπλου από μπουλόνια inox Μ2 / 6mm μήκος όπως φαίνεται στη φωτογραφία. Βεβαίως να πούμε ότι τα πάσα από το μπουλόνι εξομαλύνθηκαν με τις λίμες σιδήρου και λειάνθηκαν με γυαλόχαρτα σιδήρου (μαύρα) μέχρι ν600.
 
-Open with the browser the following URL:
-http://localhost:8080/zktest/index3.zul
+![](img/32.png "")
 
 
+## Βαρίδωμα - Ζύγισμα
 
-## Resources and References
+Το όπλο αρματώθηκε πρόχειρα και μπήκε στη θάλασσα για να ζυγιστεί μέσα στο νερό με τη βοήθεια από μικρά κομματάκια από μολύβι ζυγοστάθμισης. Επειδή ακριβώς το σώμα του όπλου είναι σχετικά μικρό δε χρειάστηκαν παρά γύρω στα 80gr στο ύψος της κεφαλής του όπλου. Στη συνέχεια, με το ρούτερ και το κοπτικό των 8mm με το οποίο έκανα και τον οδηγό της βέργας, έκανα μια θήκη οβάλ κοντά στην κεφαλή του όπλου.
 
-### UML Resources
-[UML](https://en.wikipedia.org/wiki/Unified_Modeling_Language)  Use-Case and Class Diagrams of this project 
-were compiled with source code reverse engineering from [ArgoUML](https://sourceforge.net/projects/argouml/)
+Τα 80gr μολυβιού λειώθηκαν στο μάτι της κουζίνας σε μπρίκι που χρησιμοποιώ μόνο για αυτή τη δουλειά και χυθήκαν μέσα στην οβάλ θήκη και βγήκαν ακόμη ζεστά για να μη καούν τα ξύλα και οι ρητίνες.
 
-The entire [ArgoUML](https://sourceforge.net/projects/argouml/) project can be also downloaded here:
-[ZkMvvmPattern.zargo](ZkMvvmPattern.zargo)
+Ετοίμασα μια μικρή δόση μίγματος ρητίνης σκληρυντή και κόλλησα το μολυβένιο βάρος στην οβάλ θήκη. Όπως και στον οδηγό της βέργας, πρόσεξα πολύ ώστε ο η θήκη να είναι ανάμεσα στις λωρίδες από το ανθρακόνημα, δηλαδή να φιλοξενείται στην ενδιάμεση φέτα του ξύλου χωρίς να κόβει πουθενά το ανθρακόνημα δεξιά και αριστερά όπως φαίνεται παρακάτω:
 
+![](img/33.png "")
 
+## Λείανση/Τρίψιμο.
 
-### ZK With Maven, JPA, Spring using IDEA
-Project setup in Intelij IDEA:\
-https://www.zkoss.org/wiki/ZK_Installation_Guide/Quick_Start/Create_and_Run_Your_First_ZK_Application_with_IntelliJ_and_ZKIdea
+Κατ&#39; αρχήν για να μη κάνουμε ζημιά στο σώμα του όπλου κατά τη διάρκεια της κατασκευής υπάρχουν τα εξής κόλπα:
 
+- Για να μη πληγωθούν τα ξύλα στη μέγγενη όταν θέλουμε ισχυρή στήριξη αυτών, περνάμε στα σαγόνια της μέγγενης πολλές στρώσεις από μονωτική ταινία καλωδίων η οποία προστατεύει το ξύλο. Έτσι, η μέγγενή σφίγγει χωρίς να τραυματίζει και χωρίς να αφήνει έντονα σημάδια καταπόνησης του ξύλου.
+- Όποτε εφαρμόζουμε σφικτήρες ποτέ δεν αφήνουμε τα σαγόνια του σφικτήρα να έρχονται σε επαφή με το ξύλο. Απλά ποτέ! Πρώτα βάζουμε 5 στρώσεις χαρτοταινία και πάνω από αυτή τα νταβίδια – σφικτήρες.
 
+Έτσι, τελειώνοντας την κατασκευή δεν είχε και πολλά συμμαζέματα. Τα περισσότερα είναι αυτά:
 
-IntelliJ - Error:java: release version 5 not supported \
-Select the solution #3\
-https://dev.to/techgirl1908/intellij-error-java-release-version-5-not-supported-376
+1. Γεμίζουμε τυχών μεγάλα κενά και εμφανή σημάδια, αμυχές και τρύπες με μίγμα εποξειδικής και σκληρυντή και πριονίδι από το ξύλο. Αφήνουμε να στεγνώσει σχολαστικά.
+2. Μόλις στεγνώσει, περνάμε ένα τρίψιμο με ψιλή ράσπα σιδήρου, με μικρό δόντι και μετά με γυαλόχαρτο. Ο λόγος που χρησιμοποιούμε ράσπα σιδήρου είναι ότι η ράσπα είναι πολύ σκληρή και μπορεί να δουλέψει σε μικρό εμβαδό πάνω στο σημείο που προσπαθούμε να διορθώσουμε και όχι όπως το γυαλόχαρτο που χρειάζεται χώρο και εξομαλύνει τόσο το σημείο που θέλουμε όσο και τα γειτονικά. Η ίδια δουλειά γίνεται φυσικά πολύ καλύτερα με Dremel και τα κοπτικά 408 ή 431.
+3. Ξύνουμε περίσσεια από κόλες με το ξυράφι κάθετα
+4. Περνάμε το σώμα του όπλου με το παλμικό τριβείο τα νούμερα από τα κόκκινα γυαλόχαρτα 100, 120, 150, 180 εκεί που μπορεί να τρίψει το τριβείο.
+5. Περνάμε με το χέρι και τα αντίστοιχα νούμερα χειρός (καφέ γυαλόχαρτα) για τα μέρη που δε μπορεί να καλυφθούν από το τριβείο. Η φορά τριψίματος να είναι κατά μήκος τους όπλου.
+6. Για να τρίψουμε τον οδηγό, παίρνουμε μια αρίδα τρυπανιού 8mm την περνάμε κυλινδρικά τα αντίστοιχα καφέ γυαλόχαρτα χειρός στα νούμερα 120, 150, 180, 200 και με το σχέδιο αυτό τρίβουμε τον οδηγό.
 
+![](img/34.png "")
 
+1. Φυσούμε πολύ καλά να φύγουν τα πριονίδια, καθαρίζουμε με στεγνό πινέλο το όπλο
+2. Καθαρίζουμε το όπλο με πανάκι με λίγο acetone.
 
-### MVVM Patern in ZK
-ZK implementation of the MVVM pattern:\
-http://books.zkoss.org/zk-mvvm-book/8.0/viewmodel/index.html
+Στο σημείο αυτό καθαρίζουμε το εργαστήριο από σκόνες και πριονίδια
 
-The MVVM pattern in ZK: a complete example\
-https://www.zkoss.org/wiki/ZK_Getting_Started/Get_ZK_Up_and_Running_with_MVVM
+## Καθαριότητα Εργαστηρίου
+
+Με μεγάλη σχολαστικότητα καθαρίζουμε το εργαστήρι πριν περάσουμε λούστρα, τικ όιλ ή βερνίκια. Η μέθοδός που εφαρμόζω είναι η παρακάτω:
+
+1. Ανοίγουμε όλες τις πόρτες και τα παράθυρα διάπλατα. Φοράμε μάσκα μύτης και κλειστά γυαλιά.
+2. Με σκουπάκι μαλακής τρίχας ξεσκονίσματος ξεσκονίζουμε τα ράφια και τους τοίχους παντού. Ξεκινούμε πάντα από πάνω προς τα κάτω μέχρι να φτάσουμε στο πάτωμα.
+3. Με το χέρι ξεδιαλέγουμε τα χοντρά κομμάτια τικ και τα φυλάμε για μελλοντικές κατασκευές
+4. Μαζεύουμε με το σκουπάκι χειρός τα χοντρά και βάζουμε με το φαράσι το πριονίδι σε σακούλα για πέταμα.
+5. Αφού καθαρίσουμε τα πάντα όλα με το χέρι πολύ καλά μαζεύουμε όλα τα εργαλεία και χρήσιμα αντικείμενα από τον πάγκο εργασίας και τα βάζουμε στη θέση τους. Κλείνουμε τις εργαλειοθήκες και μαζεύουμε με το χέρι και το σκουπάκι όλο το πριονίδι από τον πάγκο μας.
+6. Βάζουμε την ηλεκτρική στη μέγιστη ισχύ και καθαρίζουμε τον πάγκο και το πάτωμα.
+7. Αφήνουμε μία μέρα να κάτσει ή σκόνη και την επόμενη πριν ξαναρχίσουμε ξαναπερνάμε την ηλεκτρική στους τοίχους πρώτα και μετά στο πάτωμα.
+
+## Φινίρισμα με teakoil
+
+Χρησιμοποίησα τηκ οιλ της εταιρίας Sika (ref 435676) που κατά τη γνώμη μου είναι το καλύτερο, όμως και το ακριβότερο. Προστατευτικό λάδι υψηλών προδιαγραφών τελείως διαφανές με μεγάλη αντοχή στις UV ακτινοβολίες και στο χρόνο. Βεβαίως 40Ε για 2.5 λίτρα…
+
+Πέρασα 4 χέρια κάθε 24 ώρες αφήνοντάς το όπλο να στεγνώσει σε μόνιμα σκιερό μέρος στο μπαλκόνι.
+
+## Τελικό αποτέλεσμα
+
+Στο όπλο έβαλα ένα ζεύγος περαστά λάστιχα Seagull 16mm και μία βέργα Bluetec 6.5/130 με καρχαριάκια από τις παλιές που τα καρχαριάκια ήταν τελείως πίσω κοντά στο κλειδί της βέργας. Το όπλο με τη βέργα πάνω του έχει προφίλ 20mm, δηλαδή όσο και ένα αλουμινένιο! Τέλος αρμάτωσα τη βέργα με 4 μήκη πετονιάς 1.6mm και κλιπαρισμένα δικανάκια. Ιδού μερικές φωτογραφίες:
+
+![](img/35.png "")
+
+![](img/36.png "")
+
+## Βιβλιογραφία
+
+1. Μιχάλης Μουντράκης -  [Κατασκευή Λαστιχοβόλου Όπλου 2003](MichaelDolphin.pdf).
+2. Βασίλης Ζωνομέσης – Ξύλινα Όπλα, περιοδικό Βυθός 2002
+3. [https://www.spearfishingforum.gr/](https://www.spearfishingforum.gr/) Διάφοροι - _Βήματα για την κατασκευή Ξύλινου Όπλου_[https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=31635&amp;start=1785&amp;sid=d4c3da2a448d638ae08cf7ea7605b8c7](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=31635&amp;start=1785&amp;sid=d4c3da2a448d638ae08cf7ea7605b8c7)
+4. [https://www.spearfishingforum.gr/](https://www.spearfishingforum.gr/) Γιάννης Γιαννέλος _Ιδιοκατασκευή 110 Ξύλινου όπλου_[https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=67690](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=67690)
+
+[1](#sdfootnote1anc)_Στο Γάμο Του Καραγκιόζη….._
+
+[i](#sdendnote1anc) NpI: notch per inch
 
