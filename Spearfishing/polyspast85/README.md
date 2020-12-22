@@ -93,25 +93,19 @@ _Το πολύσπαστο στον κηπο_
 
 ## Πίνακας Υλικών
 
-| **Υλικό** | **Τμχ** | **Διαστάσεις**
- | **Ενδεικτική τιμή**** Παρατηρήσεις** |
+| **Υλικό** | **Τμχ** | **Διαστάσεις** | **Ενδεικτική τιμή - Παρατηρήσεις** |
 | --- | --- | --- | --- |
 | Μονομπλοκ Τηκ Μπουρμα | 1 | 150 cm x48 mm x21mmΚομμένο απλανάριστο αλλά ξεφαρδιασμένο | Δώρο του Μάστρο-Νίκου Καραμολέγκου |
-| Βαρούλκα
- | 2 | Ράουλο για σκάφος Optimist 4 και μικρά dinghy. Διάμετρος σχοινιού: 5mm - Διάμετρος ρουλεμάν: 17mm - Όριο αντοχής 300kg. Από τα MarinaStores, κωδικός 92462https://www.marinastores.gr/product/278-raoyla-kai-axesoyar/3062-mikro-raoulo-mono-me-rouleman-rodela | 2 χ 5.37 = 10.47 Ε |
+| Βαρούλκα              | 2 | Ράουλο για σκάφος Optimist 4 και μικρά dinghy. Διάμετρος σχοινιού: 5mm - Διάμετρος ρουλεμάν: 17mm - Όριο αντοχής 300kg. Από τα MarinaStores, κωδικός 92462https://www.marinastores.gr/product/278-raoyla-kai-axesoyar/3062-mikro-raoulo-mono-me-rouleman-rodela | 2 χ 5.37 = 10.47 Ε |
 | Ράουλα | 2 | Invert Roller RAM/G3 wheels της MVD OD 30mm, ID 25mm, thickness 8mmhttps://www.mvd-retail.gr/product-page/invert-roller-g2-wheels-pair | 5.90 Ε |
-| Άξονας για Ράουλα | 1 | ο άξονας είναι από Inox σωληνάκι Φ6/Φ8 χωρίς βίδες ή άλλα. |
- |
-| ΜηχανισμόςσκανδάληςΜε σχοινοπιάστρα επάνω | 1 | Trigger Predator Long της MVD, κωδικός MVD10374[https://www.mvd-retail.gr/product-page/trigger-predator-long](https://www.mvd-retail.gr/product-page/trigger-predator-long)77 mm x 13 mm x 10 mm | Trigger Predator Long 44.5 Ε |
-| Υποφυλακτήρας Σκανδάλης | 1 | Ιδιοκατασκευή | Inox 301 |
-| Άγκιστρα ελαστικών | 2 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ4 χ4
- |
+| Άξονας για Ράουλα | 1 | ο άξονας είναι από Inox σωληνάκι Φ6/Φ8 χωρίς βίδες ή άλλα. |   | 
+| Μηχανισμός σκανδάλης με σχοινοπιάστρα επάνω | 1 | Trigger Predator Long της MVD, κωδικός MVD10374[https://www.mvd-retail.gr/product-page/trigger-predator-long](https://www.mvd-retail.gr/product-page/trigger-predator-long)77 mm x 13 mm x 10 mm | Trigger Predator Long 44.5 Ε |
+| Υποφυλακτήρας Σκανδάλης | 1 | Ιδιοκατασκευή | Inox 301 | Άγκιστρα ελαστικών | 2 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ4 χ4|
 | Άγκιστρα ελαστικών - μανιτάρια | 4 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ42 Ροδελες πάνω κατω1 Σωληνάκι Inox Φ4/Φ6 mm από τον Τρεζο trezos-marine.gr |
 | Οδηγός σχοινιού | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
 | Οδηγός πετονιάς πάνω από τη βέργα | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
 | Οδηγός πετονιάς στη λαβή | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
-| Οδηγός βέργας στην κεφαλή | 1 | Ιδιοκατασκευή από σωληνάκι Inox 316L Φ8/Φ10mm
- | με κατάλληλη διαμόρφωση |
+| Οδηγός βέργας στην κεφαλή | 1 | Ιδιοκατασκευή από σωληνάκι Inox 316L Φ8/Φ10mm με κατάλληλη διαμόρφωση |
 | Ντίζα | 1 | Dyneema 3 mm | trezos-marine.gr |
 | Καμπάνα | 1 | Kevlar full 2 mm | trezos-marine.gr |
 | Λάστιχα | 4 | Ζωνομεσης φυσικό λατέξ φ18 Χ 2 μηκος 20 cm | Ψαλιδιές από Dyneema 2 |
