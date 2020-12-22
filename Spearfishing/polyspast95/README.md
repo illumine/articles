@@ -1,5 +1,8 @@
 # Πολύσπαστο Ψαροντούφεκο  95 cm
-Δημοσίευση 
+Δημοσίευση στο SpearfishingForum.gr εδώ
+
+https://www.spearfishingforum.gr/viewtopic.php?f=19&t=13567&hilit=polyspast&start=2805
+
 
 
 ## Πίνακας Υλικών
