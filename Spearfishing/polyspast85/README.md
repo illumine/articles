@@ -103,10 +103,10 @@ _Το πολύσπαστο στον κηπο_
 | Υποφυλακτήρας Σκανδάλης | 1 | Ιδιοκατασκευή | Inox 301 | Άγκιστρα ελαστικών | 2 | Ιδιοκατασκευή | Inox 316L Μπουλόνι Μ4 χ4|
 | Άγκιστρα ελαστικών - μανιτάρια | 4 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ42 Ροδελες πάνω κατω1 Σωληνάκι Inox Φ4/Φ6 mm από τον Τρεζο trezos-marine.gr |
 | Οδηγός σχοινιού | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
-| Οδηγός πετονιάς πάνω από τη βέργα | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
-| Οδηγός πετονιάς στη λαβή | 1 | Ιδιοκατασκευή | Inox 316LΜπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
+| Οδηγός πετονιάς πάνω από τη βέργα | 1 | Ιδιοκατασκευή | Inox 316L Μπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
+| Οδηγός πετονιάς στη λαβή | 1 | Ιδιοκατασκευή | Inox 316L Μπουλόνι Μ2 χ8με κατάλληλη διαμόρφωση |
 | Οδηγός βέργας στην κεφαλή | 1 | Ιδιοκατασκευή από σωληνάκι Inox 316L Φ8/Φ10mm με κατάλληλη διαμόρφωση |
-| Ντίζα | 1 | Dyneema 3 mm | trezos-marine.gr |
+| Ντίζα | 1 | Dyneema 3 mm | trezos-marine.gr,  5 Ε τα 3 μέτρα |
 | Καμπάνα | 1 | Kevlar full 2 mm | trezos-marine.gr |
 | Λάστιχα | 4 | Ζωνομεσης φυσικό λατέξ φ18 Χ 2 μηκος 20 cm | Ψαλιδιές από Dyneema 2 |
 
@@ -389,23 +389,24 @@ https://github.com/illumine/articles/tree/master/Spearfishing/polyspast85/img
 
 ![](img/21.png)
 
+![](img/22.png)
+
 
 ## Βιβλιογραφία
 
-1. Παναγής Αραβαντινός – Blog – Απλά Αξεπέραστο….
+1. Παναγής Αραβαντινός – Blog –  ό,τι φτιάξει απλά Αξεπέραστο….
 
 [http://panagisaravantinos.blogspot.com/](http://panagisaravantinos.blogspot.com/)
 
-1. Διάφοροι – Φτηνό Rollergun
+2. Διάφοροι – Φτηνό Rollergun
 
 [https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=13567&amp;start=2805](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=13567&amp;start=2805)
 
-1. Μιχάλης Μουντράκης - Κατασκευή Λαστιχοβόλου Όπλου 2003
+3. Μιχάλης Μουντράκης - Κατασκευή Λαστιχοβόλου Όπλου 2003
 
 [https://github.com/illumine/articles/blob/master/Spearfishing/MichaelDolphin.pdf](https://github.com/illumine/articles/blob/master/Spearfishing/MichaelDolphin.pdf)
 
-1. Μιχάλης Μουντράκης - 85ρι Ξύλινο Ψαροντούφεκο
+4. Μιχάλης Μουντράκης - 85ρι Ξύλινο Ψαροντούφεκο
 
 [https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=51817&amp;p=595267&amp;hilit=%CE%A3%CF%8C%CF%86%CE%B7#p594126](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=51817&amp;p=595267&amp;hilit=%CE%A3%CF%8C%CF%86%CE%B7#p594126)
 
-Αθήνα - 2020
