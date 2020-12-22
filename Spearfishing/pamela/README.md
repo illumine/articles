@@ -1,6 +1,6 @@
 # Σημαδούρα/πλωτήρας Pamela Anderson
 
-Δημοσίυεση στο θέμα
+Δημοσίευση στο θέμα
 
 
 [https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=54378&amp;p=730806&amp;hilit=%CF%80%CE%B1%CE%BC%CE%B5%CE%BB%CE%B1#p730806](https://www.spearfishingforum.gr/viewtopic.php?f=19&amp;t=54378&amp;p=730806&amp;hilit=%CF%80%CE%B1%CE%BC%CE%B5%CE%BB%CE%B1#p730806)

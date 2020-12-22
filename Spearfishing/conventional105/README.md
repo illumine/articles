@@ -6,6 +6,10 @@ _Μιχάλης Μουντράκης,_ [_mike __.__ mountrakis __@__ gmail __.__
 
 _Αθήνα, Σεπτέμβρης 2020_
 
+Δημοσίευση
+
+
+https://www.spearfishingforum.gr/viewtopic.php?f=19&t=67721
 
 ![](img/frontpage.png "")
 
