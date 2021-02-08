@@ -90,7 +90,7 @@ during `docker build` with
 `--env-file`		Read in a file of environment variables
 `docker` command line attribute `--build-arg` like the following example illustrates:
 ```
-docker build --build-arg some_variable_name=a_value
+docker build -e some_variable_name=a_value
 ```
 - Environment variables are preceeded from Build Arguments
 - During `COPY` no substitution of Args or Envs takes place in the COPYed file - Docker does not support templating by default!!!
