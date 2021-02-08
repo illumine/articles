@@ -1,6 +1,8 @@
-#Docker Container Env and Arg
+# Docker Container Env and Arg
 
-The `Dockerfile`:
+
+## Preparing the container
+The `Dockerfile` that defines some Build Arguments and Environment variables:
 
 ```
 From alpine:latest
@@ -34,14 +36,15 @@ COPY test.txt /test.txt
 CMD while true; do sleep 15 ; done 
 ```
 
-The file `test.txt`
+The contents of the file `test.txt`, we use the Environment variables and Build Arguments:
 
 ```
   blah blah.....  ${myarg}   
   blah blah.....  ${myenv}
 ```
 
-The docker compile and run commands:
+## Build and Run the container
+The docker build  and run commands:
 
 ```
 
@@ -51,7 +54,8 @@ C:\Users\Mike\test>docker build -t mike .
 C:\Users\Mike\test>docker run --name cmike  mike
 ```
 
-The results:
+## The results
+In the running container check what is created:
 ```
 C:\Users\mike\test>docker exec -it cmike  cat /argval.txt
 hi there
@@ -72,15 +76,16 @@ C:\Users\mike\test>docker exec -it cmike  cat /test.txt
   blah blah.....  ${myenv}
 ```
 
-Lessons learned:
--Args are used for building the container
--Args can be specified in the `Dockerfile`, using a `docker-compose.yml` file, using an `.env` file, during `docker build` with like
+## Lessons learned:
+- Build Arguments are used **to build the container**
+- Build Arguments can be specified in the `Dockerfile` using `ARG` directive, using a `docker-compose.yml` file, using an `.env` file, during `docker build` with 
+`docker` command line attribute `--build-arg` like the following example
 ```
 docker build --build-arg some_variable_name=a_value
 ```
--Envs are used to run the container
--Envs are preceeded from Args
--During `COPY` no substitution of Args or Envs takes place.
+- Environment variables are used **to run the container**
+- Environment variables are preceeded from Build Arguments
+- During `COPY` no substitution of Args or Envs takes place in the COPYed file - DOcker does not support templating by default!!!
 
 
 ## Read more
