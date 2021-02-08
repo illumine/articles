@@ -78,17 +78,30 @@ C:\Users\mike\test>docker exec -it cmike  cat /test.txt
 
 ## Lessons learned:
 - Build Arguments are used **to build the container**
-- Build Arguments can be specified in the `Dockerfile` using `ARG` directive, using a `docker-compose.yml` file, using an `.env` file, during `docker build` with 
+- Environment variables are used **to run the container**
+- Build Arguments can be specified in the `Dockerfile` using `ARG` directive, using a `docker-compose.yml` file,  during `docker build` with 
 `docker` command line attribute `--build-arg` like the following example
 ```
 docker build --build-arg some_variable_name=a_value
 ```
-- Environment variables are used **to run the container**
+- Environment variables can be used in the `Dockerfile` using `ENV` directive, using a `docker-compose.yml` file, using an `.env` file, 
+during `docker build` with 
+`--env , -e`		Set environment variables or 
+`--env-file`		Read in a file of environment variables
+`docker` command line attribute `--build-arg` like the following example illustrates:
+```
+docker build --build-arg some_variable_name=a_value
+```
 - Environment variables are preceeded from Build Arguments
-- During `COPY` no substitution of Args or Envs takes place in the COPYed file - DOcker does not support templating by default!!!
+- During `COPY` no substitution of Args or Envs takes place in the COPYed file - Docker does not support templating by default!!!
 
 
 ## Read more
+Docker command Manual:
+
+
+https://docs.docker.com/engine/reference/commandline/run/
+
 Excellent article:
 
 
